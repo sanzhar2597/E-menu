@@ -1,0 +1,1 @@
+diploma.register/src kz/greetgo/diploma/register/dao

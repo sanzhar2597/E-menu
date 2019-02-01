@@ -1,0 +1,8 @@
+rootProject.name = "greetgo.diploma"
+
+include 'diploma.client'
+include 'diploma.controller'
+include 'diploma.register'
+include 'diploma.server'
+include 'diploma.server:war'
+include 'diploma.server:debug'

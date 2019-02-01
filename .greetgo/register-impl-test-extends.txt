@@ -1,0 +1,1 @@
+kz.greetgo.diploma.register.test.util.ParentTestNg

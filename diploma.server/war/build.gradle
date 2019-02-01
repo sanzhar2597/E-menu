@@ -1,0 +1,30 @@
+apply plugin: 'war'
+webAppDirName = 'webapps'
+
+dependencies {
+  compile project(':diploma.server')
+
+  testCompile "kz.greetgo.depinject:greetgo.depinject.gen:$depinjectVersion"
+
+  compile 'jstl:jstl:1.2'
+
+}
+
+
+war {
+  dependsOn project(':diploma.client').tasks.dist
+  doFirst {
+//    println(project(':diploma.client').buildDir.toPath().resolve('product').toFile())
+  }
+
+  baseName 'diploma'
+
+  addExcludes rootSpec
+
+  from project(':diploma.client').projectDir.toPath().resolve('dist').toFile()
+}
+
+static def addExcludes(rootSpec) {
+  rootSpec.exclude 'ant-*.jar'
+  rootSpec.exclude 'ant-launcher-*.jar'
+}
