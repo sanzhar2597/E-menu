@@ -14,4 +14,7 @@ public interface AuthRegister {
   PersonDisplay displayPerson(String personId);
 
   void deleteSession(String sessionId);
+
+  String registrate(String password, String accountName);
+
 }

@@ -75,6 +75,23 @@ export class LoginService {
     }
   }
 
+  async registrate() {
+    try {
+      let consoleDate="";
+      this.loading = true;
+      this.http.token = await this.http.post("/auth/registrate", {
+        username: this.username,
+        password: this.password,
+      }, "text").toPromise().then(resp => consoleDate = (resp.body as string))
+      console.log("REGISTRATE: ", consoleDate);
+      // await this.refresh();
+      // this.loading = false;
+    } catch (e) {
+      this.loading = false;
+      console.log("e = ", e)
+    }
+  }
+
   async exit() {
     this.loading = true;
     try {

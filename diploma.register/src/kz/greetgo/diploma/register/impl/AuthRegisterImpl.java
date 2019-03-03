@@ -6,11 +6,16 @@ import kz.greetgo.diploma.controller.errors.IllegalLoginOrPassword;
 import kz.greetgo.diploma.controller.model.PersonDisplay;
 import kz.greetgo.diploma.controller.model.SessionHolder;
 import kz.greetgo.diploma.controller.register.AuthRegister;
+import kz.greetgo.diploma.register.beans.all.IdGenerator;
 import kz.greetgo.diploma.register.dao.AuthDao;
 import kz.greetgo.diploma.register.model.PersonLogin;
 import kz.greetgo.security.password.PasswordEncoder;
 import kz.greetgo.security.session.SessionIdentity;
 import kz.greetgo.security.session.SessionService;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static kz.greetgo.diploma.controller.util.FilterUtil.skipNulls;
 
@@ -22,6 +27,8 @@ public class AuthRegisterImpl implements AuthRegister {
   public BeanGetter<PasswordEncoder> passwordEncoder;
 
   public BeanGetter<SessionService> sessionService;
+
+  public BeanGetter<IdGenerator> idGenerator;
 
   @Override
   public SessionIdentity login(String username, String password) {
@@ -78,5 +85,15 @@ public class AuthRegisterImpl implements AuthRegister {
   @Override
   public void deleteSession(String sessionId) {
     sessionService.get().removeSession(sessionId);
+  }
+
+  @Override
+  public String registrate(String password, String accountName) {
+    String id = idGenerator.get().newId();
+//    Date birthDateStr = new Date();
+    String encryptPassword = passwordEncoder.get().encode(password);
+    authDao.get().insertPerson(id, accountName, encryptPassword);
+//    authDao.get().updatePersonField(id, "birth_date", new Timestamp(birthDateStr.getTime()));
+    return "Created";
   }
 }

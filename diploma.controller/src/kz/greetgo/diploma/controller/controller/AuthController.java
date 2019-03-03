@@ -16,6 +16,8 @@ import kz.greetgo.diploma.controller.security.PublicAccess;
 import kz.greetgo.diploma.controller.util.Controller;
 import kz.greetgo.security.session.SessionIdentity;
 
+import javax.servlet.annotation.ServletSecurity;
+
 import static kz.greetgo.diploma.controller.util.DiplomaViews.G_SESSION;
 
 /**
@@ -51,6 +53,13 @@ public class AuthController implements Controller {
       .saveValue(identity.id);
 
     return identity.token;
+  }
+
+  @AsIs
+  @PublicAccess
+  @OnPost("/registrate")
+  public String registrate(@Par("password") String password,  @Par("username") String accountName) {
+    return authRegister.get().registrate(password, accountName);
   }
 
   @ToJson
