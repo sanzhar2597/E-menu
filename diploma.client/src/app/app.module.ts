@@ -10,6 +10,10 @@ import {FormsModule} from "@angular/forms";
 import {ClientListComponent} from './client-list/client-list.component';
 import {ClientListService} from "./client-list/client-list.service";
 import { AboutComponent } from './about/about.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderComponent } from './orders/order/order.component';
+import { OrderItemsComponent } from './orders/order-items/order-items.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,9 +21,12 @@ import { AboutComponent } from './about/about.component';
     LoginComponent,
     ClientListComponent,
     AboutComponent,
+    OrdersComponent,
+    OrderComponent,
+    OrderItemsComponent,
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule,
+    BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
   ],
   providers: [HttpService, LoginService, ClientListService],
   bootstrap: [AppComponent]

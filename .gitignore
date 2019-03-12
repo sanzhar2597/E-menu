@@ -8,6 +8,10 @@
 *.ipr
 *.iws
 
+.ideaDataSources/
+dataSources/
+
+
 # Gradle files #
 ################
 .gradle/
