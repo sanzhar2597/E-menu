@@ -5,8 +5,13 @@ import kz.greetgo.depinject.core.BeanGetter;
 import kz.greetgo.depinject.core.HasAfterInject;
 import kz.greetgo.diploma.controller.util.Modules;
 import kz.greetgo.diploma.debug.util.WebAppContextRegistration;
+import kz.greetgo.diploma.register.impl.TelegramInitialImpl;
+import kz.greetgo.diploma.register.impl.TelegramRegisterImpl;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.telegram.telegrambots.ApiContextInitializer;
+import org.telegram.telegrambots.TelegramBotsApi;
+import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
 import java.util.Comparator;
 import java.util.List;
@@ -22,7 +27,16 @@ public class DebugServer implements HasAfterInject {
     System.err.println("[[[                                ]]]");
     System.err.println("[[[ Stand server has been launched ]]] [[[ " + url + " ]]]");
     System.err.println("[[[                                ]]]");
+    telegramStart();
     return this;
+  }
+  public BeanGetter<TelegramInitialImpl> telegramRegisterImpl;
+
+  public void telegramStart(){
+		System.err.println("[[[                                ]]]");
+		System.err.println("[[[ Telegram bot has been launched ]]]");
+		System.err.println("[[[                                ]]]");
+    telegramRegisterImpl.get().startTelegram();
   }
 
   public void join() throws InterruptedException {

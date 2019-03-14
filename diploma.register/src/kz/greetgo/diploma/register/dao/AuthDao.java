@@ -11,26 +11,27 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 public interface AuthDao {
-  @Select("select * from person where username = #{username} and blocked = 0")
-  PersonLogin selectByUsername(@Param("username") String username);
 
-  @Select("select surname||' '||name||' '||patronymic as fio, username" +
-    " from person where id = #{personId}")
-  PersonDisplay loadDisplayPerson(@Param("personId") String personId);
+	@Select("select * from person where username = #{username} and blocked = 0")
+	PersonLogin selectByUsername(@Param("username") String username);
 
-  @Select("select user_can from person_cans where person_id = #{personId}")
-  List<UserCan> loadCans(String personId);
+	@Select("select surname||' '||name||' '||patronymic as fio, username" +
+		" from person where id = #{personId}")
+	PersonDisplay loadDisplayPerson(@Param("personId") String personId);
 
-  @Insert("insert into Person (id, username, encoded_password, blocked) " +
-          "values (#{id}, #{username}, #{encodedPassword}, 0)")
-  void insertPerson(@Param("id") String id,
-                    @Param("username") String username,
-                    @Param("encodedPassword") String encodedPassword
-  );
+	@Select("select user_can from person_cans where person_id = #{personId}")
+	List<UserCan> loadCans(String personId);
 
-  @Update("update Person set ${fieldName} = #{fieldValue} where id = #{id}")
-  void updatePersonField(@Param("id") String id,
-                         @Param("fieldName") String fieldName,
-                         @Param("fieldValue") Object fieldValue);
+	@Insert("insert into Person (id, username, encoded_password, blocked) " +
+		"values (#{id}, #{username}, #{encodedPassword}, 0)")
+	void insertPerson(@Param("id") String id,
+										@Param("username") String username,
+										@Param("encodedPassword") String encodedPassword
+	);
+
+	@Update("update Person set ${fieldName} = #{fieldValue} where id = #{id}")
+	void updatePersonField(@Param("id") String id,
+												 @Param("fieldName") String fieldName,
+												 @Param("fieldValue") Object fieldValue);
 
 }

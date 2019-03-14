@@ -41,6 +41,7 @@ public class DbLoader {
     user("Менделеев Дмитрий Иванович", "1834-02-08", "mendeleev");
     user("Ломоносов Михаил Васильевич", "1711-11-19", "lomonosov");
     user("Бутлеров Александр Михайлович", "1828-09-15", "butlerov");
+    user("Акмарал Мелдехан ...", "1998-06-14", "akmaral");
 
     add_can("pushkin", UserCan.VIEW_USERS);
     add_can("stalin", UserCan.VIEW_USERS);
