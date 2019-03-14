@@ -1,6 +1,6 @@
-package kz.greetgo.diploma.register.telegram;
+package kz.greetgo.diploma.register.model;
 
-public class Model {
+public class HumidityModel {
 
     private String name;
     private Double temp;
