@@ -49,6 +49,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 	public void sendMsg(Message message, String text) {
 
 		SendMessage sendMessage = new SendMessage();
+
 		sendMessage.enableMarkdown(true);
 
 		sendMessage.setChatId(message.getChatId());
@@ -70,7 +71,8 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 
 	@Override
 	public String getNameFromDb(String name) throws IOException {
-
+		
+		name = name.toLowerCase();
 		String id;
 		String encodedPassword;
 		PersonLogin selectByUsername = telegramDao.get().selectByUsername(name);
@@ -90,21 +92,19 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 				switch(message.getText())
 					{
 						case "/help":
-							sendMsg(message, "Как пользоватся этим ботом ? \n " +
-								" /help -Помощь Пользователю \n " +
+							sendMsg(message, "Как пользоватся этим ботом ? \n" +
+								"/help -Помощь Пользователю \n" +
 								"/using - Что делает бот\n" +
-								" /info - Информация о боте ");
+								"/info - Информация о боте");
 							break;
 						case "/using":
-							sendMsg(message, "Что делает бот? \n Нужно просто написать название Города он вам покажет следушие \n" +
-								" 1)Название города \n" +
-								"2)Температура \n" +
-								" 3)влажность \n" +
-								"4)Прогноз (Осадки) \n" +
-								"5)картинку соответсвуюшему прогнозу");
+							sendMsg(message,
+								"Что делает бот? \nНужно просто написать ваше имя или имя друга \n" +
+									"1) возвращает ваш уникальный id\n" +
+									"2) возвращает ваше зашифрованное письмо");
 							break;
 						case "/info":
-							sendMsg(message, "Бот разработан в 2019 году 10 Марта .\n Разработчик Дадаханов Санжар Курбанбайулы .");
+							sendMsg(message, "Бот разработан в 2019 году 10 марта. \nдля Дипломной Работы.");
 							break;
 						default:
 							try
