@@ -12,7 +12,7 @@ public class TelegramRegisterImplTest extends ParentTestNg {
 	public BeanGetter<TelegramRegisterImpl> telegramRegisterImpl;
 
 	@Test
-	public void InitializeTelegram() {
+	public void InitializeTelegram() throws Exception{
 
 		ApiContextInitializer.init();
 
@@ -28,7 +28,7 @@ public class TelegramRegisterImplTest extends ParentTestNg {
 
 		while(true)
 			{
-
+	Thread.sleep(1000);
 			}
 	}
 }

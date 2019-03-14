@@ -76,6 +76,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 		String id;
 		String encodedPassword;
 		PersonLogin selectByUsername = telegramDao.get().selectByUsername(name);
+		System.out.println("telegram bot uses postgres");
 		if(selectByUsername == null)
 			{
 				return "there is no such user";
