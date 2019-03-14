@@ -21,6 +21,7 @@ import java.util.List;
 @Bean
 public class TelegramRegisterImpl extends TelegramLongPollingBot implements TelegramRegister {
 
+	int count= 0;
 	public BeanGetter<TelegramDao> telegramDao;
 
 	@Override
@@ -106,6 +107,38 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 							break;
 						case "/info":
 							sendMsg(message, "Бот разработан в 2019 году 10 марта. \nдля Дипломной Работы.");
+							break;
+
+							case "ulka":
+						case "Ulka":
+
+							if(count==0){
+								sendMsg(message, "– Я обязательно, ты слышишь? Я обязательно, – сказал Медвежонок. Ежик кивнул.\n" +
+									"– Я обязательно приду к тебе, что бы ни случилось. Я буду возле тебя всегда.\n" +
+									"Ежик глядел на Медвежонка тихими глазами и молчал.\n" +
+									"– Ну что ты молчишь?\n" +
+									"– Я верю, – сказал Ежик.");
+								count++;
+							}
+							else{
+								sendMsg(message, "Давайте никогда-никогда не расставаться!\n" +
+									"— С кем?\n" +
+									"— С рекой, с лесом, друг с другом.\n" +
+									"— Согласен, — сказал Медвежонок.\n" +
+									"— И я, — сказал Поросёнок.\n" +
+									"— Давайте все-все всегда будем вместе! — почти крикнул Ёжик.\n" +
+									"И тут выскочил Заяц.\n" +
+									"— А я? — спросил он. — Я с вами!\n" +
+									"— Конечно, — сказал Медвежонок. — Мы все — вместе.\n" +
+									"— Как здорово! — прошептал Поросёнок. И заплакал.\n" +
+									"— Что же ты плачешь?\n" +
+									"— Мне никогда еще не было так хорошо.");
+								count=0;
+							}
+
+
+
+
 							break;
 						default:
 							try

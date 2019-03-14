@@ -30,13 +30,13 @@ public class DebugServer implements HasAfterInject {
     telegramStart();
     return this;
   }
-  public BeanGetter<TelegramInitialImpl> telegramRegisterImpl;
+  public BeanGetter<TelegramInitialImpl> telegramInitialImpl;
 
   public void telegramStart(){
 		System.err.println("[[[                                ]]]");
 		System.err.println("[[[ Telegram bot has been launched ]]]");
 		System.err.println("[[[                                ]]]");
-    telegramRegisterImpl.get().startTelegram();
+    telegramInitialImpl.get().startTelegram();
   }
 
   public void join() throws InterruptedException {
