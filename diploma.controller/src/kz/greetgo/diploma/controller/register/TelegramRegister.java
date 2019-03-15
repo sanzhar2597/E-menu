@@ -13,4 +13,6 @@ public interface TelegramRegister {
 
 	String getNameFromDb(String name) throws IOException;
 
+	String startBot(Message message);
+
 }

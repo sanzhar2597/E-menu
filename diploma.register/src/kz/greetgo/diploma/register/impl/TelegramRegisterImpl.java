@@ -72,7 +72,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 
 	@Override
 	public String getNameFromDb(String name) throws IOException {
-		
+
 		name = name.toLowerCase();
 		String id;
 		String encodedPassword;
@@ -86,6 +86,14 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 	}
 
 	@Override
+	public String startBot(Message message) {
+
+		String fullName = message.getFrom().getFirstName() + " " + message.getFrom().getLastName();
+		String firstMessage = "Добро пожаловать "+ fullName + ". Вас приветсвует бот: "  + getBotUsername();
+		return firstMessage;
+    }
+
+	@Override
 	public void onUpdateReceived(Update update) {
 
 		Message message = update.getMessage();
@@ -93,6 +101,9 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 			{
 				switch(message.getText())
 					{
+                        case "/start":
+                            sendMsg(message, startBot(message));
+                            break;
 						case "/help":
 							sendMsg(message, "Как пользоватся этим ботом ? \n" +
 								"/help -Помощь Пользователю \n" +
@@ -108,39 +119,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 						case "/info":
 							sendMsg(message, "Бот разработан в 2019 году 10 марта. \nдля Дипломной Работы.");
 							break;
-
-							case "ulka":
-						case "Ulka":
-
-							if(count==0){
-								sendMsg(message, "– Я обязательно, ты слышишь? Я обязательно, – сказал Медвежонок. Ежик кивнул.\n" +
-									"– Я обязательно приду к тебе, что бы ни случилось. Я буду возле тебя всегда.\n" +
-									"Ежик глядел на Медвежонка тихими глазами и молчал.\n" +
-									"– Ну что ты молчишь?\n" +
-									"– Я верю, – сказал Ежик.");
-								count++;
-							}
-							else{
-								sendMsg(message, "Давайте никогда-никогда не расставаться!\n" +
-									"— С кем?\n" +
-									"— С рекой, с лесом, друг с другом.\n" +
-									"— Согласен, — сказал Медвежонок.\n" +
-									"— И я, — сказал Поросёнок.\n" +
-									"— Давайте все-все всегда будем вместе! — почти крикнул Ёжик.\n" +
-									"И тут выскочил Заяц.\n" +
-									"— А я? — спросил он. — Я с вами!\n" +
-									"— Конечно, — сказал Медвежонок. — Мы все — вместе.\n" +
-									"— Как здорово! — прошептал Поросёнок. И заплакал.\n" +
-									"— Что же ты плачешь?\n" +
-									"— Мне никогда еще не было так хорошо.");
-								count=0;
-							}
-
-
-
-
-							break;
-						default:
+							default:
 							try
 								{
 									sendMsg(message, getNameFromDb(message.getText()));
@@ -165,13 +144,13 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 	@Override
 	public String getBotUsername() {
 
-		return "booking_diploma_bot";
+		return "asd_asd_asd_bot";
 	}
 
 	@Override
 	public String getBotToken() {
 
-		return "710526393:AAErOMh1RCoHX47Sz8U09XJEM6IbcInaTh8";
+		return "807401698:AAEsqZ_D1s-5HFnlHtVQRB4Pl8Oad6EY_j8";
 	}
 
 
