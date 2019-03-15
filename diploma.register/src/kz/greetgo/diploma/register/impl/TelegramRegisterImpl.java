@@ -21,7 +21,6 @@ import java.util.List;
 @Bean
 public class TelegramRegisterImpl extends TelegramLongPollingBot implements TelegramRegister {
 
-	int count= 0;
 	public BeanGetter<TelegramDao> telegramDao;
 
 	@Override
@@ -74,8 +73,6 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 	public String getNameFromDb(String name) throws IOException {
 
 		name = name.toLowerCase();
-		String id;
-		String encodedPassword;
 		PersonLogin selectByUsername = telegramDao.get().selectByUsername(name);
 		System.out.println("telegram bot uses postgres");
 		if(selectByUsername == null)
@@ -89,9 +86,9 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 	public String startBot(Message message) {
 
 		String fullName = message.getFrom().getFirstName() + " " + message.getFrom().getLastName();
-		String firstMessage = "Добро пожаловать "+ fullName + ". Вас приветсвует бот: "  + getBotUsername();
+		String firstMessage = "Добро пожаловать " + fullName + ". Вас приветсвует бот: " + getBotUsername();
 		return firstMessage;
-    }
+	}
 
 	@Override
 	public void onUpdateReceived(Update update) {
@@ -101,9 +98,9 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 			{
 				switch(message.getText())
 					{
-                        case "/start":
-                            sendMsg(message, startBot(message));
-                            break;
+						case "/start":
+								sendMsg(message, startBot(message));
+							break;
 						case "/help":
 							sendMsg(message, "Как пользоватся этим ботом ? \n" +
 								"/help -Помощь Пользователю \n" +
@@ -119,7 +116,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 						case "/info":
 							sendMsg(message, "Бот разработан в 2019 году 10 марта. \nдля Дипломной Работы.");
 							break;
-							default:
+						default:
 							try
 								{
 									sendMsg(message, getNameFromDb(message.getText()));
@@ -144,13 +141,13 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 	@Override
 	public String getBotUsername() {
 
-		return "asd_asd_asd_bot";
+		return "booking_diploma_bot";
 	}
 
 	@Override
 	public String getBotToken() {
 
-		return "807401698:AAEsqZ_D1s-5HFnlHtVQRB4Pl8Oad6EY_j8";
+		return "710526393:AAErOMh1RCoHX47Sz8U09XJEM6IbcInaTh8";
 	}
 
 
