@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-input clearInput [(ngModel)]="item.id" type="number" placeholder="model" [value]="item.id"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input clearInput [(ngModel)]="item.price" type="number" placeholder="price" [value]="item.price"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input clearInput [(ngModel)]="item.product" placeholder="product" [value]="item.product"></ion-input>
+  </ion-item>
+
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="openItem(item)">ADD</ion-button>
+  </div>
+
+
+</ion-content>

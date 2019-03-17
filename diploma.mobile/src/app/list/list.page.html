@@ -11,7 +11,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of items">
+    <ion-item *ngFor="let item of items"
+              [routerLink]="['/list/item', item.id]" [queryParams] ="{'product': item.title, 'price': item.price}">
       <ion-icon [name]="item.icon" slot="start"></ion-icon>
       {{item.title}}
       <div class="item-note" slot="end">
