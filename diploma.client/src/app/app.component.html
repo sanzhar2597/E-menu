@@ -1,8 +1,11 @@
-<div class="main">
-  <h1>
-    Добро пожаловать на {{ title }}!
-  </h1>
-  <app-login></app-login>
-  <app-about *ngIf="login.canViewAbout"></app-about>
-  <app-client-list *ngIf="login.canViewUsers"></app-client-list>
+
+<div class="jumbotron jumbtron-fluid">
+  <h3 class="display-4 text-center"><img src="/assets/img/food.png" alt="">Restaurant App.</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </div>

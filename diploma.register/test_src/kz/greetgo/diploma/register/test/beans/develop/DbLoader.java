@@ -21,6 +21,7 @@ public class DbLoader {
   public BeanGetter<IdGenerator> idGenerator;
   public BeanGetter<PasswordEncoder> passwordEncoder;
   public BeanGetter<DbTelegramMenuLoader> dbTelegramMenu;
+  public BeanGetter<DbRestaurantOrderLoader> dbRestaurantOrder;
 
   public void loadTestData() throws Exception {
 
@@ -28,6 +29,7 @@ public class DbLoader {
 
     logger.info("FINISH");
     dbTelegramMenu.get().loadTestData();
+    dbRestaurantOrder.get().loadTestData();
   }
 
   @SuppressWarnings("SpellCheckingInspection")

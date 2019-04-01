@@ -12,7 +12,7 @@
 |   |     |--customer.service.ts
 |   |     |--item.model.ts
 |   |     |--item.service.ts
-|   |     |--order-item.model.ts
+|   |     |--orderItem.model.ts
 |   |     |--order.model.ts
 |   |     |--order.service.ts
 |   |

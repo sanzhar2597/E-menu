@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+  <changeSet author="pompei" id="create-table-customer">
+    <sql endDelimiter=";;"><![CDATA[
+      create table customer (
+        customer_id int not null primary key,
+        name varchar(100) not null
+      )
+    ]]></sql>
+  </changeSet>
+
+  <changeSet author="pompei" id="create-table-item">
+    <sql endDelimiter=";;"><![CDATA[
+      create table item (
+        item_id int not null primary key,
+        name varchar(100),
+        price decimal
+      )
+    ]]></sql>
+  </changeSet>
+
+  <changeSet author="pompei" id="create-table-oorder">
+    <sql endDelimiter=";;"><![CDATA[
+      create table oorder (
+        oorder_id bigint not null primary key,
+        oorder_no varchar(100),
+        customer_id int,
+        p_method varchar(100),
+        g_total decimal,
+        foreign key(customer_id) references customer(customer_id)
+      )
+    ]]></sql>
+  </changeSet>
+
+  <changeSet author="pompei" id="create-table-order-items">
+    <sql endDelimiter=";;"><![CDATA[
+      create table order_items (
+        order_item_id bigint not null primary key,
+        oorder_id bigint,
+        item_id int,
+        quantity int,
+        foreign key(oorder_id) references oorder(oorder_id),
+        foreign key(item_id) references item(item_id)
+      )
+    ]]></sql>
+  </changeSet>
+
+
+
+</databaseChangeLog>
