@@ -2,6 +2,7 @@ package kz.greetgo.diploma.register.impl;
 
 import kz.greetgo.depinject.core.Bean;
 import kz.greetgo.depinject.core.BeanGetter;
+import kz.greetgo.diploma.controller.model.TelegramMenu;
 import kz.greetgo.diploma.controller.register.TelegramRegister;
 import kz.greetgo.diploma.register.dao.TelegramDao;
 import kz.greetgo.diploma.register.model.PersonLogin;
@@ -15,8 +16,10 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Bean
 public class TelegramRegisterImpl extends TelegramLongPollingBot implements TelegramRegister {
@@ -82,6 +85,80 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 		return selectByUsername.toString();
 	}
 
+	public String getTelegramMenuDay(String dayAndMonth) throws IOException, ParseException {
+
+		ArrayList<TelegramMenu> telegramMenus = new ArrayList<>();
+
+		String year = "2019-";
+		String fullDate = year + dayAndMonth;
+
+
+		if(isDateValid(fullDate))
+			{
+				System.out.println("telegram bot uses postgres");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = sdf.parse(fullDate);
+				telegramMenus = telegramDao.get().selectTelegramMenuDay(new Timestamp(date.getTime()));
+				return SortTypeAndName(telegramMenus);
+			} else
+			{
+				return "Неправильный формат даты.\nПример формат даты: 	\nДля первого апреля : \n'04-01'.";
+			}
+
+	}
+
+	boolean isDateValid(String date) throws ParseException {
+
+		if(!date.matches("^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$"))
+			return false;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try
+			{
+				sdf.parse(date);
+				return true;
+			} catch(ParseException e)
+			{
+				return false;
+			}
+	}
+
+	public String SortTypeAndName(List<TelegramMenu> telegramMenus) {
+
+		Map<String, String> asd = new HashMap<>();
+
+
+		for(TelegramMenu telegramMenu : telegramMenus)
+			{
+				if(!asd.containsKey(telegramMenu.foodType))
+					{
+						asd.put(telegramMenu.foodType, "");
+					}
+
+				String s = asd.get(telegramMenu.foodType);
+
+				String value = s + " " + telegramMenu.foodName + ".\n";
+
+				asd.put(telegramMenu.foodType, value);
+
+			}
+
+
+		StringBuilder result = new StringBuilder();
+
+
+		for(Map.Entry<String, String> entry : asd.entrySet())
+			{
+				result.append(entry.getKey()).append(" :  \n").append(entry.getValue()).append("\n");
+			}
+
+		if(result.length() == 0)
+			{
+				result.append("К сожалению на этот день не составили меню дня.");
+			}
+
+		return result.toString();
+	}
+
 	@Override
 	public String startBot(Message message) {
 
@@ -99,7 +176,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 				switch(message.getText())
 					{
 						case "/start":
-								sendMsg(message, startBot(message));
+							sendMsg(message, startBot(message));
 							break;
 						case "/help":
 							sendMsg(message, "Как пользоватся этим ботом ? \n" +
@@ -109,9 +186,10 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 							break;
 						case "/using":
 							sendMsg(message,
-								"Что делает бот? \nНужно просто написать ваше имя или имя друга \n" +
-									"1) возвращает ваш уникальный id\n" +
-									"2) возвращает ваше зашифрованное письмо");
+								/*"1) Что делает бот? \nНужно просто написать ваше имя или имя друга \n" +
+									"1.1) возвращает ваш уникальный id\n" +
+									"1.2) возвращает ваше зашифрованное письмо" +*/
+								"1) напишите день и месяц в формате месяц-день, и вы можете получить меню дня");
 							break;
 						case "/info":
 							sendMsg(message, "Бот разработан в 2019 году 10 марта. \nдля Дипломной Работы.");
@@ -119,7 +197,14 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 						default:
 							try
 								{
-									sendMsg(message, getNameFromDb(message.getText()));
+//									sendMsg(message, getNameFromDb(message.getText()));
+									try
+										{
+											sendMsg(message, getTelegramMenuDay(message.getText()));
+										} catch(ParseException e)
+										{
+											e.printStackTrace();
+										}
 								} catch(IOException e)
 								{
 									e.printStackTrace();

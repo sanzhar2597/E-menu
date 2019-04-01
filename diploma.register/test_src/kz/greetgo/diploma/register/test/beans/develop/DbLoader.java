@@ -20,12 +20,14 @@ public class DbLoader {
   public BeanGetter<AuthTestDao> authTestDao;
   public BeanGetter<IdGenerator> idGenerator;
   public BeanGetter<PasswordEncoder> passwordEncoder;
+  public BeanGetter<DbTelegramMenuLoader> dbTelegramMenu;
 
   public void loadTestData() throws Exception {
 
     loadPersons();
 
     logger.info("FINISH");
+    dbTelegramMenu.get().loadTestData();
   }
 
   @SuppressWarnings("SpellCheckingInspection")
