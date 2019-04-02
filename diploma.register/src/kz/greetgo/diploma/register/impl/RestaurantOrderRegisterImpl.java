@@ -29,25 +29,45 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 
 	@Override
 	public void postOrders(List<Order> orders) {
-		for(Order order: orders){
-			restaurantOrderDao.get().inserOorder(order);
-		}
-		
+
+		for(Order order : orders)
+			{
+				restaurantOrderDao.get().inserOorder(order);
+			}
+
 	}
 
 	@Override
 	public void postOrderItem(List<OrderItem> orderItems) {
-		for(OrderItem orderItem: orderItems){
-			orderItem.orderId=1;
-			restaurantOrderDao.get().inserOrderItem(orderItem);
-		}
+
+		for(OrderItem orderItem : orderItems)
+			{
+				orderItem.orderId = 1;
+				restaurantOrderDao.get().inserOrderItem(orderItem);
+			}
 	}
 
 	@Override
 	public List<OrderList> getOrderList() {
+
 		List<OrderList> orderLists = new ArrayList<>();
 		orderLists = restaurantOrderDao.get().selectOrderList();
 		return orderLists;
+	}
+
+	@Override
+	public List<OrderList> getOrderbyId(Integer id) {
+
+		List<OrderList> orderLists = new ArrayList<>();
+		orderLists = restaurantOrderDao.get().selectorderById(id);
+		return orderLists;
+	}
+
+	@Override
+	public void deleteOrderbyId(Integer id) {
+
+		restaurantOrderDao.get().deleteOrdeById(id);
+		System.out.println("deleted: " + id);
 	}
 
 

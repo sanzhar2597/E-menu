@@ -3,10 +3,7 @@ package kz.greetgo.diploma.register.dao;
 import kz.greetgo.diploma.controller.model.PersonDisplay;
 import kz.greetgo.diploma.controller.model.UserCan;
 import kz.greetgo.diploma.controller.register.model.*;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +30,14 @@ public interface RestaurantOrderDao {
 		"  oorder o inner join customer c on o.customer_id= c.customer_id\n")
 	List<OrderList> selectOrderList();
 
+	@Select("select o.oorder_id as orderId, o.oorder_no as orderNo," +
+		" c.name as name , o.g_total as gTotal, o.p_method as pMethod from\n" +
+		"  oorder o inner join customer c on o.customer_id= c.customer_id " +
+		"where o.oorder_id = #{id}\n")
+	List<OrderList> selectorderById(@Param("id") Integer id );
+
+	@Delete("delete from oorder where oorder_id = #{id}")
+	void deleteOrdeById(@Param("id") Integer id);
 
 
 	@Select("select surname||' '||name||' '||patronymic as fio, username" +

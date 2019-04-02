@@ -8,6 +8,7 @@ import java.util.List;
 public interface RestaurantOrderRegister {
 
 	ArrayList<Item> getItemList();
+
 	ArrayList<Customer> getCustomerList();
 
 	void postOrders(List<Order> order);
@@ -15,4 +16,8 @@ public interface RestaurantOrderRegister {
 	void postOrderItem(List<OrderItem> orderItems);
 
 	List<OrderList> getOrderList();
+
+	List<OrderList> getOrderbyId(Integer id);
+
+	void deleteOrderbyId(Integer id);
 }

@@ -8,6 +8,7 @@ import kz.greetgo.diploma.controller.security.PublicAccess;
 import kz.greetgo.diploma.controller.util.Controller;
 import kz.greetgo.mvc.annotations.Json;
 import kz.greetgo.mvc.annotations.Par;
+import kz.greetgo.mvc.annotations.ParPath;
 import kz.greetgo.mvc.annotations.ToJson;
 import kz.greetgo.mvc.annotations.on_methods.ControllerPrefix;
 import kz.greetgo.mvc.annotations.on_methods.OnGet;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Bean
 @ControllerPrefix("/restaurant")
-public class RestaurantOrderController  implements Controller {
+public class RestaurantOrderController implements Controller {
 
 	public BeanGetter<RestaurantOrderRegister> restaurantOrderRegister;
 
@@ -64,11 +65,30 @@ public class RestaurantOrderController  implements Controller {
 
 //		restaurantOrderRegister.get().postOrderItem(orderItems);
 	}
+
 	@ToJson
 	@PublicAccess
 	@OnGet("/get-orders")
 	public List<OrderList> getOrderList() {
+
 		return restaurantOrderRegister.get().getOrderList();
+	}
+
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/get-order/{id}")
+	public List<OrderList> getOrderbyId(@ParPath("id") Integer id) {
+
+		return restaurantOrderRegister.get().getOrderbyId(id);
+	}
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/delete-order/{id}")
+	public void deleteOrderbyId(@ParPath("id") Integer id) {
+
+		restaurantOrderRegister.get().deleteOrderbyId(id);
 	}
 
 

@@ -29,6 +29,7 @@ export class OrdersComponent implements OnInit {
   }
 
   openForEdit(orderID: number) {
+
     this.router.navigate(['/order/edit/' + orderID]);
   }
 

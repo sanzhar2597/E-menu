@@ -28,9 +28,13 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    let orderID = this.currentRoute.snapshot.paramMap.get('id');
-if(orderID==null)
-    this.resetForm()
+    let orderID: string;
+    orderID = this.currentRoute.snapshot.paramMap.get('id');
+    if (orderID == null)
+      this.resetForm()
+    else{
+      this.service.getOrderByID(+orderID)
+    }
     this.customerService.getCustomerList()
       .then(res => {
         this.customerList = res.body as Customer[];
