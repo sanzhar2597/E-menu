@@ -99,11 +99,11 @@ public class DbTelegramMenuLoader {
 
 	private void loadFoodType() {
 
-		addFoodType(takeDefaultIdIncreased(), "menu-1", "первое меню"); // id 1
-		addFoodType(increaseIdincreased(), "menu-2", "второе меню"); // id 2
-		addFoodType(increaseIdincreased(), "desert", "список десертов"); // // id 3
-		addFoodType(increaseIdincreased(), "tea", "списов чаев"); // id 4
-		addFoodType(increaseIdincreased(), "hookah", "список кальянов"); // id 5
+		addFoodType(takeDefaultIdIncreased(), "Меню-1", "первое меню"); // id 1
+		addFoodType(increaseIdincreased(), "Меню-2", "второе меню"); // id 2
+		addFoodType(increaseIdincreased(), "Десерты", "список десертов"); // // id 3
+		addFoodType(increaseIdincreased(), "Чаи", "списов чаев"); // id 4
+		addFoodType(increaseIdincreased(), "Кальяны", "список кальянов"); // id 5
 	}
 
 	private void loadFoodList() {
@@ -158,13 +158,14 @@ public class DbTelegramMenuLoader {
 						try
 							{
 								String day = "";
-								int twoLength = Integer.toString(loopDay +2).length();
-								if(twoLength <2){
-									 day= "0"+(loopDay + 2);
-								}
-								else {
-									day = "" + (loopDay + 2);
-								}
+								int twoLength = Integer.toString(loopDay + 2).length();
+								if(twoLength < 2)
+									{
+										day = "0" + (loopDay + 2);
+									} else
+									{
+										day = "" + (loopDay + 2);
+									}
 								String fullDate = "2019-04-" + day;
 
 								Integer rand = (int) (1 + Math.random() * 33);

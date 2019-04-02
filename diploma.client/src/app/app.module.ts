@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import { ToastrModule } from 'ngx-toastr';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -19,6 +19,7 @@ import { OrderItemsComponent } from './orders/order-items/order-items.component'
 import { AppRoutingModule } from './/app-routing.module';
 import {OrderService} from "./orders/shared/order.service";
 import { HeaderComponent } from './header/header.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 
@@ -32,10 +33,11 @@ import { HeaderComponent } from './header/header.component';
     OrderComponent,
     OrderItemsComponent,
     HeaderComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
-    BrowserAnimationsModule, MatDialogModule,
+    BrowserAnimationsModule, MatDialogModule,  ToastrModule.forRoot()
   ],
   entryComponents:[OrderItemsComponent],
   providers: [HttpService, LoginService, ClientListService, OrderService],

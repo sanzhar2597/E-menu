@@ -15,6 +15,7 @@ import kz.greetgo.security.session.SessionService;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import static kz.greetgo.diploma.controller.util.FilterUtil.skipNulls;
@@ -89,10 +90,21 @@ public class AuthRegisterImpl implements AuthRegister {
 
   @Override
   public String registrate(String password, String accountName) {
+    ArrayList<PersonLogin> personLogin = new ArrayList<>();
+
+    personLogin =  authDao.get().selectByUsernames(accountName);
+    if(personLogin.size()!=0){
+    return "уже зарегестрирова номер, Выберите другой номер.";
+    }
+
     String id = idGenerator.get().newId();
 //    Date birthDateStr = new Date();
     String encryptPassword = passwordEncoder.get().encode(password);
-    authDao.get().insertPerson(id, accountName, encryptPassword);
+    String surname = "Нету";
+    String name= "персональных";
+    String patronymic = "данных";
+    authDao.get().insertPerson(id, accountName, surname, name, patronymic, encryptPassword);
+
 //    authDao.get().updatePersonField(id, "birth_date", new Timestamp(birthDateStr.getTime()));
     return "Created";
   }

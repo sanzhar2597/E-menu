@@ -4,11 +4,14 @@ import {RouterModule, Routes} from "@angular/router";
 import {OrdersComponent} from "./orders/orders.component";
 import {OrderComponent} from "./orders/order/order.component";
 import {HeaderComponent} from "./header/header.component";
+import {LoginComponent} from "./login/login.component";
+import {RegistrationComponent} from "./registration/registration.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'order', pathMatch: 'full'},
   {path: 'orders', component: OrdersComponent},
-  {path: 'header', component: HeaderComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent},
   {
     path: 'order', children: [
       {path: '', component: OrderComponent},

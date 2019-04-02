@@ -18,6 +18,7 @@ public class DbRestaurantOrderLoader {
 	public void loadTestData() throws Exception {
 
 		loadRestaurantOrder();
+		loadCustomer();
 		logger.info("FINISH");
 	}
 
@@ -26,8 +27,8 @@ public class DbRestaurantOrderLoader {
 
 		logger.info("Start loading restaurant order...");
 
-		loadItem();
 
+		loadItem();
 		logger.info("Finish loading persons");
 	}
 
@@ -59,8 +60,13 @@ public class DbRestaurantOrderLoader {
 
 		restaurantOrderTestDao.get().insertItem(id, name, price);
 	}
+	private void addCustomer(Integer id, String name) {
+
+		restaurantOrderTestDao.get().insertCustomer(id, name);
+	}
 
 	private void loadItem() {
+
 		addItem(takeDefaultIdIncreased(), "Chicken Tenders", (float) 3.50);
 		addItem(increaseIdincreased(), "Chicken Tenders w/Fries", (float) 4.59);
 		addItem(increaseIdincreased(), "Chicken Tenders w/Onion", (float) 5.99);
@@ -75,5 +81,17 @@ public class DbRestaurantOrderLoader {
 		addItem(increaseIdincreased(), "Sweet Tea", (float) 1.79);
 		addItem(increaseIdincreased(), "Bottle Water", (float) 1.00);
 		addItem(increaseIdincreased(), "Canned Drinks", (float) 1.00);
+	}
+	private void loadCustomer() {
+
+		addCustomer(takeDefaultIdIncreased(), "Chingis");
+		addCustomer(increaseIdincreased(), "Nazar");
+		addCustomer(increaseIdincreased(), "Arman");
+		addCustomer(increaseIdincreased(), "Leha");
+		addCustomer(increaseIdincreased(), "Nazarbaev");
+		addCustomer(increaseIdincreased(), "Putin");
+		addCustomer(increaseIdincreased(), "Sanzhar");
+		addCustomer(increaseIdincreased(), "Baktugul");
+
 	}
 }

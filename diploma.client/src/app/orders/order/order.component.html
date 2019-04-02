@@ -1,4 +1,4 @@
-<form #form="ngForm" autocomplete="off" *ngIf="service.formData">
+<form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
@@ -12,8 +12,10 @@
       </div>
       <div class="form-group">
         <label>Customer</label>
-        <select name="customerId" #customerId="ngModel" [(ngModel)]="service.formData.customerId" class="form-control">
+        <select name="customerId" #customerId="ngModel" [(ngModel)]="service.formData.customerId" class="form-control"
+                [class.is-invalid]="!isValid && service.formData.customerId==0">
           <option value="0">-Select-</option>
+          <option *ngFor="let item of customerList" [value]="item.customerId">{{item.name}}</option>
         </select>
       </div>
     </div>
@@ -46,11 +48,11 @@
     <th>Total</th>
     <th>
       <a href="" class="btn btn-sm btn-success text-white" (click)="addOrEditOrderItem(null, service.formData.orderId)"><i
-        class="fa fa-plus">Add Item</i></a>
+        class="fa fa-plus"></i></a>
     </th>
     </thead>
     <tbody>
-    <tr *ngIf="service.orderItems.length==0">
+    <tr *ngIf="service.orderItems.length==0" [class.text-danger]="!isValid && service.orderItems.length==0">
       <td class="font-italic text-center" colspan="5">
         No food item selected for this order.
       </td>
@@ -63,9 +65,9 @@
       <td>{{item.total}}</td>
       <td>
         <a href="" class="btn btn-sm btn-info text-white" (click)="addOrEditOrderItem(i, service.formData.orderId)"><i
-          class="fa fa-pencil">Change Item</i></a>
-        <a href="" class="btn btn-sm btn-danget text-white ml-1" (click)="onDeleteOrderItem(item.orderId, i)"><i
-          class="fa fa-trash">Delete Item</i></a>
+          class="fa fa-pencil"></i></a>
+        <a href="" class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem(item.orderId, i)"><i
+          class="fa fa-trash"></i></a>
       </td>
     </tr>
     </tbody>

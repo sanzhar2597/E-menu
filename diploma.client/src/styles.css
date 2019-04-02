@@ -12,6 +12,3 @@
 table.table-hover tbody tr:hover {
   cursor: pointer;
 }
-.is-invalid{
-  background-color: red;
-}

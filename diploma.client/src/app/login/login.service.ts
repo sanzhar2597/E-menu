@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "../http.service";
 import {PersonDisplay} from "../../model/PersonDisplay";
 import {UserCan} from "../../model/UserCan";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,9 @@ export class LoginService {
 
   public loading = true;
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService,
+              private router: Router) {
+  }
 
   private started = false;
 
@@ -60,6 +63,7 @@ export class LoginService {
     return this.http.get("/auth/displayPerson").toPromise().then(resp => PersonDisplay.of(resp.body));
   }
 
+
   async login() {
     try {
       this.loading = true;
@@ -77,15 +81,17 @@ export class LoginService {
 
   async registrate() {
     try {
-      let consoleDate="";
+      let consoleDate = "";
       this.loading = true;
       this.http.token = await this.http.post("/auth/registrate", {
         username: this.username,
         password: this.password,
       }, "text").toPromise().then(resp => consoleDate = (resp.body as string))
       console.log("REGISTRATE: ", consoleDate);
-      // await this.refresh();
-      // this.loading = false;
+      alert(consoleDate)
+      await this.refresh();
+      this.loading = false;
+      this.router.navigate(["/login"]);
     } catch (e) {
       this.loading = false;
       console.log("e = ", e)

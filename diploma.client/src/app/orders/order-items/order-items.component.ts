@@ -16,33 +16,6 @@ export class OrderItemsComponent implements OnInit {
   formData: OrderItem;
   itemList: Item[];
   isValid: boolean = true;
-  items: Item[] = [
-    {
-      itemId: 1,
-      name: "Koko",
-      price: 21,
-    },
-    {
-      itemId: 2,
-      name: "Sosos",
-      price: 23,
-    },
-    {
-      itemId: 3,
-      name: "Soap",
-      price: 432,
-    },
-    {
-      itemId: 4,
-      name: "Tomato",
-      price: 23,
-    },
-    {
-      itemId: 5,
-      name: "Fries",
-      price: 11,
-    },
-  ]
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -53,10 +26,13 @@ export class OrderItemsComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*this.itemService.getItemList()
-      .then(resp => resp.body as Array<any>)
-      .catch(e => console.log("don't get List Item: ", e))*/
-    this.itemList = this.items as Item[];
+    this.itemService.getItemList()
+      .then(res => {
+        this.itemList = res.body as Item[];
+        console.log(res.body)
+      })
+      .catch(e => console.log("NAZAR: ", e))
+
 
     if (this.data.orderItemIndex == null) {
       this.formData = {

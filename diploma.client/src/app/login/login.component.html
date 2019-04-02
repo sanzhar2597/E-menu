@@ -1,15 +1,25 @@
+<h2 class="text-center">Логин</h2>
 <div *ngIf="loginService.loading">
   Загрузка, ждите...
 </div>
+
 <div *ngIf="!loginService.loading">
-  <div *ngIf="!loginService.personDisplay">
-    <input type="text" placeholder="Username" [(ngModel)]="loginService.username">
-    <input type="password" placeholder="Password" [(ngModel)]="loginService.password">
-    <button (click)="loginService.login()">Войти</button>
+
+  <div class="input-group mb-3" *ngIf="!loginService.personDisplay">
+    <input type="text" class="form-control" placeholder="Recipient's username" [(ngModel)]="loginService.username"
+           aria-label="Recipient's username" aria-describedby="button-addon2">
+    <input type="password" class="form-control" placeholder="Recipient's password" [(ngModel)]="loginService.password"
+           aria-label="Recipient's password" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="loginService.login()">Button
+      </button>
+    </div>
   </div>
 
-  <div *ngIf="loginService.personDisplay">
+
+  <div *ngIf="loginService.personDisplay" class="text-center">
     Вошли как {{loginService.personDisplay.username}}/{{loginService.personDisplay.fio}}
-    <a (click)="loginService.exit()" class="exit">Выйти</a>
+    <button class="btn btn-outline-secondary" type="button" (click)="loginService.exit()" class="exit">Выйти</button>
   </div>
 </div>
+

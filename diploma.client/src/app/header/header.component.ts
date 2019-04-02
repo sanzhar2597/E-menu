@@ -7,7 +7,6 @@ import {LoginService} from "../login/login.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   title = 'diploma';
 
   constructor(public login: LoginService) {}
