@@ -59,9 +59,9 @@ public class RestaurantOrderController implements Controller {
 
 	@PublicAccess
 	@OnPost("/order-items")
-	public void postOrderItem(@Par("orderItems") @Json OrderItem orderItem, @Par("order") Order order) {
+	public void postOrderItem(@Par("orderItems") @Json Orders orders) {
 
-		System.out.println(orderItem);
+		System.out.println(orders);
 
 //		restaurantOrderRegister.get().postOrderItem(orderItems);
 	}

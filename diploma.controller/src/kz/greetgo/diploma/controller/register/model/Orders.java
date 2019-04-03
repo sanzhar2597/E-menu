@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Orders {
-	List<OrderItem> OrderItems;
+
+	public Orders(){}
+
+	public List<OrderItem> orderItems;
 
 	public Integer orderId;
 

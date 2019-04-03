@@ -15,13 +15,13 @@ export class OrderService {
 
 
   saveOrUpdateOrder() {
-    let body = {
-      order: JSON.stringify(this.formData),
-      orderItems: JSON.stringify(this.orderItems)
-    };
 
-   // return this.httpService.post('/restaurant'+ '/order-items',body)
-    return this.httpService.post('/restaurant'+ '/set-order',body)
+    let ordersItem= {
+        ...this.formData,
+      orderItems: this.orderItems
+    }
+    return this.httpService.post('/restaurant'+ '/order-items',{orderItems:JSON.stringify(ordersItem)})
+    // return this.httpService.post('/restaurant'+ '/set-order',body)
 
   }
   saveOrUpdateOrder2(){
@@ -35,15 +35,15 @@ export class OrderService {
 
   getOrderList() {
 
-    return this.httpService.get('/restaurant'+ '/get-orders').toPromise();
+    return this.httpService.get('/restaurant/get-orders').toPromise();
   }
 
   getOrderByID(id:number):any {
-    return this.httpService.get('/restaurant'+ '/get-order/'+id).toPromise();
+    return this.httpService.get('/restaurant/get-order/',{id}).toPromise();
   }
 
   deleteOrder(id:number) {
-    return this.httpService.delete('/restaurant'+ '/delete-order/'+id).toPromise();
+    return this.httpService.delete('/restaurant/delete-order/'+id).toPromise();
   }
 
 }
