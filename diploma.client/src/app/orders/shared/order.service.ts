@@ -16,14 +16,15 @@ export class OrderService {
 
   saveOrUpdateOrder() {
 
-    let ordersItem= {
+    let orderItems= {
         ...this.formData,
       orderItems: this.orderItems
-    }
-    return this.httpService.post('/restaurant'+ '/order-items',{orderItems:JSON.stringify(ordersItem)})
+    };
+    return this.httpService.post('/restaurant'+ '/order-items',{orderItems:JSON.stringify(orderItems)})
     // return this.httpService.post('/restaurant'+ '/set-order',body)
-
   }
+
+
   saveOrUpdateOrder2(){
     let body = {
       Order: this.formData,

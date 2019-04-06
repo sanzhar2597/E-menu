@@ -15,6 +15,8 @@ public interface RestaurantOrderRegister {
 
 	void postOrderItem(List<OrderItem> orderItems);
 
+	void postOrderItems(Orders orders);
+
 	List<OrderList> getOrderList();
 
 	List<OrderList> getOrderbyId(Integer id);

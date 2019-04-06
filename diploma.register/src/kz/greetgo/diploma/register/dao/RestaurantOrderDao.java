@@ -17,9 +17,9 @@ public interface RestaurantOrderDao {
 	ArrayList<Customer> selectCustomer();
 
 
-	@Insert("insert into oorder( oorder_no, customer_id, p_method, g_total) " +
-		"values (#{order.orderNo}, #{order.customerId}, #{order.pMethod}, #{order.gTotal})")
-	void inserOorder(@Param("order") Order order);
+	@Select("insert into oorder( oorder_no, customer_id, p_method, g_total) " +
+		"values (#{order.orderNo}, #{order.customerId}, #{order.pMethod}, #{order.gTotal}) returning oorder_id" )
+	Integer inserOorder(@Param("order") Orders orders);
 
 	@Insert("insert into order_items( oorder_id, item_id, quantity) " +
 		"values (#{order.orderId}, #{order.itemId}, #{order.quantity})")

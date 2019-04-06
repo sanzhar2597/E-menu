@@ -48,6 +48,23 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 	}
 
 	@Override
+	public void postOrderItems(Orders orders) {
+
+		List<Order> orderList= new ArrayList<>();
+
+		int id = restaurantOrderDao.get().inserOorder(orders);
+
+		for(OrderItem orderItem : orders.orderItems)
+			{
+				orderItem.orderId=id;
+				restaurantOrderDao.get().inserOrderItem(orderItem);
+			}
+
+
+
+	}
+
+	@Override
 	public List<OrderList> getOrderList() {
 
 		List<OrderList> orderLists = new ArrayList<>();

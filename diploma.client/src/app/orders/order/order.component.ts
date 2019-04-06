@@ -95,11 +95,9 @@ export class OrderComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (this.validateForm()) {
       this.service.saveOrUpdateOrder().subscribe(res => {
-        this.service.saveOrUpdateOrder2().subscribe(res => {
           this.resetForm();
           this.toastr.success('Submitted Successfully', 'Restaurent App.');
           this.router.navigate(['/orders']);
-        })
       })
     }
   }
