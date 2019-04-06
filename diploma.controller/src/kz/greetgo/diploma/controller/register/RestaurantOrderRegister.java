@@ -11,15 +11,11 @@ public interface RestaurantOrderRegister {
 
 	ArrayList<Customer> getCustomerList();
 
-	void postOrders(List<Order> order);
-
-	void postOrderItem(List<OrderItem> orderItems);
-
 	void postOrderItems(Orders orders);
 
 	List<OrderList> getOrderList();
 
 	List<OrderList> getOrderbyId(Integer id);
 
-	void deleteOrderbyId(Integer id);
+	String deleteOrderbyId(Integer id);
 }

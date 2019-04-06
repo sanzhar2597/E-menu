@@ -3,12 +3,14 @@ package kz.greetgo.diploma.controller.controller;
 import kz.greetgo.depinject.core.Bean;
 import kz.greetgo.depinject.core.BeanGetter;
 import kz.greetgo.diploma.controller.register.RestaurantOrderRegister;
-import kz.greetgo.diploma.controller.register.model.*;
+import kz.greetgo.diploma.controller.register.model.Customer;
+import kz.greetgo.diploma.controller.register.model.Item;
+import kz.greetgo.diploma.controller.register.model.OrderList;
+import kz.greetgo.diploma.controller.register.model.Orders;
 import kz.greetgo.diploma.controller.security.PublicAccess;
 import kz.greetgo.diploma.controller.util.Controller;
 import kz.greetgo.mvc.annotations.Json;
 import kz.greetgo.mvc.annotations.Par;
-import kz.greetgo.mvc.annotations.ParPath;
 import kz.greetgo.mvc.annotations.ToJson;
 import kz.greetgo.mvc.annotations.on_methods.ControllerPrefix;
 import kz.greetgo.mvc.annotations.on_methods.OnGet;
@@ -22,7 +24,6 @@ import java.util.List;
 public class RestaurantOrderController implements Controller {
 
 	public BeanGetter<RestaurantOrderRegister> restaurantOrderRegister;
-
 
 	@ToJson
 	@PublicAccess
@@ -38,23 +39,6 @@ public class RestaurantOrderController implements Controller {
 	public ArrayList<Customer> getCustomerList() {
 
 		return restaurantOrderRegister.get().getCustomerList();
-	}
-
-
-	@PublicAccess
-	@OnPost("/set-order")
-	public void postOrder(@Par("order") @Json List<Order> orders) {
-
-
-		restaurantOrderRegister.get().postOrders(orders);
-	}
-
-	@PublicAccess
-	@OnPost("/order-item")
-	public void postOrderItem(@Par("orderItems") @Json List<OrderItem> orderItems) {
-
-
-		restaurantOrderRegister.get().postOrderItem(orderItems);
 	}
 
 	@PublicAccess
@@ -74,20 +58,21 @@ public class RestaurantOrderController implements Controller {
 		return restaurantOrderRegister.get().getOrderList();
 	}
 
-
 	@ToJson
 	@PublicAccess
-	@OnGet("/get-order/{id}")
-	public List<OrderList> getOrderbyId(@ParPath("id") Integer id) {
+	@OnGet("/get-order")
+	public List<OrderList> getOrderbyId(@Par("id") @Json Integer id) {
 
+		System.out.println(id);
 		return restaurantOrderRegister.get().getOrderbyId(id);
 	}
 
 	@ToJson
 	@PublicAccess
-	@OnGet("/delete-order/{id}")
-	public void deleteOrderbyId(@ParPath("id") Integer id) {
+	@OnGet("/delete-order")
+	public void deleteOrderbyId(@Par("id") @Json Integer id) {
 
+		System.out.println(id);
 		restaurantOrderRegister.get().deleteOrderbyId(id);
 	}
 

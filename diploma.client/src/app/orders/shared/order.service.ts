@@ -13,38 +13,26 @@ export class OrderService {
   constructor(private httpService: HttpService) {
   }
 
-
   saveOrUpdateOrder() {
 
-    let orderItems= {
-        ...this.formData,
+    let orderItems = {
+      ...this.formData,
       orderItems: this.orderItems
     };
-    return this.httpService.post('/restaurant'+ '/order-items',{orderItems:JSON.stringify(orderItems)})
-    // return this.httpService.post('/restaurant'+ '/set-order',body)
+    return this.httpService.post('/restaurant' + '/order-items', {orderItems: JSON.stringify(orderItems)})
   }
-
-
-  saveOrUpdateOrder2(){
-    let body = {
-      Order: this.formData,
-      OrderItems: this.orderItems
-    };
-    return this.httpService.post('/restaurant'+ '/order-item',{orderItems: JSON.stringify(this.orderItems)})
-  }
-
 
   getOrderList() {
 
     return this.httpService.get('/restaurant/get-orders').toPromise();
   }
 
-  getOrderByID(id:number):any {
-    return this.httpService.get('/restaurant/get-order/',{id}).toPromise();
+  getOrderByID(id: number): any {
+    return this.httpService.get('/restaurant/get-order', {id}).toPromise();
   }
 
-  deleteOrder(id:number) {
-    return this.httpService.delete('/restaurant/delete-order/'+id).toPromise();
+  deleteOrder(id: number) {
+    return this.httpService.get('/restaurant/delete-order', {id}).toPromise();
   }
 
 }

@@ -37,8 +37,10 @@ public interface RestaurantOrderDao {
 	List<OrderList> selectorderById(@Param("id") Integer id );
 
 	@Delete("delete from oorder where oorder_id = #{id}")
-	void deleteOrdeById(@Param("id") Integer id);
+	void deleteOrdeeById(@Param("id") Integer id);
 
+	@Delete("delete from order_items where oorder_id = #{id}")
+	void deleteOrderItemByorderId(@Param("id") Integer id);
 
 	@Select("select surname||' '||name||' '||patronymic as fio, username" +
 		" from person where id = #{personId}")

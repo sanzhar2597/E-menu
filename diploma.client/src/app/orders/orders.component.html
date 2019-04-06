@@ -11,7 +11,7 @@
   <tbody>
   <tr *ngFor="let item of orderList">
     <th (click)="openForEdit(item.orderId)">{{item.orderNo}}</th>
-    <td (click)="openForEdit(item.orderId)">{{item.customer}}</td>
+    <td (click)="openForEdit(item.orderId)">{{item.name}}</td>
     <td (click)="openForEdit(item.orderId)">{{item.pMethod}}</td>
     <td (click)="openForEdit(item.orderId)">{{item.gTotal}}</td>
     <td>
