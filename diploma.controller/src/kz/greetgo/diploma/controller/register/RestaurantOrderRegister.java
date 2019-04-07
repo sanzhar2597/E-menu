@@ -15,7 +15,7 @@ public interface RestaurantOrderRegister {
 
 	List<OrderList> getOrderList();
 
-	List<OrderList> getOrderbyId(Integer id);
+	Orders getOrdersbyId(Integer id);
 
 	String deleteOrderbyId(Integer id);
 }

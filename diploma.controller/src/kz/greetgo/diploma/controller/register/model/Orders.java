@@ -7,7 +7,7 @@ public class Orders {
 
 	public Orders(){}
 
-	public List<OrderItem> orderItems;
+	public List<OrderItem> orderItems =new ArrayList<>();
 
 	public Integer orderId;
 
@@ -18,6 +18,5 @@ public class Orders {
 	public String pMethod;
 
 	public Integer gTotal;
-
 
 }

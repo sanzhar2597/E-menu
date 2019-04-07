@@ -7,6 +7,7 @@ import {CustomerService} from "../shared/customer.service";
 import {Customer} from "../../../model/customer.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {Order} from "../../../model/order.model";
 
 @Component({
   selector: 'app-order',
@@ -33,7 +34,11 @@ export class OrderComponent implements OnInit {
     if (orderID == null)
       this.resetForm()
     else{
-      this.service.getOrderByID(+orderID)
+      this.service.getOrderByID(+orderID).then(res => {
+        console.log('orderById: ', res)
+        this.service.formData = res.body as Order;
+        this.service.orderItems = res.body.orderDetails;
+      });
     }
     this.customerService.getCustomerList()
       .then(res => {

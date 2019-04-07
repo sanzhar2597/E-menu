@@ -44,8 +44,16 @@ public interface RestaurantOrderDao {
 
 	@Select("select surname||' '||name||' '||patronymic as fio, username" +
 		" from person where id = #{personId}")
-
 	PersonDisplay loadDisplayPerson(@Param("personId") String personId);
+
+	@Select("select oorder_id as orderId, oorder_no as orderNo, " +
+		"customer_id as customerId, p_method as pMethod, " +
+		" g_total as gTotal from oorder where oorder_id = #{id}")
+	Orders selectorOrdersById(@Param("id") Integer id);
+
+	@Select("select order_item_id as orderItemId, oorder_id as orderId, " +
+		"item_id as itemId, quantity as quantity from order_items where oorder_id = #{id}")
+	List<OrderItem> selectorOrderItemsById(@Param("id") Integer id);
 
 	@Select("select user_can from person_cans where person_id = #{personId}")
 	List<UserCan> loadCans(String personId);

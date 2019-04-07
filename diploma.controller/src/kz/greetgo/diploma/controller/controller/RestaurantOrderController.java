@@ -61,10 +61,10 @@ public class RestaurantOrderController implements Controller {
 	@ToJson
 	@PublicAccess
 	@OnGet("/get-order")
-	public List<OrderList> getOrderbyId(@Par("id") @Json Integer id) {
+	public Orders getOrdersbyId(@Par("id") @Json Integer id) {
 
 		System.out.println(id);
-		return restaurantOrderRegister.get().getOrderbyId(id);
+		return restaurantOrderRegister.get().getOrdersbyId(id);
 	}
 
 	@ToJson
