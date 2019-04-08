@@ -32,12 +32,29 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 
 		List<Order> orderList = new ArrayList<>();
 
-		int id = restaurantOrderDao.get().inserOorder(orders);
-
-		for(OrderItem orderItem : orders.orderItems)
+		if(orders.orderId == 0)
 			{
-				orderItem.orderId = id;
-				restaurantOrderDao.get().inserOrderItem(orderItem);
+				int id = restaurantOrderDao.get().insertOorder(orders);
+				for(OrderItem orderItem : orders.orderItems)
+					{
+						orderItem.orderId = id;
+						restaurantOrderDao.get().inserOrderItem(orderItem);
+					}
+			} else
+			{
+				restaurantOrderDao.get().updateOorder(orders);
+				for(OrderItem orderItem : orders.orderItems)
+					{
+						if(orderItem.orderItemId == null)
+							{
+								restaurantOrderDao.get().inserOrderItem(orderItem);
+							} else
+							{
+								restaurantOrderDao.get().updaterderItem(orderItem);
+
+							}
+					}
+
 			}
 	}
 
@@ -51,13 +68,15 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 
 	@Override
 	public Orders getOrdersbyId(Integer id) {
+
 		Orders orders = new Orders();
-		List<OrderItem> orderItemList= new ArrayList<>();
+		List<OrderItem> orderItemList = new ArrayList<>();
 		orders = restaurantOrderDao.get().selectorOrdersById(id);
 		orderItemList = restaurantOrderDao.get().selectorOrderItemsById(id);
-		for(OrderItem orderItem: orderItemList){
-			orders.orderItems.add(orderItem);
-		}
+		for(OrderItem orderItem : orderItemList)
+			{
+				orders.orderItems.add(orderItem);
+			}
 
 		return orders;
 

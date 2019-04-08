@@ -19,7 +19,20 @@ public interface RestaurantOrderDao {
 
 	@Select("insert into oorder( oorder_no, customer_id, p_method, g_total) " +
 		"values (#{order.orderNo}, #{order.customerId}, #{order.pMethod}, #{order.gTotal}) returning oorder_id" )
-	Integer inserOorder(@Param("order") Orders orders);
+	Integer insertOorder(@Param("order") Orders orders);
+
+	@Update("update oorder set " +
+		"oorder_no =#{orders.orderNo}, customer_id= #{orders.customerId}, " +
+		"p_method= #{orders.pMethod}, g_total= #{orders.gTotal} " +
+		"where oorder_id = #{orders.orderId}")
+	void updateOorder(@Param("orders") Orders orders);
+
+	@Update("update order_items set " +
+		"oorder_id =#{orderItem.orderId}, " +
+		"item_id= #{orderItem.itemId}, " +
+		"quantity= #{orderItem.quantity} " +
+		"where order_item_id = #{orderItem.orderItemId} ")
+	void updaterderItem(@Param("orderItem") OrderItem orderItem);
 
 	@Insert("insert into order_items( oorder_id, item_id, quantity) " +
 		"values (#{order.orderId}, #{order.itemId}, #{order.quantity})")
@@ -51,8 +64,17 @@ public interface RestaurantOrderDao {
 		" g_total as gTotal from oorder where oorder_id = #{id}")
 	Orders selectorOrdersById(@Param("id") Integer id);
 
-	@Select("select order_item_id as orderItemId, oorder_id as orderId, " +
-		"item_id as itemId, quantity as quantity from order_items where oorder_id = #{id}")
+	@Select("select\n" +
+		"  o.order_item_id as orderItemId,\n" +
+		"  o.oorder_id as orderId,\n" +
+		"  o.item_id as itemId,\n" +
+		"  o.quantity as quantity,\n" +
+		"  i.name as itemName,\n" +
+		"  i.price as price,\n" +
+		"  oo.g_total as total\n" +
+		"from order_items as o\n" +
+		"  inner join  item as i on o.item_id=i.item_id\n" +
+		"  inner join oorder as oo on o.oorder_id = oo.oorder_id where o.oorder_id = #{id}")
 	List<OrderItem> selectorOrderItemsById(@Param("id") Integer id);
 
 	@Select("select user_can from person_cans where person_id = #{personId}")

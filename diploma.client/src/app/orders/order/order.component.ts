@@ -33,11 +33,11 @@ export class OrderComponent implements OnInit {
     orderID = this.currentRoute.snapshot.paramMap.get('id');
     if (orderID == null)
       this.resetForm()
-    else{
+    else {
       this.service.getOrderByID(+orderID).then(res => {
         console.log('orderById: ', res)
-        this.service.formData = res.body as Order;
-        this.service.orderItems = res.body.orderDetails;
+        this.service.formData = this.formDataAssign(res.body as Order);
+        this.service.orderItems = res.body.orderItems;
       });
     }
     this.customerService.getCustomerList()
@@ -46,6 +46,16 @@ export class OrderComponent implements OnInit {
         console.log("RES: :", res)
       }).catch(e => console.log(e))
 
+  }
+
+  formDataAssign(obj: Order): Order {
+    let order: Order = new Order();
+    order.orderId = obj.orderId;
+    order.orderNo = obj.orderNo;
+    order.customerId = obj.customerId;
+    order.pMethod = obj.pMethod;
+    order.gTotal = obj.gTotal;
+    return order
   }
 
   resetForm(form?: NgForm) {
@@ -100,9 +110,9 @@ export class OrderComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (this.validateForm()) {
       this.service.saveOrUpdateOrder().subscribe(res => {
-          this.resetForm();
-          this.toastr.success('Submitted Successfully', 'Restaurent App.');
-          this.router.navigate(['/orders']);
+        this.resetForm();
+        this.toastr.success('Submitted Successfully', 'Restaurent App.');
+        this.router.navigate(['/orders']);
       })
     }
   }
