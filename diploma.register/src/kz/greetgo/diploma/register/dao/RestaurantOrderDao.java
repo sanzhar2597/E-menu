@@ -13,12 +13,15 @@ public interface RestaurantOrderDao {
 	@Select("select *from item")
 	ArrayList<Item> selectItem();
 
+	@Select("select * from item where item_id =#{itemId}")
+	Item selectItemById(@Param("itemId") Integer itemId);
+
 	@Select("select customer_id as customerId, name as name from customer")
 	ArrayList<Customer> selectCustomer();
 
 
 	@Select("insert into oorder( oorder_no, customer_id, p_method, g_total) " +
-		"values (#{order.orderNo}, #{order.customerId}, #{order.pMethod}, #{order.gTotal}) returning oorder_id" )
+		"values (#{order.orderNo}, #{order.customerId}, #{order.pMethod}, #{order.gTotal}) returning oorder_id")
 	Integer insertOorder(@Param("order") Orders orders);
 
 	@Update("update oorder set " +
@@ -47,10 +50,20 @@ public interface RestaurantOrderDao {
 		" c.name as name , o.g_total as gTotal, o.p_method as pMethod from\n" +
 		"  oorder o inner join customer c on o.customer_id= c.customer_id " +
 		"where o.oorder_id = #{id}\n")
-	List<OrderList> selectorderById(@Param("id") Integer id );
+	List<OrderList> selectorderById(@Param("id") Integer id);
 
 	@Delete("delete from oorder where oorder_id = #{id}")
 	void deleteOrdeeById(@Param("id") Integer id);
+
+	@Select("select \n" +
+		"item_id as itemId, count(*) as count \n" +
+		"from order_items \n" +
+		"where 1 = 1 \n" +
+		"      and oorder_id in (select oorder_id from order_items where item_id in (${itemId})) \n" +
+		"      and item_id not in (${itemId}) \n" +
+		"group by item_id \n" +
+		"order by count desc limit 2")
+	List<ItemCount> prepareOffer(@Param("itemId") String itemId);
 
 	@Delete("delete from order_items where oorder_id = #{id}")
 	void deleteOrderItemByorderId(@Param("id") Integer id);

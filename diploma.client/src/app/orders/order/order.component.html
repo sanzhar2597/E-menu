@@ -75,5 +75,11 @@
   <div class="form-group">
     <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
   </div>
+
+  <div *ngIf="service.items.length">
+    <div *ngFor="let item of service.items">
+      <div>{{item.name}}</div>
+    </div>
+  </div>
 </form>
 

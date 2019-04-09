@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {Order} from "../../../model/order.model";
 import {OrderItem} from "../../../model/orderItem.model";
 import {HttpService} from "../../http.service";
+import {Item} from "../../../model/item.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  formData: Order;
-  orderItems: OrderItem[];
+  public formData: Order;
+  public orderItems: OrderItem[];
+  public items: Item[] = [new Item()];
 
   constructor(private httpService: HttpService) {
   }
@@ -19,6 +21,7 @@ export class OrderService {
       ...this.formData,
       orderItems: this.orderItems
     };
+
     return this.httpService.post('/restaurant' + '/order-items', {orderItems: JSON.stringify(orderItems)})
   }
 
@@ -33,6 +36,10 @@ export class OrderService {
 
   deleteOrder(id: number) {
     return this.httpService.get('/restaurant/delete-order', {id}).toPromise();
+  }
+
+  offerPrepare() {
+    return this.httpService.get('/restaurant/offer', {orderItems: JSON.stringify(this.orderItems)}).toPromise();
   }
 
 }

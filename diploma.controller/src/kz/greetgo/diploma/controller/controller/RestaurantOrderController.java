@@ -3,10 +3,7 @@ package kz.greetgo.diploma.controller.controller;
 import kz.greetgo.depinject.core.Bean;
 import kz.greetgo.depinject.core.BeanGetter;
 import kz.greetgo.diploma.controller.register.RestaurantOrderRegister;
-import kz.greetgo.diploma.controller.register.model.Customer;
-import kz.greetgo.diploma.controller.register.model.Item;
-import kz.greetgo.diploma.controller.register.model.OrderList;
-import kz.greetgo.diploma.controller.register.model.Orders;
+import kz.greetgo.diploma.controller.register.model.*;
 import kz.greetgo.diploma.controller.security.PublicAccess;
 import kz.greetgo.diploma.controller.util.Controller;
 import kz.greetgo.mvc.annotations.Json;
@@ -74,6 +71,15 @@ public class RestaurantOrderController implements Controller {
 
 		System.out.println(id);
 		restaurantOrderRegister.get().deleteOrderbyId(id);
+	}
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/offer")
+	public List<Item> prepareOffer(@Par("orderItems") @Json List<OrderItem> orderItems) {
+
+		System.out.println(orderItems);
+		return restaurantOrderRegister.get().prepareOffer(orderItems);
 	}
 
 

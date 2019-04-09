@@ -18,4 +18,6 @@ public interface RestaurantOrderRegister {
 	Orders getOrdersbyId(Integer id);
 
 	String deleteOrderbyId(Integer id);
+
+	List<Item> prepareOffer(List<OrderItem> orderItems);
 }

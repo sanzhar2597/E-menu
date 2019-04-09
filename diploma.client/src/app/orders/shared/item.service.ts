@@ -10,7 +10,7 @@ export class ItemService {
   }
 
   getItemList() {
-    return this.httpService.get('/restaurant/list-item').toPromise()
+    return this.httpService.get('/restaurant/list-item').toPromise();
   }
 
 }

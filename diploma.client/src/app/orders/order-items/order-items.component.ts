@@ -74,6 +74,11 @@ export class OrderItemsComponent implements OnInit {
       else {
         this.orderService.orderItems[this.data.orderItemIndex] = form.value
       }
+      this.orderService.offerPrepare().then(res => {
+        console.log("OFFER PREPARE: ", res.body);
+        if (res.body.length)
+          this.orderService.items = res.body as Item[]
+      });
       this.dialogRef.close();
     }
   }

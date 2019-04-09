@@ -9,6 +9,8 @@ import kz.greetgo.diploma.register.dao.RestaurantOrderDao;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.joining;
+
 @Bean
 public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 
@@ -91,5 +93,57 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 		return "deleted: " + id;
 	}
 
+	@Override
+	public List<Item> prepareOffer(List<OrderItem> orderItems) {
+
+
+		String collect = orderItems.stream().map(orderItem -> orderItem.itemId + "").collect(joining(","));
+		List<Item> items = new ArrayList<>();
+		List<ItemCount> itemCounts = new ArrayList<>();
+		itemCounts = restaurantOrderDao.get().prepareOffer(collect);
+		if(itemCounts.size() == 0)
+			{
+				return items;
+			}
+		for(ItemCount itemCount : itemCounts)
+			{
+				System.out.println(itemCount);
+				items.add(restaurantOrderDao.get().selectItemById(itemCount.itemId));
+			}
+		return items;
+	}
+
+	;
+
+
+	public static void main(String[] args) {
+
+		List<Item> list = new ArrayList<>();
+		{
+			Item item = new Item();
+			item.itemId = 1;
+			list.add(item);
+		}
+
+		{
+			Item item = new Item();
+			item.itemId = 2;
+			list.add(item);
+		}
+
+		{
+			Item item = new Item();
+			item.itemId = 3;
+			list.add(item);
+		}
+
+		System.out.println(list);
+
+
+		String collect = list.stream().map(item -> item.itemId + "").collect(joining(","));
+
+		System.out.println(collect);
+
+	}
 
 }
