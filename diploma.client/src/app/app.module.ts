@@ -20,6 +20,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import {OrderService} from "./orders/shared/order.service";
 import { HeaderComponent } from './header/header.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { BookingComponent } from './booking/booking.component';
 
 
 
@@ -34,6 +35,7 @@ import { RegistrationComponent } from './registration/registration.component';
     OrderItemsComponent,
     HeaderComponent,
     RegistrationComponent,
+    BookingComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,

@@ -8,6 +8,7 @@ import {Customer} from "../../../model/customer.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Order} from "../../../model/order.model";
+import {Item} from "../../../model/item.model";
 
 @Component({
   selector: 'app-order',
@@ -29,6 +30,7 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.service.items = [];
     let orderID: string;
     orderID = this.currentRoute.snapshot.paramMap.get('id');
     if (orderID == null)
@@ -36,7 +38,7 @@ export class OrderComponent implements OnInit {
     else {
       this.service.getOrderByID(+orderID).then(res => {
         console.log('orderById: ', res)
-        this.service.formData = this.formDataAssign(res.body as Order);
+        this.service.formData = OrderComponent.formDataAssign(res.body as Order);
         this.service.orderItems = res.body.orderItems;
       });
     }
@@ -48,7 +50,7 @@ export class OrderComponent implements OnInit {
 
   }
 
-  formDataAssign(obj: Order): Order {
+  static formDataAssign(obj: Order): Order {
     let order: Order = new Order();
     order.orderId = obj.orderId;
     order.orderNo = obj.orderNo;
@@ -87,6 +89,9 @@ export class OrderComponent implements OnInit {
     event.preventDefault();
     this.service.orderItems.splice(i, 1)
     this.updateGrandTotal();
+    this.service.offerPrepare().then(res=>{
+      this.service.items=res.body as Item[]
+    })
   }
 
   updateGrandTotal() {

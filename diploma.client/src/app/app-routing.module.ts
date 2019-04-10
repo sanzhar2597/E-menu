@@ -6,19 +6,22 @@ import {OrderComponent} from "./orders/order/order.component";
 import {HeaderComponent} from "./header/header.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
+import {BookingComponent} from "./booking/booking.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'order', pathMatch: 'full'},
-  {path: 'orders', component: OrdersComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent},
   {
     path: 'order', children: [
       {path: '', component: OrderComponent},
       {path: 'edit/:id', component: OrderComponent},
       {path: '', component: OrderComponent},
     ]
-  }
+  },
+  {path: 'orders', component: OrdersComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent},
+  {path: 'booking', component: BookingComponent},
+
 ]
 
 @NgModule({

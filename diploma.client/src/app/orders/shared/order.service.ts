@@ -10,7 +10,7 @@ import {Item} from "../../../model/item.model";
 export class OrderService {
   public formData: Order;
   public orderItems: OrderItem[];
-  public items: Item[] = [new Item()];
+  public items: Item[] = [];
 
   constructor(private httpService: HttpService) {
   }
@@ -38,8 +38,19 @@ export class OrderService {
     return this.httpService.get('/restaurant/delete-order', {id}).toPromise();
   }
 
-  offerPrepare() {
-    return this.httpService.get('/restaurant/offer', {orderItems: JSON.stringify(this.orderItems)}).toPromise();
+  offerPrepare(): Promise<any> {
+
+    if (this.orderItems.length) {
+      return this.httpService.get('/restaurant/offer', {orderItems: JSON.stringify(this.orderItems)}).toPromise();
+    }
+    else {
+      return new Promise((resolve, reject) => {
+        let obj = {
+          body: []
+        }
+        resolve(obj);
+      });
+    }
   }
 
 }
