@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  addClass() {
+  addClass(event) {
     let scope = this;
     for (let i = 0; i < event.currentTarget.children.length; i++) {
       AppComponent.removeActiveClass(event.currentTarget.children[i].id)
