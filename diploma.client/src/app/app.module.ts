@@ -21,6 +21,8 @@ import {OrderService} from "./orders/shared/order.service";
 import { HeaderComponent } from './header/header.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { BookingComponent } from './booking/booking.component';
+import { NextOperationComponent } from './next-operation/next-operation.component';
+import {MatProgressSpinnerModule} from "@angular/material";
 
 
 
@@ -36,12 +38,13 @@ import { BookingComponent } from './booking/booking.component';
     HeaderComponent,
     RegistrationComponent,
     BookingComponent,
+    NextOperationComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
-    BrowserAnimationsModule, MatDialogModule,  ToastrModule.forRoot()
+    BrowserAnimationsModule, MatDialogModule, MatProgressSpinnerModule, ToastrModule.forRoot()
   ],
-  entryComponents:[OrderItemsComponent],
+  entryComponents:[OrderItemsComponent,NextOperationComponent],
   providers: [HttpService, LoginService, ClientListService, OrderService],
   bootstrap: [AppComponent]
 })

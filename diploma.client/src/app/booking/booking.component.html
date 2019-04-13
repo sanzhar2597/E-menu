@@ -2,32 +2,49 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <label>Number of People.</label>
+        <label>Number of People:</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">#</div>
           </div>
-          <input name="orderNo" class="form-control" >
+          <input name="numberOfPeople" #numberOfPeople="ngModel" [(ngModel)]="bookingService.booking.numberOfPeople"
+                 class="form-control">
         </div>
       </div>
       <div class="form-group">
-        <label>Reservation Day</label>
-        <input type="date"  class="form-control">
+        <label>Reservation Day:</label>
+        <input name="recordDateDay" #recordDateDay="ngModel" [(ngModel)]="bookingService.booking.recordDateDay"
+               type="date" [value]="bookingService.booking.recordDateDay" class="form-control">
       </div>
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <label>Reservation Time</label>
-        <input type="time"  class="form-control">
+        <label>Reservation Time From:</label>
+        <input name="recordDateFrom" #recordDateFrom="ngModel" [(ngModel)]="bookingService.booking.recordDateFrom"
+               type="time" value="13:00:00" class="form-control">
       </div>
+      <div class="form-group">
+        <label>Reservation Time To:</label>
+        <input name="recordDateTo" #recordDateTo="ngModel"
+               [(ngModel)]="bookingService.booking.recordDateTo"
+               type="time" [value]="bookingService.booking.recordDateTo.hours" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-12">
       <div class="form-group">
         <label>Number of Telephone</label>
         <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">$</div>
-          </div>
-          <input name="gTotal" class="form-control" type="number">
+          <input name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="bookingService.booking.phoneNumber"
+                 class="form-control" type="number">
         </div>
+      </div>
+
+      <div class="form-group">
+        <label>Reservation Table:</label>
+        <select name="tableType" #tableType="ngModel" [(ngModel)]="bookingService.booking.tableType"
+                class="form-control">
+          <option *ngFor="let tab of bookingService.table">{{tab}}</option>
+        </select>
       </div>
     </div>
   </div>
@@ -36,3 +53,4 @@
   </div>
 
 </form>
+<mat-spinner *ngIf="loading"></mat-spinner>

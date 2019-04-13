@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  showMainPage(name: string, id): any {
+  /*showMainPage(name: string, id): any {
     this.li = event.currentTarget
     let ids = this.li.id;
     waitTime(ids);
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  addClass(event) {
+  addClass() {
     let scope = this;
     for (let i = 0; i < event.currentTarget.children.length; i++) {
       AppComponent.removeActiveClass(event.currentTarget.children[i].id)
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
 
   static removeActiveClass(id) {
     document.getElementById(id).classList.remove("active")
-  }
+  }*/
 
 
 }
