@@ -22,6 +22,7 @@ public class DbLoader {
   public BeanGetter<PasswordEncoder> passwordEncoder;
   public BeanGetter<DbTelegramMenuLoader> dbTelegramMenu;
   public BeanGetter<DbRestaurantOrderLoader> dbRestaurantOrder;
+  public BeanGetter<DbBookingLoader> dbBookingLoader;
 
   public void loadTestData() throws Exception {
 
@@ -30,6 +31,7 @@ public class DbLoader {
     logger.info("FINISH");
     dbTelegramMenu.get().loadTestData();
     dbRestaurantOrder.get().loadTestData();
+    dbBookingLoader.get().loadTestData();
   }
 
   @SuppressWarnings("SpellCheckingInspection")

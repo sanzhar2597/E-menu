@@ -10,20 +10,18 @@ import {PersonDisplay} from "../../model/PersonDisplay";
 export class BookingService {
   public booking: Booking = new Booking();
   public table: Table[] = [Table.CENTER, Table.RIGHT,Table.LEFT, Table.HALL];
-  public personDisplay:PersonDisplay;
   constructor(private httpService: HttpService) {
   }
 
 
   checkTime() {
     let booking = this.booking;
-    this.httpService.get('booking/check-time', {booking: JSON.stringify(booking)})
+  return this.httpService.get('/booking/check-time', {booking: JSON.stringify(booking)}).toPromise();
   }
 
   saveBooking() {
     let booking = this.booking;
-    this.httpService.get('booking/save', {booking: JSON.stringify(booking)}).toPromise()
+    return this.httpService.get('/booking/save', {booking: JSON.stringify(booking)}).toPromise();
   }
-  getPhoneNumber(){
-  }
+
 }

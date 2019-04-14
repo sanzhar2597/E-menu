@@ -19,6 +19,9 @@ export class NextOperationComponent implements OnInit {
   }
 
   openOrderComponent() {
-    this.dialogRef.close("Nazar");
+    this.dialogRef.close("orderComponent");
+  }
+  onSubmit(){
+    this.dialogRef.close("submit");
   }
 }

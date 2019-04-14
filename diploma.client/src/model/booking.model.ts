@@ -2,8 +2,7 @@ import {Table} from "./table.model";
 import {Time} from "@angular/common";
 
 export class Booking {
-  public bookingId:string;
-  public orderId:number;
+  public bookingId:number;
   public numberOfPeople:number;
   public recordTime:Date= new Date();
   public recordDateDay:string;

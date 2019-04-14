@@ -19,4 +19,6 @@ public class Orders {
 
 	public Integer gTotal;
 
+	public Integer bookingId;
+
 }

@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Order} from "../../../model/order.model";
 import {Item} from "../../../model/item.model";
+import {BookingService} from "../../shared/booking.service";
 
 @Component({
   selector: 'app-order',
@@ -26,15 +27,18 @@ export class OrderComponent implements OnInit {
               private customerService: CustomerService,
               private toastr: ToastrService,
               private router: Router,
-              private currentRoute: ActivatedRoute) {
+              private currentRoute: ActivatedRoute,
+              private bookingService: BookingService) {
   }
 
   ngOnInit() {
     this.service.items = [];
     let orderID: string;
     orderID = this.currentRoute.snapshot.paramMap.get('id');
-    if (orderID == null)
-      this.resetForm()
+    if (orderID == null) {
+      this.resetForm();
+      this.checkBooking();
+    }
     else {
       this.service.getOrderByID(+orderID).then(res => {
         console.log('orderById: ', res)
@@ -57,6 +61,7 @@ export class OrderComponent implements OnInit {
     order.customerId = obj.customerId;
     order.pMethod = obj.pMethod;
     order.gTotal = obj.gTotal;
+    order.bookingId = obj.bookingId;
     return order
   }
 
@@ -68,7 +73,8 @@ export class OrderComponent implements OnInit {
       orderNo: Math.floor(100000 + Math.random() * 900000).toString(),
       customerId: 0,
       pMethod: '',
-      gTotal: 0
+      gTotal: 0,
+      bookingId: null
     };
     this.service.orderItems = []
   }
@@ -89,8 +95,8 @@ export class OrderComponent implements OnInit {
     event.preventDefault();
     this.service.orderItems.splice(i, 1)
     this.updateGrandTotal();
-    this.service.offerPrepare().then(res=>{
-      this.service.items=res.body as Item[]
+    this.service.offerPrepare().then(res => {
+      this.service.items = res.body as Item[]
     })
   }
 
@@ -113,12 +119,19 @@ export class OrderComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    console.log("this.service.formData", this.service.formData);
     if (this.validateForm()) {
       this.service.saveOrUpdateOrder().subscribe(res => {
         this.resetForm();
         this.toastr.success('Submitted Successfully', 'Restaurent App.');
         this.router.navigate(['/orders']);
       })
+    }
+  }
+
+  checkBooking() {
+    if (this.bookingService.booking.bookingId) {
+      this.service.formData.bookingId = this.bookingService.booking.bookingId;
     }
   }
 }

@@ -7,17 +7,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto" (click)="addClass()">
-        <li class="nav-item " id="navItem1" (click)="showMainPage('main', this.id)" >
+        <li class="nav-item " id="navItem1" (click)="showMainPage('main', this.id)">
           <a class="nav-link" routerLink="/">Главная<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" id="navItem2" (click)="showMainPage('booking',this.id)">
-          <a class="nav-link"  routerLink="/booking">Бронирование<span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/booking">Бронирование<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" id="navItem3" (click)="showMainPage('registration', this.id)">
-          <a class="nav-link"  routerLink="/registration">Регистрация</a>
+          <a class="nav-link" routerLink="/registration">Регистрация</a>
         </li>
         <li class="nav-item" id="navItem4" (click)="showMainPage('login', this.id)">
-          <a class="nav-link" *ngIf="!login.isAuthenticated"
+          <a class="nav-link" *ngIf="!login.isAuthenticated" (click)="showMainPage('login')"
              routerLink="/login">Логин</a>
         </li>
       </ul>

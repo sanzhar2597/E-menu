@@ -18,25 +18,20 @@ export class BookingComponent implements OnInit {
   constructor(private bookingService: BookingService,
               private dialog: MatDialog,
               private login: LoginService,
-              private router:Router) {
+              private router: Router) {
   }
 
   ngOnInit() {
     this.resetForm();
-
     this.loading = true;
-    this.login.getPersonDisplay().then(value1 => {
-      this.loading = false;
-      this.bookingService.booking.phoneNumber = value1.username;
-    });
+    this.getPhoneNumber();
 
   }
 
 
   resetForm() {
     this.bookingService.booking = {
-      bookingId: Math.floor(100000 + Math.random() * 900000).toString(),
-      orderId: 0,
+      bookingId: Math.floor(100000 + Math.random() * 900000),
       numberOfPeople: 1,
       recordTime: new Date(),
       recordDateDay: "2019-05-05",
@@ -49,7 +44,8 @@ export class BookingComponent implements OnInit {
   }
 
   onSubmit() {
-    event.preventDefault()
+    event.preventDefault();
+    let self = this;
     console.log(this.bookingService.booking)
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -57,10 +53,31 @@ export class BookingComponent implements OnInit {
     dialogConfig.width = "50%";
     dialogConfig.data = {lego: "nazar"}
     this.dialog.open(NextOperationComponent, dialogConfig).afterClosed().subscribe(res => {
-      console.log(res)
-      this.router.navigate(['/order']);
+      switch (res) {
+        case "orderComponent":
+          this.router.navigate(['/order']);
+          break;
+        case "submit":
+          self.bookingService.saveBooking().then(res => {
+            console.log("BOOKING CHECK-TIME: ", res);
+            this.resetForm();
+            this.getPhoneNumber();
+            /*this.bookingService.saveBooking().then(res=>{
+
+            });*/
+          })
+          break;
+      }
+
       console.log("SUBSCRIBED")
     })
+  }
+
+  getPhoneNumber() {
+    this.login.getPersonDisplay().then(value1 => {
+      this.loading = false;
+      this.bookingService.booking.phoneNumber = value1.username;
+    });
   }
 
 

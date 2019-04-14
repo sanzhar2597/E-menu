@@ -7,16 +7,15 @@
     <sql endDelimiter=";;"><![CDATA[
       create table booking (
          booking_id serial primary key,
-        oorder_id int,
         number_of_people int,
         record_time date,
-        record_date_from date,
-        record_date_to date,
+        record_date_day varchar(100),
+        record_date_from varchar(100),
+        record_date_to varchar(100),
         table_type varchar(100),
         phone_number varchar(100),
         customer_id int,
-        foreign key(customer_id) references customer(customer_id),
-        foreign key(oorder_id) references oorder(oorder_id)
+        foreign key(customer_id) references customer(customer_id)
       )
     ]]></sql>
   </changeSet>

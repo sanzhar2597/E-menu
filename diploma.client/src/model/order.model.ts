@@ -4,5 +4,6 @@ export class Order {
   customerId: number;
   pMethod: string;
   gTotal: number;
+  bookingId:number
 }
 

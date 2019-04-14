@@ -3,14 +3,14 @@ package kz.greetgo.diploma.controller.register.model;
 import java.util.Date;
 
 public class Booking {
-	public Integer bookingId;
-	public Integer orderId;
+	public Integer  bookingId;
 	public Integer numberOfPeople;
 	public Date recordTime;
-	public Date recordDateFrom;
-	public Date recordDateTo;
-	public Enum<Table> tableType;
-	public Integer phoneNumber;
+	public String recordDateDay;
+	public String recordDateFrom;
+	public String recordDateTo;
+	public String tableType;
+	public String phoneNumber;
 	public Integer customerId;
 
 	@Override
@@ -18,13 +18,13 @@ public class Booking {
 
 		return "Booking{" +
 			"bookingId=" + bookingId +
-			", orderId=" + orderId +
 			", numberOfPeople=" + numberOfPeople +
 			", recordTime=" + recordTime +
-			", recordDateFrom=" + recordDateFrom +
-			", recordDateTo=" + recordDateTo +
+			", recordDateDay='" + recordDateDay + '\'' +
+			", recordDateFrom='" + recordDateFrom + '\'' +
+			", recordDateTo='" + recordDateTo + '\'' +
 			", tableType=" + tableType +
-			", phoneNumber=" + phoneNumber +
+			", phoneNumber='" + phoneNumber + '\'' +
 			", customerId=" + customerId +
 			'}';
 	}
