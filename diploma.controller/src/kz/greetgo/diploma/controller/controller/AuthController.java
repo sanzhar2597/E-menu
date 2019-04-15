@@ -63,8 +63,13 @@ public class AuthController implements Controller {
   }
 
   @ToJson
+  @PublicAccess
   @OnGet("/displayPerson")
   public PersonDisplay displayPerson(@ParSession("personId") String personId) {
+    if(personId==null){
+      return new PersonDisplay();
+
+    }
     return authRegister.get().displayPerson(personId);
   }
 

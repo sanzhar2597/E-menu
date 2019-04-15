@@ -10,6 +10,7 @@ import org.apache.commons.lang.time.DateUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Bean
 public class BookingRegisterImpl implements BookingRegister {
@@ -19,8 +20,17 @@ public class BookingRegisterImpl implements BookingRegister {
 	@Override
 	public String checkTime(Booking booking) {
 
-		bookingDao.get().checkTime(booking);
-		return null;
+		List<Booking> booking1;
+
+		booking1 = bookingDao.get().checkTime(booking);
+		System.out.println(booking1);
+
+		if(booking1.size()==0){
+		return "empty";
+		}
+		else {
+			return "full";
+		}
 	}
 
 	@Override
@@ -30,8 +40,8 @@ public class BookingRegisterImpl implements BookingRegister {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date recordDate = sdf.parse(booking.recordDateDay);
 
-		String[] timesFrom =booking.recordDateFrom.split(":");
-		String[] timesTo =booking.recordDateTo.split(":");
+		String[] timesFrom = booking.recordDateFrom.split(":");
+		String[] timesTo = booking.recordDateTo.split(":");
 
 		booking.recordDateFrom = String.valueOf(DateUtils.addHours(recordDate, Integer.parseInt(timesFrom[0])));
 		booking.recordDateTo = String.valueOf(DateUtils.addHours(recordDate, Integer.parseInt(timesTo[0])));
@@ -40,7 +50,7 @@ public class BookingRegisterImpl implements BookingRegister {
 
 	public static void main(String[] args) {
 
-		System.out.println( Integer.parseInt("12:00"));
+		System.out.println(Integer.parseInt("12:00"));
 	}
 
 }

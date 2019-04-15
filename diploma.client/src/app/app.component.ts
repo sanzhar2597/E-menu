@@ -20,6 +20,11 @@ export class AppComponent implements OnInit {
     // document.getElementById("navItem1").classList.add("active")
   }
 
+  addClass() {
+  }
+
+  showMainPage() {
+  }
 
   /*showMainPage(name: string, id): any {
     this.li = event.currentTarget

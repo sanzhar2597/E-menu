@@ -10,6 +10,7 @@ import {PersonDisplay} from "../../model/PersonDisplay";
 export class BookingService {
   public booking: Booking = new Booking();
   public table: Table[] = [Table.CENTER, Table.RIGHT,Table.LEFT, Table.HALL];
+  public processResponse = "";
   constructor(private httpService: HttpService) {
   }
 

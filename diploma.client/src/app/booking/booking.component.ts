@@ -5,6 +5,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import {NextOperationComponent} from "../next-operation/next-operation.component";
 import {LoginService} from "../login/login.service";
 import {Router} from "@angular/router";
+import {AlertComponent} from "../alert/alert.component";
 
 @Component({
   selector: 'app-booking',
@@ -58,14 +59,9 @@ export class BookingComponent implements OnInit {
           this.router.navigate(['/order']);
           break;
         case "submit":
-          self.bookingService.saveBooking().then(res => {
-            console.log("BOOKING CHECK-TIME: ", res);
-            this.resetForm();
-            this.getPhoneNumber();
-            /*this.bookingService.saveBooking().then(res=>{
-
-            });*/
-          })
+          self.bookingService.checkTime().then(value => {
+            this.showResponseAlert(value.body);
+          });
           break;
       }
 
@@ -73,10 +69,31 @@ export class BookingComponent implements OnInit {
     })
   }
 
+  showResponseAlert(response) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width = "50%";
+    dialogConfig.data = {response: response}
+    this.dialog.open(AlertComponent, dialogConfig).afterClosed().subscribe(res => {
+
+      switch (res) {
+        case "full":
+          break;
+        case "empty":
+          this.resetForm();
+          this.getPhoneNumber();
+          break;
+      }
+    });
+  }
+
   getPhoneNumber() {
     this.login.getPersonDisplay().then(value1 => {
       this.loading = false;
-      this.bookingService.booking.phoneNumber = value1.username;
+      if (value1.username) {
+        this.bookingService.booking.phoneNumber = value1.username;
+      }
     });
   }
 

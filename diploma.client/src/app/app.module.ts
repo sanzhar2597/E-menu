@@ -23,6 +23,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { BookingComponent } from './booking/booking.component';
 import { NextOperationComponent } from './next-operation/next-operation.component';
 import {MatProgressSpinnerModule} from "@angular/material";
+import { AlertComponent } from './alert/alert.component';
 
 
 
@@ -39,12 +40,13 @@ import {MatProgressSpinnerModule} from "@angular/material";
     RegistrationComponent,
     BookingComponent,
     NextOperationComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
     BrowserAnimationsModule, MatDialogModule, MatProgressSpinnerModule, ToastrModule.forRoot()
   ],
-  entryComponents:[OrderItemsComponent,NextOperationComponent],
+  entryComponents:[OrderItemsComponent,NextOperationComponent,AlertComponent],
   providers: [HttpService, LoginService, ClientListService, OrderService],
   bootstrap: [AppComponent]
 })
