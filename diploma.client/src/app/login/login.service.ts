@@ -9,6 +9,8 @@ import {Router} from "@angular/router";
 })
 export class LoginService {
 
+  public preloader = false;
+
   public username: string = '';
   public password: string = '';
 
@@ -51,6 +53,12 @@ export class LoginService {
     this.loading = true;
     try {
       this.personDisplay = await this.getPersonDisplay();
+
+      //TODO
+      // вообще не правильная проверка потом нужно исправить на нормальную проверку
+      if (!this.personDisplay.username) {
+        this.personDisplay = null;
+      }
       this.loading = false;
     } catch (e) {
       this.http.token = null;

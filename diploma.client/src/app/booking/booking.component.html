@@ -35,7 +35,7 @@
         <label>Number of Telephone</label>
         <div class="input-group">
           <input name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="bookingService.booking.phoneNumber"
-                 class="form-control" type="number">
+                 class="form-control" type="number" disabled ={{isRegisteredClient}}>
         </div>
       </div>
 
@@ -53,4 +53,3 @@
   </div>
 
 </form>
-<mat-spinner *ngIf="loading"></mat-spinner>

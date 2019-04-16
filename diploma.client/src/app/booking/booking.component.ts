@@ -14,8 +14,8 @@ import {AlertComponent} from "../alert/alert.component";
 })
 export class BookingComponent implements OnInit {
 
-  loading: boolean = false;
 
+  public isRegisteredClient = false;
   constructor(private bookingService: BookingService,
               private dialog: MatDialog,
               private login: LoginService,
@@ -24,7 +24,6 @@ export class BookingComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
-    this.loading = true;
     this.getPhoneNumber();
 
   }
@@ -52,7 +51,9 @@ export class BookingComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width = "50%";
+    this.login.preloader = true;
     self.bookingService.checkTime().then(value => {
+      this.login.preloader = false;
       dialogConfig.data = {response: value.body};
       this.dialog.open(NextOperationComponent, dialogConfig).afterClosed().subscribe(res => {
         switch (res) {
@@ -70,7 +71,6 @@ export class BookingComponent implements OnInit {
             break;
         }
 
-        console.log("SUBSCRIBED")
       })
     })
 
@@ -96,9 +96,11 @@ export class BookingComponent implements OnInit {
   }
 
   getPhoneNumber() {
+    this.login.preloader = true;
     this.login.getPersonDisplay().then(value1 => {
-      this.loading = false;
+      this.login.preloader = false;
       if (value1.username) {
+        this.isRegisteredClient=true;
         this.bookingService.booking.phoneNumber = value1.username;
       }
     });
