@@ -1,0 +1,16 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Order No.</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">#</div>
+          </div>
+          <input name="orderNo" class="form-control" >
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+

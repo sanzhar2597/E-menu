@@ -7,6 +7,7 @@ import {HeaderComponent} from "./header/header.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {BookingComponent} from "./booking/booking.component";
+import {AdminComponent} from "./admin/admin.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'order', pathMatch: 'full'},
@@ -21,8 +22,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'booking', component: BookingComponent},
+  {path: 'admin', component: AdminComponent},
 
-]
+];
 
 @NgModule({
   imports: [

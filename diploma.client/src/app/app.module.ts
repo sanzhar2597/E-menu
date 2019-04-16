@@ -24,6 +24,8 @@ import { BookingComponent } from './booking/booking.component';
 import { NextOperationComponent } from './next-operation/next-operation.component';
 import {MatProgressSpinnerModule} from "@angular/material";
 import { AlertComponent } from './alert/alert.component';
+import { AdminComponent } from './admin/admin.component';
+import { FoodItemComponent } from './admin/food-item/food-item.component';
 
 
 
@@ -41,6 +43,8 @@ import { AlertComponent } from './alert/alert.component';
     BookingComponent,
     NextOperationComponent,
     AlertComponent,
+    AdminComponent,
+    FoodItemComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
