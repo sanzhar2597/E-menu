@@ -12,7 +12,7 @@ export class NextOperationComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<NextOperationComponent>,
-    private bookingService :BookingService
+    private bookingService: BookingService
   ) {
   }
 
@@ -20,10 +20,24 @@ export class NextOperationComponent implements OnInit {
   ngOnInit() {
   }
 
+  enableTable() {
+    if (this.data.response == "full") {
+      return false
+    }
+    else if (this.data.response == "empty") {
+      return true
+    }
+    return false;
+  }
+
   openOrderComponent() {
     this.dialogRef.close("orderComponent");
   }
-  onSubmit(){
+
+  onSubmit() {
     this.dialogRef.close("submit");
+  }
+  close(){
+    this.dialogRef.close();
   }
 }

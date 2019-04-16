@@ -52,21 +52,28 @@ export class BookingComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width = "50%";
-    dialogConfig.data = {lego: "nazar"}
-    this.dialog.open(NextOperationComponent, dialogConfig).afterClosed().subscribe(res => {
-      switch (res) {
-        case "orderComponent":
-          this.router.navigate(['/order']);
-          break;
-        case "submit":
-          self.bookingService.checkTime().then(value => {
-            this.showResponseAlert(value.body);
-          });
-          break;
-      }
+    self.bookingService.checkTime().then(value => {
+      dialogConfig.data = {response: value.body};
+      this.dialog.open(NextOperationComponent, dialogConfig).afterClosed().subscribe(res => {
+        switch (res) {
+          case "orderComponent":
+            this.bookingService.saveBooking().then(res => {
+              this.router.navigate(['/order']);
+            })
+            break;
+          case "submit":
+            self.bookingService.checkTime().then(value => {
+              this.showResponseAlert(value.body);
+            });
+            break;
+          default:
+            break;
+        }
 
-      console.log("SUBSCRIBED")
+        console.log("SUBSCRIBED")
+      })
     })
+
   }
 
   showResponseAlert(response) {
