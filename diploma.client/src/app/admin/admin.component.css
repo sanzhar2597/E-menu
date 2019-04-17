@@ -1,0 +1,11 @@
+.sidebar-admin{
+  display: block;
+  float: left;
+  margin-left: 0;
+}
+.content-admin{
+  display: block;
+}
+.head-admin{
+  padding-top: 50px;
+}

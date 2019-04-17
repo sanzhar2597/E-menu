@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "../http.service";
 import {Booking} from "../../model/booking.model";
 import {Table} from "../../model/table.model";
-import {PersonDisplay} from "../../model/PersonDisplay";
 
 @Injectable({
   providedIn: 'root'
