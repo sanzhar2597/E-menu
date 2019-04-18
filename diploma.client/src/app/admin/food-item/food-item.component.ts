@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, UrlSegment} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {AdminService} from "../admin.service";
 
 @Component({
   selector: 'app-food-item',
@@ -8,14 +9,13 @@ import {ActivatedRoute, UrlSegment} from "@angular/router";
 })
 export class FoodItemComponent implements OnInit {
 
-  constructor(r: ActivatedRoute) {
-    r.url.subscribe((s: UrlSegment[]) => {
-      debugger
-      console.log("url", s);
-    });
+  constructor(private adminService: AdminService,
+              r: ActivatedRoute) {
+    adminService.setTitle(r);
   }
 
   ngOnInit() {
   }
+
 
 }

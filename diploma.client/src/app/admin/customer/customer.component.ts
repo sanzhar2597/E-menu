@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {AdminService} from "../admin.service";
 
 @Component({
   selector: 'app-customer',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminService: AdminService,
+              r: ActivatedRoute) {
+    adminService.setTitle(r);
+  }
 
   ngOnInit() {
   }

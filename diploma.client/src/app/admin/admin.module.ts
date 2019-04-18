@@ -11,11 +11,12 @@ import { TableComponent } from './table/table.component';
 import { MenuDayComponent } from './menu-day/menu-day.component';
 import { TitleComponent } from './title/title.component';
 import {AdminService} from "./admin.service";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   imports: [
     AdminRoutingModule,
-    HttpClientModule, FormsModule, MatDialogModule, MatProgressSpinnerModule,
+    HttpClientModule, FormsModule, MatDialogModule, MatProgressSpinnerModule,CommonModule
   ],
   declarations: [
     AdminComponent,

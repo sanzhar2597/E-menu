@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, UrlSegment} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +8,41 @@ export class AdminService {
 
   public title: string;
 
-  constructor(public router:Router) {
+  public adminChildUrl = [
+    {
+      url: "food-item",
+      title: "Add Product"
+    },
+    {
+      url: "customer",
+      title: "Add Customer"
+    },
+    {
+      url: "table",
+      title: "Add Table"
+    },
+    {
+      url: "menu-day",
+      title: "Add Menu-day"
+    },
+  ];
+
+
+  constructor() {
   }
 
-  changeTitle() {
-    this.title = "lalala"
+  changeTitle(url: string) {
+    for (let key in this.adminChildUrl) {
+      if (this.adminChildUrl[key].url == url) {
+        this.title = this.adminChildUrl[key].title;
+      }
+    }
+  }
+
+  setTitle(r: ActivatedRoute) {
+    r.url.subscribe((s: UrlSegment[]) => {
+      this.changeTitle(s[0].path)
+    });
   }
 
 }
