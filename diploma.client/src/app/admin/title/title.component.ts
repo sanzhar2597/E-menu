@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminService} from "../admin.service";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs/Observable";
-import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-title',
@@ -17,8 +14,6 @@ export class TitleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.adminService.changeTitle()
     console.log("this.adminService.title", this.adminService.title);
-
   }
 }
