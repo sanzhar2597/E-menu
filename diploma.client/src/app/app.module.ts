@@ -23,6 +23,7 @@ import {BookingComponent} from './booking/booking.component';
 import {NextOperationComponent} from './next-operation/next-operation.component';
 import {MatProgressSpinnerModule} from "@angular/material";
 import {AlertComponent} from './alert/alert.component';
+import {LanguagesService} from "./shared/languages.service";
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import {AlertComponent} from './alert/alert.component';
     BrowserAnimationsModule, MatDialogModule, MatProgressSpinnerModule, ToastrModule.forRoot()
   ],
   entryComponents: [OrderItemsComponent, NextOperationComponent, AlertComponent],
-  providers: [HttpService, LoginService, ClientListService, OrderService],
+  providers: [HttpService, LoginService, ClientListService, OrderService, LanguagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
