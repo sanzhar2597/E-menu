@@ -10,6 +10,7 @@ import {ToastrService} from "ngx-toastr";
 import {Order} from "../../../model/order.model";
 import {Item} from "../../../model/item.model";
 import {BookingService} from "../../shared/booking.service";
+import {LanguagesService} from "../../shared/languages.service";
 
 @Component({
   selector: 'app-order',
@@ -28,7 +29,8 @@ export class OrderComponent implements OnInit {
               private toastr: ToastrService,
               private router: Router,
               private currentRoute: ActivatedRoute,
-              private bookingService: BookingService) {
+              private bookingService: BookingService,
+              private languagesService:LanguagesService) {
   }
 
   ngOnInit() {

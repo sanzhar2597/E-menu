@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "./login/login.service";
 import {ActivatedRoute} from "@angular/router";
+import {LanguagesService} from "./shared/languages.service";
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,13 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'diploma';
-  li: any;
+  private const_languages: { RU_LANGUAGE: string; EN_LANGUAGE: string };
 
   constructor(public login: LoginService,
-              private currentRoute: ActivatedRoute) {
+              private currentRoute: ActivatedRoute,
+              private languagesService: LanguagesService) {
+
+    this.const_languages = languagesService.CONST_LANGUAGES;
   }
 
   async ngOnInit() {
@@ -24,6 +27,10 @@ export class AppComponent implements OnInit {
   }
 
   showMainPage() {
+  }
+
+  changeLanguage(translate: string) {
+    this.languagesService.changeLanguages(translate);
   }
 
   /*showMainPage(name: string, id): any {
