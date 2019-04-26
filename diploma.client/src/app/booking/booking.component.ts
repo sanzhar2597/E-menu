@@ -6,6 +6,7 @@ import {NextOperationComponent} from "../next-operation/next-operation.component
 import {LoginService} from "../login/login.service";
 import {Router} from "@angular/router";
 import {AlertComponent} from "../alert/alert.component";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-booking',
@@ -16,7 +17,8 @@ export class BookingComponent implements OnInit {
 
 
   public isRegisteredClient = false;
-  constructor(private bookingService: BookingService,
+
+  constructor(public bookingService: BookingService,
               private dialog: MatDialog,
               private login: LoginService,
               private router: Router) {
@@ -43,7 +45,7 @@ export class BookingComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     event.preventDefault();
     let self = this;
     console.log(this.bookingService.booking)
@@ -100,7 +102,7 @@ export class BookingComponent implements OnInit {
     this.login.getPersonDisplay().then(value1 => {
       this.login.preloader = false;
       if (value1.username) {
-        this.isRegisteredClient=true;
+        this.isRegisteredClient = true;
         this.bookingService.booking.phoneNumber = value1.username;
       }
     });

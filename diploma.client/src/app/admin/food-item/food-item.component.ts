@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AdminService} from "../admin.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-food-item',
@@ -19,9 +20,9 @@ export class FoodItemComponent implements OnInit {
     }
   ];
 
-  public response = {};
+  public response: any = {};
 
-  constructor(private adminService: AdminService,
+  constructor(public adminService: AdminService,
               r: ActivatedRoute
   ) {
     adminService.setTitle(r);
@@ -36,7 +37,7 @@ export class FoodItemComponent implements OnInit {
       () => this.response = {}, 2000)
   }
 
-  onSumbit() {
+  onSumbit(form: NgForm) {
     event.preventDefault();
     console.log("this.adminService.item", this.adminService.item);
     this.adminService.saveProduct().then(

@@ -9,8 +9,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private adminService: AdminService, private r: ActivatedRoute,
-            ) {
+  constructor(public adminService: AdminService, private r: ActivatedRoute,
+  ) {
   }
 
 

@@ -27,7 +27,7 @@
         <label>Reservation Time To:</label>
         <input name="recordDateTo" #recordDateTo="ngModel"
                [(ngModel)]="bookingService.booking.recordDateTo"
-               type="time" [value]="bookingService.booking.recordDateTo.hours" class="form-control">
+               type="time" [value]="bookingService.booking.recordDateTo" class="form-control">
       </div>
     </div>
     <div class="col-md-12">
@@ -35,7 +35,7 @@
         <label>Number of Telephone</label>
         <div class="input-group">
           <input name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="bookingService.booking.phoneNumber"
-                 class="form-control" type="number" disabled ={{isRegisteredClient}}>
+                 class="form-control" type="number" disabled={{isRegisteredClient}}>
         </div>
       </div>
 

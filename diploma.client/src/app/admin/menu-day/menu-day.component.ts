@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AdminService} from "../admin.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-menu-day',
@@ -15,6 +16,10 @@ export class MenuDayComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onSumbit(form: NgForm) {
+    event.preventDefault();
   }
 
 }

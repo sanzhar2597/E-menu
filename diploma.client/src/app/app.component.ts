@@ -9,11 +9,11 @@ import {LanguagesService} from "./shared/languages.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private const_languages: { RU_LANGUAGE: string; EN_LANGUAGE: string };
+  public const_languages: { RU_LANGUAGE: string; EN_LANGUAGE: string };
 
   constructor(public login: LoginService,
               private currentRoute: ActivatedRoute,
-              private languagesService: LanguagesService) {
+              public languagesService: LanguagesService) {
 
     this.const_languages = languagesService.CONST_LANGUAGES;
   }
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   addClass() {
   }
 
-  showMainPage() {
+  showMainPage(title: string, id?: any) {
   }
 
   changeLanguage(translate: string) {

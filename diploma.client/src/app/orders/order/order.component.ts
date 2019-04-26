@@ -23,14 +23,14 @@ export class OrderComponent implements OnInit {
 
   isValid: boolean;
 
-  constructor(private service: OrderService,
+  constructor(public service: OrderService,
               private dialog: MatDialog,
               private customerService: CustomerService,
               private toastr: ToastrService,
               private router: Router,
               private currentRoute: ActivatedRoute,
               private bookingService: BookingService,
-              private languagesService:LanguagesService) {
+              private languagesService: LanguagesService) {
   }
 
   ngOnInit() {

@@ -10,7 +10,7 @@ export class TitleComponent implements OnInit {
 
   private legacy;
 
-  constructor(private adminService: AdminService,) {
+  constructor(public adminService: AdminService,) {
   }
 
   ngOnInit() {

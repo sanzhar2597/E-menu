@@ -7,24 +7,28 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto" (click)="addClass()">
-        <li class="nav-item " id="navItem1" (click)="showMainPage('main', this.id)">
-          <a class="nav-link" routerLink="/">{{languagesService.languages.main}}<span class="sr-only">(current)</span></a>
+        <li class="nav-item " id="navItem1" (click)="showMainPage('main')">
+          <a class="nav-link" routerLink="/">{{languagesService.languages.main}}<span
+            class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" id="navItem2" (click)="showMainPage('booking',this.id)">
-          <a class="nav-link" routerLink="/booking">{{languagesService.languages.order}}<span class="sr-only">(current)</span></a>
+        <li class="nav-item" id="navItem2" (click)="showMainPage('booking')">
+          <a class="nav-link" routerLink="/booking">{{languagesService.languages.order}}<span
+            class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" id="navItem3" (click)="showMainPage('booking',this.id)">
-          <a class="nav-link" routerLink="/admin">{{languagesService.languages.admin}}<span class="sr-only">(current)</span></a>
+        <li class="nav-item" id="navItem3" (click)="showMainPage('booking')">
+          <a class="nav-link" routerLink="/admin">{{languagesService.languages.admin}}<span
+            class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" id="navItem4" (click)="showMainPage('registration', this.id)">
+        <li class="nav-item" id="navItem4" (click)="showMainPage('registration')">
           <a class="nav-link" routerLink="/registration">{{languagesService.languages.registration}}</a>
         </li>
-        <li class="nav-item" id="navItem5" (click)="showMainPage('login', this.id)">
+        <li class="nav-item" id="navItem5" (click)="showMainPage('login')">
           <a class="nav-link" *ngIf="!login.isAuthenticated" (click)="showMainPage('login')"
              routerLink="/login">{{languagesService.languages.login}}</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
             {{languagesService.languages.language}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">

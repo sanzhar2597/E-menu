@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {BookingService} from "../shared/booking.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-next-operation',
@@ -34,10 +35,11 @@ export class NextOperationComponent implements OnInit {
     this.dialogRef.close("orderComponent");
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     this.dialogRef.close("submit");
   }
-  close(){
+
+  close() {
     this.dialogRef.close();
   }
 }

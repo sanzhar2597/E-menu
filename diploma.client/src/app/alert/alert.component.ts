@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {BookingService} from "../shared/booking.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-alert',
@@ -41,6 +42,10 @@ export class AlertComponent implements OnInit {
 
   close() {
     this.dialogRef.close(this.data.response);
+  }
+
+  onSubmit(form: NgForm) {
+    event.preventDefault();
   }
 }
 
