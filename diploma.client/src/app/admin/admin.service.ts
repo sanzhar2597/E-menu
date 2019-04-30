@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ActivatedRoute, UrlSegment} from "@angular/router";
 import {Item} from "../../model/item.model";
 import {HttpService} from "../http.service";
-import {LanguagesService} from "../shared/languages.service";
+import {FoodSchedule} from "../../model/food-schedule.model";
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,6 @@ export class AdminService {
   }
 
 
-
   changeTitle(url: string) {
     for (let key in this.adminChildUrl) {
       if (this.adminChildUrl[key].url == url) {
@@ -65,6 +64,19 @@ export class AdminService {
 
   saveProduct() {
     return this.httpService.get('/admin/save-product', {item: JSON.stringify(this.item)}).toPromise();
+  }
+
+  saveMenuDay(foodSchedule: FoodSchedule) {
+
+    return this.httpService.get('/admin/save-menu-day', {foodSchedule: JSON.stringify(foodSchedule)}).toPromise();
+  }
+
+  getFoodItem() {
+    return this.httpService.get('/admin/get-food-type',).toPromise();
+  }
+
+  getFoodList(id) {
+    return this.httpService.get('/admin/get-food-list', {id}).toPromise();
   }
 
 }

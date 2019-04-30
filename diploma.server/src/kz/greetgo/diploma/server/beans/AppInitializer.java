@@ -10,19 +10,25 @@ import javax.servlet.ServletContext;
 @Bean
 public class AppInitializer {
 
-  public BeanGetter<LiquibaseManager> liquibaseManager;
+	public BeanGetter<LiquibaseManager> liquibaseManager;
 
-  public BeanGetter<ControllerServlet> controllerServlet;
+	public BeanGetter<ControllerServlet> controllerServlet;
 
-  public BeanGetter<Utf8AndTraceResetFilter> utf8AndTraceResetFilter;
+	public BeanGetter<Utf8AndTraceResetFilter> utf8AndTraceResetFilter;
 
-  public void initialize(ServletContext ctx) throws Exception {
-    if (!App.do_not_run_liquibase_on_deploy_war().exists()) {
-      liquibaseManager.get().apply();
-    }
+	public BeanGetter<ForwardFilter> forwardFilter;
 
-    utf8AndTraceResetFilter.get().register(ctx);
+	public void initialize(ServletContext ctx) throws Exception {
 
-    controllerServlet.get().register(ctx);
-  }
+		if(!App.do_not_run_liquibase_on_deploy_war().exists())
+			{
+				liquibaseManager.get().apply();
+			}
+
+		utf8AndTraceResetFilter.get().register(ctx);
+
+		forwardFilter.get().register(ctx);
+
+		controllerServlet.get().register(ctx);
+	}
 }

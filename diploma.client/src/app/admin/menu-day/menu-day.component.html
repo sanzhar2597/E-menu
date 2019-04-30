@@ -7,8 +7,9 @@
           <div class="input-group-prepend">
             <div class="input-group-text">Category</div>
           </div>
-          <select name="itemName" class="form-control">
-            <option value="Empty">Empty</option>
+          <select name="foodType" class="form-control" [(ngModel)]="foodTypeNgModel" (change)="gotoDatabse()">
+            <option *ngIf="foodType.length==0" value="">Empty</option>
+            <option *ngFor="let item of foodType" [value]="item.id">{{item.name}}</option>
           </select>
         </div>
       </div>
@@ -18,8 +19,10 @@
           <div class="input-group-prepend">
             <div class="input-group-text">Food</div>
           </div>
-          <select name="itemName" class="form-control">
-            <option value="Empty">Empty</option>
+          <select name="foodList" class="form-control" [(ngModel)]="foodListNgModel" [disabled]="disableFoodList"
+                  (change)="changeFoodList()">
+            <option *ngIf="foodList.length==0" value="">Empty</option>
+            <option *ngFor="let item of foodList" [value]="item.id">{{item.name}}</option>
           </select>
         </div>
       </div>
@@ -29,7 +32,8 @@
           <div class="input-group-prepend">
             <div class="input-group-text">Date</div>
           </div>
-          <input name="itemPrice" type="date"
+          <input name="dateMenu" [(ngModel)]="dateMenu" type="date" (change)="changeDate()"
+                 value=""
                  class="form-control">
         </div>
       </div>
@@ -43,9 +47,13 @@
   </div>
 </form>
 
-<div class="alert alert-success response-capacity-from"
+<div [id]="responseObject[0].response" class="alert alert-success response-capacity-from"
      role="alert">
+  {{responseFoodSchedule.alertText}}
 </div>
-<div class="alert alert-danger response-capacity-from"
+<div [id]="responseObject[1].response" class="alert alert-danger response-capacity-from"
      role="alert">
+  {{responseFoodSchedule.alertText}}
 </div>
+
+

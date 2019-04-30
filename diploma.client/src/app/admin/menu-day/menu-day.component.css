@@ -1,0 +1,8 @@
+.response-capacity-from {
+  transition: 1s opacity;
+  opacity: 0;
+}
+
+.response-capacity-to {
+  opacity: 1;
+}
