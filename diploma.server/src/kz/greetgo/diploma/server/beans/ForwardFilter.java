@@ -23,6 +23,7 @@ public class ForwardFilter implements Filter {
     HttpServletRequest req = (HttpServletRequest) request;
 
     String target = req.getRequestURI();
+    System.out.println("target: "+target);
 
     if (isContinueChain(target)) {
       chain.doFilter(request, response);
@@ -38,7 +39,7 @@ public class ForwardFilter implements Filter {
 
 
   private boolean isContinueChain(String target) {
-    if (target.startsWith("/api/")) {
+    if (target.startsWith("/restaurant/api/")) {
       return true;
     }
 
