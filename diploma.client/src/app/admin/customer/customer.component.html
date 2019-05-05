@@ -1,3 +1,61 @@
-<p>
-  customer works!
-</p>
+<form #form="ngForm" autocomplete="off" (submit)="onSumbit(form)">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Username</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+          </div>
+          <select name="foodList" class="form-control" [(ngModel)]="ngID" (change)="changeModel()">
+            <option value="1">Empty</option>
+            <option value="2">Empty1</option>
+            <option value="3">Empty2</option>
+            <option value="4">Empty3</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Role</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Role</div>
+          </div>
+          <select name="foodList" class="form-control" [(ngModel)]="ngID" (change)="changeModel()">
+            <option value="1">Empty</option>
+            <option value="2">Empty1</option>
+            <option value="3">Empty2</option>
+            <option value="4">Empty3</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Full Name</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+          </div>
+          <input name="dateMenu" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<div *ngFor="let item of ngModelSelect" class="alert alert-success"
+     role="alert">
+  asdasdas
+  {{item.id}}
+</div>
+

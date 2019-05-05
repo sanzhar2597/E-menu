@@ -9,12 +9,23 @@ import {AdminService} from "../admin.service";
 })
 export class CustomerComponent implements OnInit {
 
+  public ngModelSelect:any[] =[];
+  public ngID:number;
   constructor(private adminService: AdminService,
               r: ActivatedRoute) {
     adminService.setTitle(r);
   }
 
   ngOnInit() {
+  }
+  changeModel(){
+    for (let key in this.ngModelSelect){
+      if(this.ngModelSelect[key] == this.ngID){
+        this.ngModelSelect.splice(+key, 1)
+        return
+      }
+    }
+    this.ngModelSelect.push(this.ngID)
   }
 
 }
