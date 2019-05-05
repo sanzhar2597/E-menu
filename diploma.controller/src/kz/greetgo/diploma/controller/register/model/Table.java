@@ -1,8 +1,7 @@
 package kz.greetgo.diploma.controller.register.model;
 
-public enum Table {
-	LEFT,
-	RIGTH,
-	CENTER,
-	HALL
+public class Table {
+	public Integer id;
+	public String name;
+	public Integer status;
 }

@@ -3,10 +3,7 @@ package kz.greetgo.diploma.register.impl;
 import kz.greetgo.depinject.core.Bean;
 import kz.greetgo.depinject.core.BeanGetter;
 import kz.greetgo.diploma.controller.register.AdminRegister;
-import kz.greetgo.diploma.controller.register.model.FoodList;
-import kz.greetgo.diploma.controller.register.model.FoodSchedule;
-import kz.greetgo.diploma.controller.register.model.FoodType;
-import kz.greetgo.diploma.controller.register.model.Item;
+import kz.greetgo.diploma.controller.register.model.*;
 import kz.greetgo.diploma.register.dao.AdminDao;
 
 import java.sql.Timestamp;
@@ -52,6 +49,22 @@ public class AdminRegisterImpl implements AdminRegister {
 	}
 
 	@Override
+	public String saveRestaurantTable(Table table) {
+
+		List<Table> tables = new ArrayList<>();
+		tables =adminDao.get().selectRestaurantTable(table);
+
+		if(tables.size()==0){
+			adminDao.get().insertRestaurantTable(table);
+			return "empty";
+		}
+		else{
+			adminDao.get().updateRestaurantTable(table);
+			return "full";
+		}
+	}
+
+	@Override
 	public List<FoodType> getFoodItem() {
 
 		return adminDao.get().selectFoodItem();
@@ -62,6 +75,12 @@ public class AdminRegisterImpl implements AdminRegister {
 
 		return adminDao.get().selectFoodList(id);
 
+	}
+
+	@Override
+	public List<Table> getTableList() {
+
+		return adminDao.get().getTableList();
 	}
 
 	public static void main(String[] args) {

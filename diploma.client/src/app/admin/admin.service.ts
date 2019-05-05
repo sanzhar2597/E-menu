@@ -3,6 +3,7 @@ import {ActivatedRoute, UrlSegment} from "@angular/router";
 import {Item} from "../../model/item.model";
 import {HttpService} from "../http.service";
 import {FoodSchedule} from "../../model/food-schedule.model";
+import {Table} from "../../model/table.model";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class AdminService {
     },
     {
       url: "table",
-      title: "Add Table"
+      title: "Edit Table"
     },
     {
       url: "menu-day",
@@ -71,12 +72,21 @@ export class AdminService {
     return this.httpService.get('/admin/save-menu-day', {foodSchedule: JSON.stringify(foodSchedule)}).toPromise();
   }
 
+  saveRestaurantTable(table:Table){
+    return this.httpService.get('/admin/save-restaurant-table', {table: JSON.stringify(table)}).toPromise();
+
+  }
+
   getFoodItem() {
     return this.httpService.get('/admin/get-food-type',).toPromise();
   }
 
   getFoodList(id) {
     return this.httpService.get('/admin/get-food-list', {id}).toPromise();
+  }
+
+  getTableList() {
+    return this.httpService.get('/admin/get-table-list').toPromise();
   }
 
 }

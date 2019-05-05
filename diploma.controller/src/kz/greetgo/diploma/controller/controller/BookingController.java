@@ -13,6 +13,7 @@ import kz.greetgo.mvc.annotations.on_methods.ControllerPrefix;
 import kz.greetgo.mvc.annotations.on_methods.OnGet;
 
 import java.text.ParseException;
+import java.util.List;
 
 @Bean
 @ControllerPrefix("/booking")
@@ -34,6 +35,15 @@ public class BookingController implements Controller {
 	public void insertBooking(@Par("booking") @Json Booking booking) throws ParseException {
 
 		bookingRegister.get().insertBooking(booking);
+	}
+
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/restaurant-table")
+	public List<String> getRestaurantTable() throws ParseException {
+
+		return  bookingRegister.get().getRestaurantTable();
 	}
 
 }

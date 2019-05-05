@@ -32,5 +32,15 @@
       )
     ]]></sql>
   </changeSet>
+  <changeSet author="pompei" id="create-restaurant_table">
+    <sql endDelimiter=";;"><![CDATA[
+      create table restaurant_table(
+         id serial,
+         name varchar(100),
+         status int,
+         primary key(id, name)
+      )
+    ]]></sql>
+  </changeSet>
 
 </databaseChangeLog>

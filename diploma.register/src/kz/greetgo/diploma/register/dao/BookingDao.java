@@ -21,4 +21,8 @@ public interface BookingDao {
 		"table_type as tableType, phone_number as phoneNumber, customer_id as customerId from booking " +
 		"where table_type = #{booking.tableType} and record_date_day= #{booking.recordDateDay}")
 	List<Booking> checkTime(@Param("booking") Booking booking);
+
+
+	@Select("select name from restaurant_table where status = 1")
+	List<String> selectRestaurantTable();
 }

@@ -1,6 +1,8 @@
 package kz.greetgo.diploma.register.test.dao;
 
+import javafx.scene.control.Tab;
 import kz.greetgo.diploma.controller.register.model.Booking;
+import kz.greetgo.diploma.controller.register.model.Table;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,5 +13,9 @@ public interface BookingTestDao {
 		"values (#{booking.bookingId}, #{booking.numberOfPeople}, #{booking.recordTime}, #{booking.recordDateDay}, " +
 		"#{booking.recordDateFrom}, #{booking.recordDateTo}, #{booking.tableType}, #{booking.phoneNumber}, #{booking.customerId})")
 	void insertBooking(@Param("booking") Booking booking);
+
+	@Insert("insert into restaurant_table(name, status) " +
+		"values (#{table.name}, #{table.status})")
+	void insertRestaurantTable(@Param("table") Table table);
 
 }

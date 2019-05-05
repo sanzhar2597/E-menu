@@ -48,6 +48,12 @@ public class BookingRegisterImpl implements BookingRegister {
 		bookingDao.get().insertBooking(booking);
 	}
 
+	@Override
+	public List<String> getRestaurantTable() {
+
+		return bookingDao.get().selectRestaurantTable();
+	}
+
 	public static void main(String[] args) {
 
 		System.out.println(Integer.parseInt("12:00"));

@@ -1,3 +1,60 @@
-<p>
-  table works!
-</p>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Название нового столика</label>
+        <div class="input-group">
+          <input class="form-control"
+                 name="tableName" [(ngModel)]="ngTable.name" (change)="changeNgTableName()">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Существующие столики</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">№</div>
+          </div>
+          <select class="form-control" name="ngTable" [(ngModel)]="ngTable.id" (change)="changeNgTable()">
+            <option *ngIf="table.length==0">Empty</option>
+            <option *ngFor="let tab of table" [value]="tab.id">{{tab.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Доступность столика</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">#</div>
+          </div>
+          <select class="form-control"  [(ngModel)]="ngTable.status" name="ngStatus">
+            <option value="">доступен</option>
+            <option *ngFor="let tab of statusTable" [value]="tab.value">{{tab.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<div [id]="responseObject[0].response" class="alert alert-success response-capacity-from"
+     role="alert">
+  {{responseRestaurantTable.alertText}}
+</div>
+<div [id]="responseObject[1].response" class="alert alert-danger response-capacity-from"
+     role="alert">
+  {{responseRestaurantTable.alertText}}
+</div>
+
+
+

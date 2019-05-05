@@ -1,9 +1,6 @@
 package kz.greetgo.diploma.controller.register;
 
-import kz.greetgo.diploma.controller.register.model.FoodList;
-import kz.greetgo.diploma.controller.register.model.FoodSchedule;
-import kz.greetgo.diploma.controller.register.model.FoodType;
-import kz.greetgo.diploma.controller.register.model.Item;
+import kz.greetgo.diploma.controller.register.model.*;
 
 import java.util.List;
 
@@ -13,8 +10,12 @@ public interface AdminRegister {
 
 	String saveMenuDay(FoodSchedule foodSchedule);
 
+	String saveRestaurantTable(Table table);
+
 	List<FoodType> getFoodItem();
 
 	List<FoodList> getFoodList(Integer id);
+
+	List<Table> getTableList();
 
 }

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {BookingService} from "../shared/booking.service";
-import {Table} from "../../model/table.model";
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import {NextOperationComponent} from "../next-operation/next-operation.component";
 import {LoginService} from "../login/login.service";
@@ -39,7 +38,7 @@ export class BookingComponent implements OnInit {
       recordDateDay: "2019-05-05",
       recordDateFrom: "12:00",
       recordDateTo: "12:00",
-      tableType: Table.CENTER,
+      tableType: this.bookingService.table.length ? this.bookingService.table[0] : "",
       phoneNumber: "8707",
       customerId: "",
     }

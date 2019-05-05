@@ -3,6 +3,7 @@ package kz.greetgo.diploma.register.test.beans.develop;
 import kz.greetgo.depinject.core.Bean;
 import kz.greetgo.depinject.core.BeanGetter;
 import kz.greetgo.diploma.controller.register.model.Booking;
+import kz.greetgo.diploma.controller.register.model.Table;
 import kz.greetgo.diploma.register.beans.all.IdGenerator;
 import kz.greetgo.diploma.register.test.dao.BookingTestDao;
 import kz.greetgo.util.RND;
@@ -31,6 +32,7 @@ public class DbBookingLoader {
 	private void loadBooking() throws Exception {
 
 		logger.info("Start loading restaurant order...");
+		restaurantTable();
 		booking();
 		booking();
 		booking();
@@ -40,6 +42,11 @@ public class DbBookingLoader {
 
 
 	private void booking() throws Exception {
+
+		Table table = new Table();
+		table.status = 1;
+		table.name = "left";
+
 
 		String id = idGenerator.get().newId();
 
@@ -53,10 +60,26 @@ public class DbBookingLoader {
 		booking.recordDateDay = "2019-05-05";
 		booking.recordDateFrom = String.valueOf(DateUtils.addHours(new Date(), 0));
 		booking.recordDateTo = String.valueOf(DateUtils.addHours(new Date(), 2));
-		booking.tableType = "left";
+		booking.tableType = table.name;
 		booking.phoneNumber = "8787777777777777";
 		booking.customerId = 1;
 		bookingTestDao.get().insertBooking(booking);
+	}
+
+	private void restaurantTable() throws Exception {
+
+		Table table = new Table();
+		table.status = 1;
+
+		table.name = "left";
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "right";
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "center";
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "hall";
+		bookingTestDao.get().insertRestaurantTable(table);
+
 	}
 
 

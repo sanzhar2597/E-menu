@@ -1,5 +1,3 @@
-import {Table} from "./table.model";
-import {Time} from "@angular/common";
 
 export class Booking {
   public bookingId:number;
@@ -8,7 +6,7 @@ export class Booking {
   public recordDateDay:string;
   public recordDateFrom:string;
   public recordDateTo:string;
-  public tableType:Table;
+  public tableType:string;
   public phoneNumber:string;
   public customerId:number|string;
 }

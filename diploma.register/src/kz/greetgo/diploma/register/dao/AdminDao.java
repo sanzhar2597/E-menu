@@ -1,12 +1,11 @@
 package kz.greetgo.diploma.register.dao;
 
-import kz.greetgo.diploma.controller.register.model.FoodList;
-import kz.greetgo.diploma.controller.register.model.FoodSchedule;
-import kz.greetgo.diploma.controller.register.model.FoodType;
-import kz.greetgo.diploma.controller.register.model.Item;
+import javafx.scene.control.Tab;
+import kz.greetgo.diploma.controller.register.model.*;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -31,4 +30,18 @@ public interface AdminDao {
 
 	@Select("select * from food_list where type::integer = #{id}")
 	List<FoodList> selectFoodList(Integer id);
+
+	@Select("select * from restaurant_table")
+	List<Table> getTableList();
+
+
+	@Select("select * from restaurant_table where id= #{table.id} and  name =#{table.name}")
+	List<Table> selectRestaurantTable(@Param("table") Table table);
+
+	@Insert("insert into restaurant_table(name, status) " +
+		"values (#{table.name}, #{table.status})")
+	void insertRestaurantTable(@Param("table") Table table);
+
+	@Update("update restaurant_table set status = #{table.status} where id = #{table.id} and name = #{table.name}")
+	void updateRestaurantTable(@Param("table") Table table);
 }
