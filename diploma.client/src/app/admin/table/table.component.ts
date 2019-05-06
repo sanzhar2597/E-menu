@@ -54,12 +54,12 @@ export class TableComponent implements OnInit {
     if (this.ngTable.name.length) {
       this.adminService.saveRestaurantTable(this.ngTable).then(value => {
           this.ngOnInit()
-        for (let key in this.responseObject) {
-          if (value.body == this.responseObject[key].response) {
-            this.responseRestaurantTable = this.responseObject[key]
+          for (let key in this.responseObject) {
+            if (value.body == this.responseObject[key].response) {
+              this.responseRestaurantTable = this.responseObject[key]
+            }
           }
-        }
-        this.removeOpacityClass()
+          this.removeOpacityClass()
         }
       )
     }

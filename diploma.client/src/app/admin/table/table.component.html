@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <label>Название нового столика</label>
+        <label>Название столика</label>
         <div class="input-group">
           <input class="form-control"
-                 name="tableName" [(ngModel)]="ngTable.name" (change)="changeNgTableName()">
+                 name="tableName" [(ngModel)]="ngTable.name" (change)="changeNgTableName()" readonly>
         </div>
       </div>
     </div>
@@ -25,12 +25,21 @@
     </div>
     <div class="col-md-12">
       <div class="form-group">
+        <label>Измение название столика</label>
+        <div class="input-group">
+          <input class="form-control"
+                 name="tableName" [(ngModel)]="ngTable.name" (change)="changeNgTableName()">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
         <label>Доступность столика</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">#</div>
           </div>
-          <select class="form-control"  [(ngModel)]="ngTable.status" name="ngStatus">
+          <select class="form-control" [(ngModel)]="ngTable.status" name="ngStatus">
             <option value="">доступен</option>
             <option *ngFor="let tab of statusTable" [value]="tab.value">{{tab.name}}</option>
           </select>

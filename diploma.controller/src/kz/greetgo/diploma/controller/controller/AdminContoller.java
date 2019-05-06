@@ -1,6 +1,5 @@
 package kz.greetgo.diploma.controller.controller;
 
-import javafx.scene.control.Tab;
 import kz.greetgo.depinject.core.Bean;
 import kz.greetgo.depinject.core.BeanGetter;
 import kz.greetgo.diploma.controller.register.AdminRegister;
@@ -72,6 +71,31 @@ public class AdminContoller implements Controller {
 	public List<Table> getTableList() {
 
 		return adminRegister.get().getTableList();
+	}
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/get-user-cans-list")
+	public List<UserCans> loadCans() {
+
+		return adminRegister.get().loadCans();
+	}
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/get-person-display-list")
+	public List<PersonDisplays> displayPerson() {
+
+		return adminRegister.get().displayPerson();
+	}
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/update-person-can")
+	public String updatePersonCan(@Par("personDisplay") @Json PersonDisplays personDisplays) {
+
+		System.out.println("dsadsa");
+		return adminRegister.get().updatePersonCan(personDisplays);
 	}
 
 }

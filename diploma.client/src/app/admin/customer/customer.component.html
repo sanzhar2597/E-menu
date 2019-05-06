@@ -5,13 +5,11 @@
         <label>Username</label>
         <div class="input-group">
           <div class="input-group-prepend">
-            <div class="input-group-text">@</div>
+            <div class="input-group-text">№</div>
           </div>
-          <select name="foodList" class="form-control" [(ngModel)]="ngID" (change)="changeModel()">
-            <option value="1">Empty</option>
-            <option value="2">Empty1</option>
-            <option value="3">Empty2</option>
-            <option value="4">Empty3</option>
+          <select name="foodList" class="form-control" [(ngModel)]="ngPersonDisplay.id" (change)="chooseUserName()">
+            <option value="" *ngIf="UserCansList.length==0">Empty</option>
+            <option *ngFor="let item of personDisplaysList" [value]="item.id">{{item.username}}</option>
           </select>
         </div>
       </div>
@@ -24,11 +22,9 @@
           <div class="input-group-prepend">
             <div class="input-group-text">Role</div>
           </div>
-          <select name="foodList" class="form-control" [(ngModel)]="ngID" (change)="changeModel()">
-            <option value="1">Empty</option>
-            <option value="2">Empty1</option>
-            <option value="3">Empty2</option>
-            <option value="4">Empty3</option>
+          <select name="foodList1" class="form-control" [(ngModel)]="ngUserCan" (change)="chooseUserCan()">
+            <option value="">--role--</option>
+            <option *ngFor="let item of UserCansList" [value]="item.userCan">{{item.userCan}}</option>
           </select>
         </div>
       </div>
@@ -39,8 +35,15 @@
         <div class="input-group">
           <div class="input-group-prepend">
           </div>
-          <input name="dateMenu" class="form-control">
+          <input name="dateMenu" class="form-control" [(ngModel)]="ngPersonDisplay.fio">
         </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div *ngFor="let item of ngPersonDisplay.cans" class="alert alert-info"
+           role="alert">
+        {{item}}
       </div>
     </div>
     <div class="col-md-4">
@@ -53,9 +56,15 @@
 </form>
 
 
-<div *ngFor="let item of ngModelSelect" class="alert alert-success"
+<div [id]="responseObject[0].response" class="alert alert-success response-capacity-from"
      role="alert">
-  asdasdas
-  {{item.id}}
+  {{responseCustomer.alertText}}
 </div>
-
+<div [id]="responseObject[1].response" class="alert alert-danger response-capacity-from"
+     role="alert">
+  {{responseCustomer.alertText}}
+</div>
+<div [id]="responseObject[2].response" class="alert alert-primary response-capacity-from"
+     role="alert">
+  {{responseCustomer.alertText}}
+</div>

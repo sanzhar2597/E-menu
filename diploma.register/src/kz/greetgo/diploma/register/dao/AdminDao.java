@@ -1,11 +1,8 @@
 package kz.greetgo.diploma.register.dao;
 
-import javafx.scene.control.Tab;
+import kz.greetgo.diploma.controller.model.UserCan;
 import kz.greetgo.diploma.controller.register.model.*;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -44,4 +41,40 @@ public interface AdminDao {
 
 	@Update("update restaurant_table set status = #{table.status} where id = #{table.id} and name = #{table.name}")
 	void updateRestaurantTable(@Param("table") Table table);
+
+	@Select("select * from user_can")
+	List<UserCans> loadCans();
+
+	@Select("select user_can from person_cans where person_id = #{personId}")
+	List<UserCan> loadCansInId(String personId);
+
+
+	@Select("select surname||' '||name||' '||patronymic as fio, username, id" +
+		" from person")
+	List<PersonDisplays> loadDisplayPerson();
+
+
+	@Insert("insert into Person (id, username, surname, name, patronymic, encoded_password, blocked) " +
+		"values (#{id}, #{username}, #{surname}, #{name},  #{patronymic},#{encodedPassword}, 0)")
+	void insertPerson(@Param("id") String id,
+										@Param("username") String username,
+										@Param("surname") String surname,
+										@Param("name") String name,
+										@Param("patronymic") String patronymic,
+										@Param("encodedPassword") String encodedPassword
+	);
+
+	@Update("update Person set ${fieldName} = #{fieldValue} where id = #{id}")
+	void updatePersonField(@Param("id") String id,
+												 @Param("fieldName") String fieldName,
+												 @Param("fieldValue") Object fieldValue);
+
+	@Insert("insert into person_cans (person_id, user_can) values (#{id}, #{userCan})")
+	void inserPersonCans(@Param("id") String id,
+											 @Param("userCan") UserCan userCan);
+
+	@Delete("delete from person_cans where person_id = #{id}")
+	void deletePersonCanas(@Param("id") String id);
+
+
 }

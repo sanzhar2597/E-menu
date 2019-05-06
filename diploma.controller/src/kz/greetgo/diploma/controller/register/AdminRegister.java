@@ -18,4 +18,9 @@ public interface AdminRegister {
 
 	List<Table> getTableList();
 
+	List<UserCans> loadCans();
+
+	List<PersonDisplays> displayPerson();
+
+	String updatePersonCan(PersonDisplays personDisplays);
 }

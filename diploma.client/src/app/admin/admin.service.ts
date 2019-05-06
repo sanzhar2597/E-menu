@@ -4,6 +4,7 @@ import {Item} from "../../model/item.model";
 import {HttpService} from "../http.service";
 import {FoodSchedule} from "../../model/food-schedule.model";
 import {Table} from "../../model/table.model";
+import {PersonDisplays} from "../../model/PersonDisplays";
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +73,7 @@ export class AdminService {
     return this.httpService.get('/admin/save-menu-day', {foodSchedule: JSON.stringify(foodSchedule)}).toPromise();
   }
 
-  saveRestaurantTable(table:Table){
+  saveRestaurantTable(table: Table) {
     return this.httpService.get('/admin/save-restaurant-table', {table: JSON.stringify(table)}).toPromise();
 
   }
@@ -87,6 +88,18 @@ export class AdminService {
 
   getTableList() {
     return this.httpService.get('/admin/get-table-list').toPromise();
+  }
+
+  getPersonDisplayList() {
+    return this.httpService.get('/admin/get-person-display-list').toPromise();
+  }
+
+  getUserCanList() {
+    return this.httpService.get('/admin/get-user-cans-list').toPromise();
+  }
+
+  updatePersonCan(personDisplay: PersonDisplays) {
+    return this.httpService.get('/admin/update-person-can', {personDisplay: JSON.stringify(personDisplay)}).toPromise();
   }
 
 }

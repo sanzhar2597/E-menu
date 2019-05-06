@@ -1,6 +1,5 @@
 package kz.greetgo.diploma.register.dao;
 
-import kz.greetgo.diploma.controller.model.PersonDisplay;
 import kz.greetgo.diploma.controller.model.UserCan;
 import kz.greetgo.diploma.controller.register.model.*;
 import org.apache.ibatis.annotations.*;
@@ -68,9 +67,6 @@ public interface RestaurantOrderDao {
 	@Delete("delete from order_items where oorder_id = #{id}")
 	void deleteOrderItemByorderId(@Param("id") Integer id);
 
-	@Select("select surname||' '||name||' '||patronymic as fio, username" +
-		" from person where id = #{personId}")
-	PersonDisplay loadDisplayPerson(@Param("personId") String personId);
 
 	@Select("select oorder_id as orderId, oorder_no as orderNo, " +
 		"customer_id as customerId, p_method as pMethod, " +
