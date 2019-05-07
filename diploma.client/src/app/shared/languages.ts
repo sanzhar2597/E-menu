@@ -2,7 +2,7 @@ export class Languages {
   public RU_LANGUAGE = {
     firstName: 'назар',
     lastName: 'абу',
-    name: 'Рестаран приложение',
+    name: 'Ресторан приложение',
     language: 'язык',
     russian: 'русский',
     english: 'английский',
