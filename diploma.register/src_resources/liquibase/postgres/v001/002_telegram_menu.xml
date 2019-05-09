@@ -18,6 +18,7 @@
         id varchar(30) not null primary key,
         name varchar(100) not null,
         type varchar(255) not null,
+        price varchar(255) not null,
         foreign key(type) references food_type(id)
       )
     ]]></sql>

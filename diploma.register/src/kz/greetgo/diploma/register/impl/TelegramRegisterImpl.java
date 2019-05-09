@@ -7,9 +7,12 @@ import kz.greetgo.diploma.controller.register.TelegramRegister;
 import kz.greetgo.diploma.register.dao.TelegramDao;
 import kz.greetgo.diploma.register.model.PersonLogin;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -25,6 +28,8 @@ import java.util.*;
 public class TelegramRegisterImpl extends TelegramLongPollingBot implements TelegramRegister {
 
 	public BeanGetter<TelegramDao> telegramDao;
+
+	public Map<String, String> mapInlineText = new HashMap<>();
 
 	@Override
 	public void setButtons(SendMessage sendMessage) {
@@ -99,7 +104,9 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				Date date = sdf.parse(fullDate);
 				telegramMenus = telegramDao.get().selectTelegramMenuDay(new Timestamp(date.getTime()));
-				return SortTypeAndName(telegramMenus);
+				mapInlineText = SortTypeAndNameInlineText(telegramMenus);
+				return null;
+//				return SortTypeAndName(telegramMenus);
 			} else
 			{
 				return "Неправильный формат даты.\nПример формат даты: 	\nДля первого апреля : \n'04-01'.";
@@ -159,6 +166,29 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 		return result.toString();
 	}
 
+	public Map<String, String> SortTypeAndNameInlineText(List<TelegramMenu> telegramMenus) {
+
+		Map<String, String> asd = new HashMap<>();
+
+
+		for(TelegramMenu telegramMenu : telegramMenus)
+			{
+				if(!asd.containsKey(telegramMenu.foodType))
+					{
+						asd.put(telegramMenu.foodType, "");
+					}
+
+				String s = asd.get(telegramMenu.foodType);
+
+				String value = s + " " + telegramMenu.foodName + ": \t" + telegramMenu.price + ".\n";
+
+				asd.put(telegramMenu.foodType, value);
+
+			}
+
+		return asd;
+	}
+
 	@Override
 	public String startBot(Message message) {
 
@@ -166,6 +196,99 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 		String firstMessage = "Добро пожаловать " + fullName + ". Вас приветсвует бот: " + getBotUsername();
 		return firstMessage;
 	}
+
+
+	@Override
+	public void setInlineButtons(Message message, String text) {
+
+
+		SendMessage sendMessage = new SendMessage();
+
+
+		sendMessage.setChatId(message.getChatId());
+
+//		sendMessage.setReplyToMessageId(message.getMessageId());
+
+
+		if(mapInlineText.size() != 0)
+			{
+				if(text != null)
+					{
+						sendMessage.setText(text);
+					}
+				if(text == null)
+					{
+						sendMessage.setText("menu-day");
+						InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
+						sendMessage.setReplyMarkup(markupInline);
+						List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
+
+						for(Map.Entry<String, String> entry : mapInlineText.entrySet())
+							{
+								List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
+								rowInline1.add(new InlineKeyboardButton().setText(entry.getKey()).setCallbackData(entry.getKey()));
+								rowsInline.add(rowInline1);
+							}
+
+						markupInline.setKeyboard(rowsInline);
+					}
+
+				try
+					{
+						sendMessage(sendMessage);
+
+					} catch(TelegramApiException e)
+					{
+						e.printStackTrace();
+					}
+
+			} else
+			{
+				sendMessage.enableMarkdown(true);
+				sendMessage.setText(text);
+				try
+					{
+
+						setButtons(sendMessage);
+						sendMessage(sendMessage);
+
+					} catch(TelegramApiException e)
+					{
+						e.printStackTrace();
+					}
+			}
+
+
+	}
+
+	public void sendMsgFromCallBack(CallbackQuery callbackQuery, String text) {
+
+
+		SendMessage sendMessage = new SendMessage();
+
+		sendMessage.enableMarkdown(true);
+
+		sendMessage.setChatId(callbackQuery.getMessage().getChatId());
+
+//		sendMessage.setReplyToMessageId(callbackQuery.getMessage().getMessageId());
+
+		sendMessage.setText(text);
+
+
+		try
+			{
+
+				setButtons(sendMessage);
+				sendMessage(sendMessage);
+
+			} catch(TelegramApiException e)
+			{
+				e.printStackTrace();
+			}
+
+
+	}
+
 
 	@Override
 	public void onUpdateReceived(Update update) {
@@ -200,7 +323,8 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 //									sendMsg(message, getNameFromDb(message.getText()));
 									try
 										{
-											sendMsg(message, getTelegramMenuDay(message.getText()));
+//											sendMsg(message, getTelegramMenuDay(message.getText()));
+											setInlineButtons(message, getTelegramMenuDay(message.getText()));
 										} catch(ParseException e)
 										{
 											e.printStackTrace();
@@ -210,7 +334,19 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 									e.printStackTrace();
 								}
 					}
+			} else
+			{
+				CallbackQuery callbackQuery = update.getCallbackQuery();
+
+				String text = "Старые данные удалены.\n Пожулуйста, заново выберите день";
+				if(mapInlineText.get(callbackQuery.getData()) != null)
+					{
+						text = "`" + callbackQuery.getData() + "`" + ": \n" + mapInlineText.get(callbackQuery.getData());
+					}
+				sendMsgFromCallBack(callbackQuery, text);
+
 			}
+
 
 	}
 

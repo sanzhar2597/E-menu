@@ -13,7 +13,7 @@ public interface TelegramDao {
 	@Select("select * from person where username = #{username} and blocked = 0")
 	PersonLogin selectByUsername(@Param("username") String username);
 
-	@Select("SELECT fl.name as foodName,ft.name as foodType\n" +
+	@Select("SELECT fl.name as foodName,ft.name as foodType, fl.price as price\n" +
 		"from food_schedule fs\n" +
 		"  inner join food_list fl on fs.food_id = fl.id\n" +
 		"  inner join food_type ft on fl.type = ft.id\n" +

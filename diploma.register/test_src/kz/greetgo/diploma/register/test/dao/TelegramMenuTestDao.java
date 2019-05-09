@@ -13,11 +13,12 @@ public interface TelegramMenuTestDao {
 										@Param("name") String name,
 										@Param("description") String description
 	);
-	@Insert("insert into food_list(id, name, type) " +
-		"values (#{id}, #{name}, #{type})")
+	@Insert("insert into food_list(id, name, type, price) " +
+		"values (#{id}, #{name}, #{type} ,#{price})  ")
 	void insertFoodList(@Param("id") String id,
 											@Param("name") String name,
-											@Param("type") String type
+											@Param("type") String type,
+											@Param("price") String price
 	);
 	@Insert("insert into food_schedule(id, data, food_id) " +
 		"values (#{id}, #{data}, #{foodId})")

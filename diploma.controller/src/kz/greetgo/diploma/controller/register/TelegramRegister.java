@@ -15,4 +15,6 @@ public interface TelegramRegister {
 
 	String startBot(Message message);
 
+	void setInlineButtons(Message message, String text);
+
 }
