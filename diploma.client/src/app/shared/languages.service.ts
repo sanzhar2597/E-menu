@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Languages} from "./languages";
+import {Subject} from "rxjs/Subject";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,8 @@ export class LanguagesService {
     RU_LANGUAGE: 'ru',
     EN_LANGUAGE: 'en'
   };
+
+  public languageChanged = new Subject<void>();
 
   public languages: any;
   public multiLanguage: Languages;
@@ -27,7 +31,7 @@ export class LanguagesService {
 
   setDefaultLanguages() {
     if (!localStorage.getItem('settings_language')) {
-      console.log("LOCAL STORAGE : ", localStorage.getItem('settings_language'))
+      console.log("LOCAL STORAGE : ", localStorage.getItem('settings_language'));
       localStorage.setItem('settings_language', this.CONST_LANGUAGES.RU_LANGUAGE);
     }
   }
@@ -56,6 +60,8 @@ export class LanguagesService {
   changeLanguages(language: string) {
     localStorage.setItem('settings_language', language);
     this.chooseLanguages();
+    this.languageChanged.next();
+
 
   };
 

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from "./login/login.service";
 import {ActivatedRoute} from "@angular/router";
 import {LanguagesService} from "./shared/languages.service";
+import {AdminService} from "./admin/admin.service";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
 
   constructor(public login: LoginService,
               private currentRoute: ActivatedRoute,
-              public languagesService: LanguagesService) {
+              public languagesService: LanguagesService,
+              public adminService:AdminService) {
 
     this.const_languages = languagesService.CONST_LANGUAGES;
   }

@@ -1,4 +1,4 @@
-<h5 class="display-5">Ответ от Сервера</h5>
+<h5 class="display-5">{{languagesService.languages.responsefromserver}}</h5>
 <hr>
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
   <div class="form-group">
@@ -6,6 +6,7 @@
   </div>
   <div class="form-group">
     <button type="button" class="btn btn-outline-dark ml-1"
-            [disabled]="isLoading" (click)="close()"><i class="trash-alt"></i>Close</button>
+            [disabled]="isLoading" (click)="close()"><i class="trash-alt"></i>{{languagesService.languages.close}}
+    </button>
   </div>
 </form>

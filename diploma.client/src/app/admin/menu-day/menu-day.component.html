@@ -2,35 +2,35 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <label>Category</label>
+        <label>{{languagesService.languages.category}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
-            <div class="input-group-text">Category</div>
+            <div class="input-group-text">{{languagesService.languages.category}}</div>
           </div>
           <select name="foodType" class="form-control" [(ngModel)]="foodTypeNgModel" (change)="gotoDatabse()">
-            <option *ngIf="foodType.length==0" value="">Empty</option>
+            <option *ngIf="foodType.length==0" value="">{{languagesService.languages.empty}}</option>
             <option *ngFor="let item of foodType" [value]="item.id">{{item.name}}</option>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label>Food</label>
+        <label>{{languagesService.languages.food}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
-            <div class="input-group-text">Food</div>
+            <div class="input-group-text">{{languagesService.languages.food}}</div>
           </div>
           <select name="foodList" class="form-control" [(ngModel)]="foodListNgModel" [disabled]="disableFoodList"
                   (change)="changeFoodList()">
-            <option *ngIf="foodList.length==0" value="">Empty</option>
+            <option *ngIf="foodList.length==0" value="">{{languagesService.languages.empty}}</option>
             <option *ngFor="let item of foodList" [value]="item.id">{{item.name}}</option>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label>Date</label>
+        <label>{{languagesService.languages.date}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
-            <div class="input-group-text">Date</div>
+            <div class="input-group-text">{{languagesService.languages.date}}</div>
           </div>
           <input name="dateMenu" [(ngModel)]="dateMenu" type="date" (change)="changeDate()"
                  class="form-control">
@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-4">
       <div class="form-group">
-        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>Submit
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>{{languagesService.languages.submit}}
         </button>
       </div>
     </div>

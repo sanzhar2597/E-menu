@@ -2,13 +2,13 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <label>Username</label>
+        <label>{{languagesService.languages.username}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">№</div>
           </div>
           <select name="foodList" class="form-control" [(ngModel)]="ngPersonDisplay.id" (change)="chooseUserName()">
-            <option value="" *ngIf="UserCansList.length==0">Empty</option>
+            <option value="" *ngIf="UserCansList.length==0">{{languagesService.languages.empty}}</option>
             <option *ngFor="let item of personDisplaysList" [value]="item.id">{{item.username}}</option>
           </select>
         </div>
@@ -17,13 +17,13 @@
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label>Role</label>
+        <label>{{languagesService.languages.role}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
-            <div class="input-group-text">Role</div>
+            <div class="input-group-text">{{languagesService.languages.role}}</div>
           </div>
           <select name="foodList1" class="form-control" [(ngModel)]="ngUserCan" (change)="chooseUserCan()">
-            <option value="">--role--</option>
+            <option value="">--{{languagesService.languages.role}}--</option>
             <option *ngFor="let item of UserCansList" [value]="item.userCan">{{item.userCan}}</option>
           </select>
         </div>
@@ -31,7 +31,7 @@
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <label>Full Name</label>
+        <label>{{languagesService.languages.fullname}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
           </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-4">
       <div class="form-group">
-        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>Submit
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>{{languagesService.languages.submit}}
         </button>
       </div>
     </div>

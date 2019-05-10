@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {BookingService} from "../shared/booking.service";
 import {NgForm} from "@angular/forms";
+import {LanguagesService} from "../shared/languages.service";
 
 @Component({
   selector: 'app-alert',
@@ -10,12 +11,13 @@ import {NgForm} from "@angular/forms";
 })
 export class AlertComponent implements OnInit {
 
-  public alertText = "Ждите ответа";
+  public alertText = this.languagesService.languages.waitresponse;
   public isLoading = true;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
               public dialogRef: MatDialogRef<AlertComponent>,
-              private bookingService: BookingService) {
+              private bookingService: BookingService,
+              public languagesService: LanguagesService) {
   }
 
 
@@ -24,18 +26,18 @@ export class AlertComponent implements OnInit {
   }
 
   showAlertText() {
-    if (this.data.response == "full") {
+    if (this.data.response == this.languagesService.languages.full) {
       this.isLoading = false;
-      this.alertText = "Место занято";
+      this.alertText = this.languagesService.languages.placetaken;
     }
-    if (this.data.response == "empty") {
+    if (this.data.response == this.languagesService.languages.empty) {
       this.saveBooking()
     }
   }
 
   saveBooking() {
     this.bookingService.saveBooking().then(res => {
-      this.alertText = "Успешно забронирован";
+      this.alertText = this.languagesService.languages.successbooked;
       this.isLoading = false;
     })
   }

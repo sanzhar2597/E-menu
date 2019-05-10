@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <label>Order No.</label>
+        <label>{{languagesService.languages.orderno.toFirstTitleCase()}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">#</div>
@@ -11,25 +11,25 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Customer</label>
+        <label>{{languagesService.languages.customer.toFirstTitleCase()}}</label>
         <select name="customerId" #customerId="ngModel" [(ngModel)]="service.formData.customerId" class="form-control"
                 [class.is-invalid]="!isValid && service.formData.customerId==0">
-          <option value="0">-Select-</option>
+          <option value="0">-{{languagesService.languages.select}}-</option>
           <option *ngFor="let item of customerList" [value]="item.customerId">{{item.name}}</option>
         </select>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label>Payment Method</label>
+        <label>{{languagesService.languages.paymentmethod.toFirstTitleCase()}}</label>
         <select name="pMethod" #pMethod="ngModel" [(ngModel)]="service.formData.pMethod" class="form-control">
-          <option value="">-Select-</option>
-          <option value="Cash">Cash</option>
-          <option value="Card">Card</option>
+          <option value="">-{{languagesService.languages.select}}-</option>
+          <option value="Cash">{{languagesService.languages.cash}}</option>
+          <option value="Card">{{languagesService.languages.card}}</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Grand Total</label>
+        <label>{{languagesService.languages.granttotal.toFirstTitleCase()}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">$</div>
@@ -42,10 +42,10 @@
   <!--order items table-->
   <table class="table table-borderless">
     <thead class="thead-light">
-    <th>Food</th>
-    <th>Price</th>
-    <th>Quantity</th>
-    <th>Total</th>
+    <th>{{languagesService.languages.food}}</th>
+    <th>{{languagesService.languages.price}}</th>
+    <th>{{languagesService.languages.quantity}}</th>
+    <th>{{languagesService.languages.total}}</th>
     <th>
       <a href="" class="btn btn-sm btn-success text-white" (click)="addOrEditOrderItem(null, service.formData.orderId)"><i
         class="fa fa-plus"></i></a>
@@ -54,7 +54,7 @@
     <tbody>
     <tr *ngIf="service.orderItems.length==0" [class.text-danger]="!isValid && service.orderItems.length==0">
       <td class="font-italic text-center" colspan="5">
-        No food item selected for this order.
+        {{languagesService.languages.nofooditemselectd}}
       </td>
     </tr>
 
@@ -73,15 +73,15 @@
     </tbody>
   </table>
   <div class="form-group">
-    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> {{languagesService.languages.submit}}</button>
   </div>
 
   <div [hidden]="!service.items.length">
     <div *ngFor="let item of service.items, index as ind" class="alert alert-warning alert-dismissible fade show"
          role="alert">
-      <strong>C этим продуктом - '{{ (service.orderItems.length-ind >= ind ?
+      <strong>{{languagesService.languages.withthisproduct}}- '{{ (service.orderItems.length-ind >= ind ?
         service.orderItems[service.orderItems.length-1-ind].itemName :
-        service.orderItems[service.orderItems.length-1].itemName)}}' {{ind}} еще заказывают: </strong> {{item.name}}
+        service.orderItems[service.orderItems.length-1].itemName)}}' {{ind}} {{languagesService.languages.stillorder}} </strong> {{item.name}}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>

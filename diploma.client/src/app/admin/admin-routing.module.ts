@@ -1,30 +1,34 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AdminComponent} from "./admin.component";
 import {FoodItemComponent} from "./food-item/food-item.component";
 import {CustomerComponent} from "./customer/customer.component";
 import {TableComponent} from "./table/table.component";
 import {MenuDayComponent} from "./menu-day/menu-day.component";
+import {Languages} from "../shared/languages";
+import {LanguagesService} from "../shared/languages.service";
 
+
+const languagesServices = new Languages();
 const routes: Routes = [
   {
     path: '',            //<---- parent component declared here
     component: AdminComponent,
     children: [                          //<---- child components declared here
       {
-        path:'food-item',
+        path: languagesServices.RU_LANGUAGE.urlfooditem,
         component: FoodItemComponent
       },
       {
-        path:'customer',
+        path: languagesServices.RU_LANGUAGE.urlcustomer,
         component: CustomerComponent
       },
       {
-        path:'table',
+        path: languagesServices.RU_LANGUAGE.urltable,
         component: TableComponent
       },
       {
-        path:'menu-day',
+        path: languagesServices.RU_LANGUAGE.urlmenuday,
         component: MenuDayComponent
       },
     ]
@@ -33,6 +37,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {
+}

@@ -1,11 +1,13 @@
-.sidebar-admin{
+.sidebar-admin {
   display: block;
   float: left;
   margin-left: 0;
 }
-.content-admin{
+
+.content-admin {
   display: block;
 }
-.head-admin{
+
+.head-admin {
   padding-top: 50px;
 }

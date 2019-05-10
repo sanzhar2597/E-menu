@@ -1,19 +1,22 @@
-<h4 class="display-4">Order Food Item</h4>
+<h4 class="display-4">{{languagesService.languages.orderfooditem}}</h4>
 <hr>
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
   <div class="form-group">
     <div class="alert alert-primary text-center" role="alert" [hidden]="!enableTable()">
-      Вы можете забронировать место или можете еще сделать предзаказ
+      {{languagesService.languages.canbookingplace}}
     </div>
     <div class="alert alert-primary text-center" role="alert" [hidden]="enableTable()">
-      Место занято
+      {{languagesService.languages.placetaken}}
     </div>
   </div>
   <div class="form-group" [hidden]="!enableTable()">
-    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Бронировать</button>
-    <button type="button" class="btn btn-outline-dark ml-1" (click)="openOrderComponent()"> <i class="trash-alt"></i>Предазаказ</button>
+    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> {{languagesService.languages.booking}}
+    </button>
+    <button type="button" class="btn btn-outline-dark ml-1" (click)="openOrderComponent()"><i class="trash-alt"></i>{{languagesService.languages.beforebooking}}
+    </button>
   </div>
   <div class="form-group" [hidden]="enableTable()">
-    <button type="button" class="btn btn-outline-dark ml-1" (click)="close()"> <i class="trash-alt"></i>Закрыть</button>
+    <button type="button" class="btn btn-outline-dark ml-1" (click)="close()"><i class="trash-alt"></i>{{languagesService.languages.close}}
+    </button>
   </div>
 </form>

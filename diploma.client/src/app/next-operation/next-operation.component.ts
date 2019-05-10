@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {BookingService} from "../shared/booking.service";
 import {NgForm} from "@angular/forms";
+import {LanguagesService} from "../shared/languages.service";
 
 @Component({
   selector: 'app-next-operation',
@@ -13,7 +14,8 @@ export class NextOperationComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<NextOperationComponent>,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    public languagesService: LanguagesService
   ) {
   }
 
@@ -22,10 +24,10 @@ export class NextOperationComponent implements OnInit {
   }
 
   enableTable() {
-    if (this.data.response == "full") {
+    if (this.data.response == this.languagesService.languages.full) {
       return false
     }
-    else if (this.data.response == "empty") {
+    else if (this.data.response == this.languagesService.languages.empty) {
       return true
     }
     return false;

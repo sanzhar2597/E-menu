@@ -5,6 +5,7 @@ import {UserCans} from "../../../model/UserCans.model";
 import {PersonDisplays} from "../../../model/PersonDisplays";
 import {UserCan} from "../../../model/UserCan";
 import {NgForm} from "@angular/forms";
+import {LanguagesService} from "../../shared/languages.service";
 
 @Component({
   selector: 'app-customer',
@@ -22,20 +23,20 @@ export class CustomerComponent implements OnInit {
   public responseCustomer: any = {}
   public responseObject: any = [
     {
-      response: 'empty',
-      alertText: 'Успешно добавлено'
+      response: this.languagesService.languages.empty,
+      alertText: this.languagesService.languages.successadded,
     }, {
-      response: 'full',
-      alertText: 'Успешно обнавлено'
+      response: this.languagesService.languages.full,
+      alertText: this.languagesService.languages.successupdated
     },
     {
-      response: 'update',
-      alertText: 'Успешно Обнавлено'
+      response: this.languagesService.languages.update,
+      alertText: this.languagesService.languages.successupdated
     },
   ];
 
   constructor(private adminService: AdminService,
-              r: ActivatedRoute) {
+              r: ActivatedRoute, public  languagesService: LanguagesService) {
     adminService.setTitle(r);
   }
 

@@ -6,6 +6,7 @@ import {LoginService} from "../login/login.service";
 import {Router} from "@angular/router";
 import {AlertComponent} from "../alert/alert.component";
 import {NgForm} from "@angular/forms";
+import {LanguagesService} from "../shared/languages.service";
 
 @Component({
   selector: 'app-booking',
@@ -20,7 +21,8 @@ export class BookingComponent implements OnInit {
   constructor(public bookingService: BookingService,
               private dialog: MatDialog,
               private login: LoginService,
-              private router: Router) {
+              private router: Router,
+              public languagesService: LanguagesService) {
   }
 
   ngOnInit() {
@@ -86,9 +88,9 @@ export class BookingComponent implements OnInit {
     this.dialog.open(AlertComponent, dialogConfig).afterClosed().subscribe(res => {
 
       switch (res) {
-        case "full":
+        case this.languagesService.languages.full:
           break;
-        case "empty":
+        case this.languagesService.languages.empty:
           this.resetForm();
           this.getPhoneNumber();
           break;

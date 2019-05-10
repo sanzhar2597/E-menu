@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <label>Number of People:</label>
+        <label>{{languagesService.languages.numberofpeople.toFirstTitleCase()}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">#</div>
@@ -12,19 +12,19 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Reservation Day:</label>
+        <label>{{languagesService.languages.reservationday.toFirstTitleCase()}}</label>
         <input name="recordDateDay" #recordDateDay="ngModel" [(ngModel)]="bookingService.booking.recordDateDay"
                type="date" [value]="bookingService.booking.recordDateDay" class="form-control">
       </div>
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <label>Reservation Time From:</label>
+        <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>
         <input name="recordDateFrom" #recordDateFrom="ngModel" [(ngModel)]="bookingService.booking.recordDateFrom"
                type="time" value="13:00:00" class="form-control">
       </div>
       <div class="form-group">
-        <label>Reservation Time To:</label>
+        <label>{{languagesService.languages.reservationtimeto.toFirstTitleCase()}}</label>
         <input name="recordDateTo" #recordDateTo="ngModel"
                [(ngModel)]="bookingService.booking.recordDateTo"
                type="time" [value]="bookingService.booking.recordDateTo" class="form-control">
@@ -32,7 +32,7 @@
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <label>Number of Telephone</label>
+        <label>{{languagesService.languages.numberoftelephone.toFirstTitleCase()}}</label>
         <div class="input-group">
           <input name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="bookingService.booking.phoneNumber"
                  class="form-control" type="number" disabled={{isRegisteredClient}}>
@@ -40,7 +40,7 @@
       </div>
 
       <div class="form-group">
-        <label>Reservation Table:</label>
+        <label>{{languagesService.languages.reservationtable.toFirstTitleCase()}}</label>
         <select name="tableType" #tableType="ngModel" [(ngModel)]="bookingService.booking.tableType"
                 class="form-control">
           <option *ngFor="let tab of bookingService.table">{{tab}}</option>
@@ -49,7 +49,8 @@
     </div>
   </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>{{languagesService.languages.submit}}
+    </button>
   </div>
 
 </form>

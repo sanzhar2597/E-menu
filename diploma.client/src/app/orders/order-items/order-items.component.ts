@@ -6,6 +6,7 @@ import {ItemService} from "../shared/item.service";
 import {Item} from "../../../model/item.model";
 import {NgForm} from "@angular/forms";
 import {OrderService} from "../shared/order.service";
+import {LanguagesService} from "../../shared/languages.service";
 
 @Component({
   selector: 'app-order-items',
@@ -21,8 +22,8 @@ export class OrderItemsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<OrderItemsComponent>,
     private itemService: ItemService,
-    private orderService: OrderService
-  ) {
+    private orderService: OrderService,
+    public languagesService:LanguagesService  ) {
   }
 
   ngOnInit() {

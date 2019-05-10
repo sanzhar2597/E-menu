@@ -1,6 +1,6 @@
-<h2 class="text-center">Логин</h2>
+<h2 class="text-center">{{languagesService.languages.login}}</h2>
 <div *ngIf="loginService.loading">
-  Загрузка, ждите...
+  {{languagesService.languages.loadingwait}}
 </div>
 
 <div *ngIf="!loginService.loading">
@@ -11,7 +11,8 @@
     <input type="password" class="form-control" placeholder="Recipient's password" [(ngModel)]="loginService.password"
            aria-label="Recipient's password" aria-describedby="button-addon2">
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="loginService.login()">Button
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="loginService.login()">
+        {{languagesService.languages.button}}
       </button>
     </div>
   </div>
@@ -19,7 +20,9 @@
 
   <div *ngIf="loginService.personDisplay" class="text-center">
     Вошли как {{loginService.personDisplay.username}}/{{loginService.personDisplay.fio}}
-    <button class="btn btn-outline-secondary" type="button" (click)="loginService.exit()" class="exit">Выйти</button>
+    <button class="btn btn-outline-secondary" type="button" (click)="loginService.exit()" class="exit">
+      {{languagesService.languages.exit}}
+    </button>
   </div>
 </div>
 

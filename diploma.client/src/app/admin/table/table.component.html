@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <label>Название столика</label>
+        <label>{{languagesService.languages.tablename}}</label>
         <div class="input-group">
           <input class="form-control"
                  name="tableName" [(ngModel)]="ngTable.name" (change)="changeNgTableName()" readonly>
@@ -11,13 +11,13 @@
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label>Существующие столики</label>
+        <label>{{languagesService.languages.tableexist}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">№</div>
           </div>
           <select class="form-control" name="ngTable" [(ngModel)]="ngTable.id" (change)="changeNgTable()">
-            <option *ngIf="table.length==0">Empty</option>
+            <option *ngIf="table.length==0">{{languagesService.languages.empty}}</option>
             <option *ngFor="let tab of table" [value]="tab.id">{{tab.name}}</option>
           </select>
         </div>
@@ -25,7 +25,7 @@
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <label>Измение название столика</label>
+        <label>{{languagesService.languages.tablechangename}}</label>
         <div class="input-group">
           <input class="form-control"
                  name="tableName" [(ngModel)]="ngTable.name" (change)="changeNgTableName()">
@@ -34,13 +34,13 @@
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <label>Доступность столика</label>
+        <label>{{languagesService.languages.tableavailable}}</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">#</div>
           </div>
           <select class="form-control" [(ngModel)]="ngTable.status" name="ngStatus">
-            <option value="">доступен</option>
+            <option value="">{{languagesService.languages.available}}</option>
             <option *ngFor="let tab of statusTable" [value]="tab.value">{{tab.name}}</option>
           </select>
         </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-4">
       <div class="form-group">
-        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>Submit
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>{{languagesService.languages.submit}}
         </button>
       </div>
     </div>

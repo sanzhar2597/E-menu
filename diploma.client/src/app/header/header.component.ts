@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../login/login.service";
+import {LanguagesService} from "../shared/languages.service";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,11 @@ import {LoginService} from "../login/login.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  title = 'diploma';
+  title = this.languagesService.languages.diploma;
 
-  constructor(public login: LoginService) {}
+  constructor(public login: LoginService,
+              public languagesService: LanguagesService) {
+  }
 
   ngOnInit() {
   }

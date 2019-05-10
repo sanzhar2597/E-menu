@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {AdminService} from "../admin.service";
 import {NgForm} from "@angular/forms";
 import {Table} from "../../../model/table.model";
+import {LanguagesService} from "../../shared/languages.service";
 
 @Component({
   selector: 'app-table',
@@ -15,28 +16,29 @@ export class TableComponent implements OnInit {
   responseRestaurantTable: any = {};
   public responseObject: any = [
     {
-      response: 'empty',
-      alertText: 'Успешно добавлено'
+      response: this.languagesService.languages.empty,
+      alertText: this.languagesService.languages.successadded
     }, {
-      response: 'full',
-      alertText: 'Успешно обнавлено'
+      response: this.languagesService.languages.full,
+      alertText: this.languagesService.languages.successupdated
     }
   ];
 
   public statusTable: Array<any> = [
     {
       value: 0,
-      name: 'не доступен'
+      name: this.languagesService.languages.notavailable
     },
     {
       value: 1,
-      name: 'доступен'
+      name: this.languagesService.languages.available
     },
 
   ];
 
   constructor(private adminService: AdminService,
-              r: ActivatedRoute) {
+              r: ActivatedRoute,
+              public languagesService: LanguagesService) {
     adminService.setTitle(r);
   }
 

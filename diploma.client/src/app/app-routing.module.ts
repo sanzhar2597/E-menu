@@ -6,6 +6,7 @@ import {OrderComponent} from "./orders/order/order.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {BookingComponent} from "./booking/booking.component";
+import {AboutComponent} from "./about/about.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'order', pathMatch: 'full'},
@@ -17,11 +18,12 @@ const routes: Routes = [
     ]
   },
   {path: 'orders', component: OrdersComponent},
+  {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'booking', component: BookingComponent},
   {path: 'admin', loadChildren: "./admin/admin.module#AdminModule"},
-
+  {path: '**', redirectTo: 'order', pathMatch: 'full'},
 ];
 
 @NgModule({

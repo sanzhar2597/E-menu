@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import {FoodType} from "../../../model/food-type.model";
 import {FoodList} from "../../../model/food-list.model";
 import {FoodSchedule} from "../../../model/food-schedule.model";
+import {LanguagesService} from "../../shared/languages.service";
 
 @Component({
   selector: 'app-menu-day',
@@ -24,16 +25,17 @@ export class MenuDayComponent implements OnInit {
   responseFoodSchedule: any = {};
   public responseObject: any = [
     {
-      response: 'empty',
-      alertText: 'Успешно добавлено'
+      response: this.languagesService.languages.empty,
+      alertText: this.languagesService.languages.successadded
     }, {
-      response: 'full',
-      alertText: 'Уже Добавлено'
+      response: this.languagesService.languages.full,
+      alertText: this.languagesService.languages.alreadyadded
     }
   ];
 
   constructor(private adminService: AdminService,
-              r: ActivatedRoute) {
+              r: ActivatedRoute,
+              public languagesService: LanguagesService) {
     adminService.setTitle(r);
   }
 

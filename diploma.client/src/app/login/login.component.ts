@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "./login.service";
+import {LanguagesService} from "../shared/languages.service";
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,9 @@ import {LoginService} from "./login.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(public loginService: LoginService) {}
+  constructor(public loginService: LoginService,
+              public languagesService: LanguagesService) {
+  }
 
   async ngOnInit() {
     await this.loginService.start();

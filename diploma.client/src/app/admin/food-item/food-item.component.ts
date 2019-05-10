@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AdminService} from "../admin.service";
 import {NgForm} from "@angular/forms";
+import {LanguagesService} from "../../shared/languages.service";
 
 @Component({
   selector: 'app-food-item',
@@ -12,18 +13,19 @@ export class FoodItemComponent implements OnInit {
 
   public responseObject: any = [
     {
-      response: 'empty',
-      alertText: 'Успешно добавлено'
+      response: this.languagesService.languages.empty,
+      alertText: this.languagesService.languages.successadded
     }, {
-      response: 'full',
-      alertText: 'Уже Добавлено'
+      response: this.languagesService.languages.full,
+      alertText: this.languagesService.languages.alreadyadded
     }
   ];
 
   public response: any = {};
 
   constructor(public adminService: AdminService,
-              r: ActivatedRoute
+              r: ActivatedRoute,
+              public languagesService: LanguagesService
   ) {
     adminService.setTitle(r);
   }

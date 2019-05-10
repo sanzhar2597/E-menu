@@ -125,7 +125,7 @@ export class OrderComponent implements OnInit {
     if (this.validateForm()) {
       this.service.saveOrUpdateOrder().subscribe(res => {
         this.resetForm();
-        this.toastr.success('Submitted Successfully', 'Restaurent App.');
+        this.toastr.success(this.languagesService.languages.submitsuccesfully, this.languagesService.languages.nameapp);
         this.router.navigate(['/orders']);
       })
     }

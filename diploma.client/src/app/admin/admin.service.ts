@@ -1,47 +1,93 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {ActivatedRoute, UrlSegment} from "@angular/router";
 import {Item} from "../../model/item.model";
 import {HttpService} from "../http.service";
 import {FoodSchedule} from "../../model/food-schedule.model";
 import {Table} from "../../model/table.model";
 import {PersonDisplays} from "../../model/PersonDisplays";
+import {LanguagesService} from "../shared/languages.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminService {
+export class AdminService implements OnDestroy {
 
   public title: string;
+
 
   public adminChildUrl = [
     {
       url: "",
-      title: "Admin"
+      title: this.languagesService.languages.admin.toFirstTitleCase()
     },
     {
-      url: "food-item",
-      title: "Add Product"
+      url: this.languagesService.languages.urlfooditem,
+      title: this.languagesService.languages.productadd.toFirstTitleCase()
     },
     {
-      url: "customer",
-      title: "Add Customer"
+      url: this.languagesService.languages.urlcustomer,
+      title: this.languagesService.languages.customeraddrole.toFirstTitleCase()
     },
     {
-      url: "table",
-      title: "Edit Table"
+      url: this.languagesService.languages.urltable,
+      title: this.languagesService.languages.tableedit.toFirstTitleCase()
     },
     {
-      url: "menu-day",
-      title: "Add Menu-day"
+      url: this.languagesService.languages.urlmenuday,
+      title: this.languagesService.languages.menudayadd.toFirstTitleCase()
     },
 
   ];
   public item: Item = new Item;
+  private subscription: Subscription;
 
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,
+              public languagesService: LanguagesService,
+  ) {
+
+    this.subscription = this.languagesService.languageChanged.asObservable().subscribe(() => {
+
+      this.hotReload();
+
+    });
+
   }
 
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
+
+
+  hotReload() {
+    this.adminChildUrl = [
+      {
+        url: "",
+        title: this.languagesService.languages.admin.toFirstTitleCase()
+      },
+      {
+        url: this.languagesService.languages.urlfooditem,
+        title: this.languagesService.languages.productadd.toFirstTitleCase()
+      },
+      {
+        url: this.languagesService.languages.urlcustomer,
+        title: this.languagesService.languages.customeraddrole.toFirstTitleCase()
+      },
+      {
+        url: this.languagesService.languages.urltable,
+        title: this.languagesService.languages.tableedit.toFirstTitleCase()
+      },
+      {
+        url: this.languagesService.languages.urlmenuday,
+        title: this.languagesService.languages.menudayadd.toFirstTitleCase()
+      },
+
+    ];
+
+    this.changeTitle("");
+  }
 
   changeTitle(url: string) {
     for (let key in this.adminChildUrl) {
@@ -101,5 +147,6 @@ export class AdminService {
   updatePersonCan(personDisplay: PersonDisplays) {
     return this.httpService.get('/admin/update-person-can', {personDisplay: JSON.stringify(personDisplay)}).toPromise();
   }
+
 
 }

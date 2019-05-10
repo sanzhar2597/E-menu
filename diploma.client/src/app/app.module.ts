@@ -46,7 +46,7 @@ import {LanguagesService} from "./shared/languages.service";
     BrowserAnimationsModule, MatDialogModule, MatProgressSpinnerModule, ToastrModule.forRoot()
   ],
   entryComponents: [OrderItemsComponent, NextOperationComponent, AlertComponent],
-  providers: [HttpService, LoginService, ClientListService, OrderService, LanguagesService],
+  providers: [HttpService, LoginService, ClientListService, OrderService,  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

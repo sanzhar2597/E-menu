@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../login/login.service";
+import {LanguagesService} from "../shared/languages.service";
 
 @Component({
   selector: 'app-registration',
@@ -8,7 +9,8 @@ import {LoginService} from "../login/login.service";
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(public loginService: LoginService) {}
+  constructor(public loginService: LoginService,
+              public languagesService:LanguagesService) {}
 
   async ngOnInit() {
 
