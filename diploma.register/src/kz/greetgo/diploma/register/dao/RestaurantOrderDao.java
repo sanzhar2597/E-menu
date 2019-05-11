@@ -36,13 +36,37 @@ public interface RestaurantOrderDao {
 		"where order_item_id = #{orderItem.orderItemId} ")
 	void updaterderItem(@Param("orderItem") OrderItem orderItem);
 
-	@Insert("insert into order_items( oorder_id, item_id, quantity) " +
-		"values (#{order.orderId}, #{order.itemId}, #{order.quantity})")
-	void inserOrderItem(@Param("order") OrderItem orderItem);
 
-	@Select("select o.oorder_id as orderId, o.oorder_no as orderNo," +
-		" c.name as name , o.g_total as gTotal, o.p_method as pMethod from\n" +
-		"  oorder o inner join customer c on o.customer_id= c.customer_id\n")
+	@Update("update order_status set " +
+		"update_date =#{orderStatus.updateDate} " +
+		"where order_item_id = #{orderStatus.orderItemId}  and " +
+		"oorder_id= #{orderStatus.orderId}")
+	void updateOrderStatus(@Param("orderStatus") OrderStatus orderStatus);
+
+
+	@Update("update order_status\n" +
+		" set status = #{orderList.status}\n" +
+		" where oorder_id = #{orderList.orderId}")
+	void updateOrderStatusById(@Param("orderList") OrderList orderList);
+
+	@Select("insert into order_items( oorder_id, item_id, quantity) " +
+		"values (#{order.orderId}, #{order.itemId}, #{order.quantity}) returning order_item_id")
+	Integer inserOrderItem(@Param("order") OrderItem orderItem);
+
+	@Select("insert into order_status( oorder_id, order_item_id, update_date , status) " +
+		"values (#{orderStatus.orderId}, #{orderStatus.orderItemId}, #{orderStatus.updateDate}, #{orderStatus.status})")
+	Integer insertOrderStatus(@Param("orderStatus") OrderStatus orderStatus);
+
+	@Select("select\n" +
+		"  o.oorder_id   as orderId,\n" +
+		"  o.oorder_no   as orderNo,\n" +
+		"  c.name        as name,\n" +
+		"  o.g_total     as gTotal,\n" +
+		"  o.p_method    as pMethod,\n" +
+		"  status.status as status\n" +
+		"from oorder o\n" +
+		"  inner join customer c on o.customer_id = c.customer_id\n" +
+		"  inner join order_status status on o.oorder_id = status.oorder_id")
 	List<OrderList> selectOrderList();
 
 	@Select("select o.oorder_id as orderId, o.oorder_no as orderNo," +

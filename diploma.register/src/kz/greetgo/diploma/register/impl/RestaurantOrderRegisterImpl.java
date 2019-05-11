@@ -6,7 +6,9 @@ import kz.greetgo.diploma.controller.register.RestaurantOrderRegister;
 import kz.greetgo.diploma.controller.register.model.*;
 import kz.greetgo.diploma.register.dao.RestaurantOrderDao;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
@@ -33,6 +35,8 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 	public void postOrderItems(Orders orders) {
 
 		List<Order> orderList = new ArrayList<>();
+		Integer orderItemId;
+		OrderStatus orderStatus = new OrderStatus();
 
 		if(orders.orderId == 0)
 			{
@@ -40,7 +44,15 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 				for(OrderItem orderItem : orders.orderItems)
 					{
 						orderItem.orderId = id;
-						restaurantOrderDao.get().inserOrderItem(orderItem);
+						orderItemId = restaurantOrderDao.get().inserOrderItem(orderItem);
+						{
+							orderStatus.orderId = id;
+							orderStatus.orderItemId = orderItemId;
+							orderStatus.updateDate = new Timestamp(new Date().getTime());
+							orderStatus.status = 1;
+							restaurantOrderDao.get().insertOrderStatus(orderStatus);
+						}
+						orderStatus = new OrderStatus();
 					}
 			} else
 			{
@@ -49,12 +61,29 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 					{
 						if(orderItem.orderItemId == null)
 							{
-								restaurantOrderDao.get().inserOrderItem(orderItem);
+								orderItem.orderItemId = restaurantOrderDao.get().inserOrderItem(orderItem);
+
+								{
+									orderStatus.orderId = orders.orderId;
+									orderStatus.orderItemId = orderItem.orderItemId;
+									orderStatus.updateDate = new Timestamp(new Date().getTime());
+									orderStatus.status = 1;
+									restaurantOrderDao.get().insertOrderStatus(orderStatus);
+								}
+
 							} else
 							{
 								restaurantOrderDao.get().updaterderItem(orderItem);
 
+								{
+									orderStatus.orderId = orders.orderId;
+									orderStatus.orderItemId = orderItem.orderItemId;
+									orderStatus.updateDate = new Timestamp(new Date().getTime());
+									restaurantOrderDao.get().updateOrderStatus(orderStatus);
+								}
 							}
+
+
 					}
 
 			}
@@ -67,6 +96,13 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 		orderLists = restaurantOrderDao.get().selectOrderList();
 		return orderLists;
 	}
+
+	@Override
+	public void updateOrderStatus(OrderList orderList) {
+
+		restaurantOrderDao.get().updateOrderStatusById(orderList);
+	}
+
 
 	@Override
 	public Orders getOrdersbyId(Integer id) {

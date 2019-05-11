@@ -57,6 +57,14 @@ public class RestaurantOrderController implements Controller {
 
 	@ToJson
 	@PublicAccess
+	@OnGet("/update-order-status")
+	public void updateOrderStatus( @Par("orderList") @Json OrderList orderList) {
+
+		 restaurantOrderRegister.get().updateOrderStatus(orderList);
+	}
+
+	@ToJson
+	@PublicAccess
 	@OnGet("/get-order")
 	public Orders getOrdersbyId(@Par("id") @Json Integer id) {
 

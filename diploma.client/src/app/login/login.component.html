@@ -17,12 +17,13 @@
     </div>
   </div>
 
+    <div *ngIf="loginService.personDisplay"  class="row">
+      <h5 class="alert text-center col-md-10">Вошли как {{loginService.personDisplay.username}}/{{loginService.personDisplay.fio}}
+      </h5>
+      <button type="button" class="btn  align-middle  btn-outline-danger col-md-1" (click)="loginService.exit()">
+        {{languagesService.languages.exit}}
+      </button>
+    </div>
 
-  <div *ngIf="loginService.personDisplay" class="text-center">
-    Вошли как {{loginService.personDisplay.username}}/{{loginService.personDisplay.fio}}
-    <button class="btn btn-outline-secondary" type="button" (click)="loginService.exit()" class="exit">
-      {{languagesService.languages.exit}}
-    </button>
-  </div>
 </div>
 

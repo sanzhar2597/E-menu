@@ -35,6 +35,12 @@ export class LoginService {
   public get canViewAbout(): boolean {
     return this.hasCan(UserCan.VIEW_ABOUT);
   }
+  public get canViewAdmin(): boolean {
+    return this.hasCan(UserCan.VIEW_ADMIN);
+  }
+  public get canViewWaiter(): boolean {
+    return this.hasCan(UserCan.VIEW_WAITER);
+  }
 
   private hasCan(needCan: UserCan) {
     if (!this.personDisplay) return false;

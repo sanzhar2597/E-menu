@@ -15,6 +15,8 @@ public interface RestaurantOrderRegister {
 
 	List<OrderList> getOrderList();
 
+	void updateOrderStatus(OrderList orderList);
+
 	Orders getOrdersbyId(Integer id);
 
 	String deleteOrderbyId(Integer id);

@@ -14,22 +14,3 @@ input {
   font-size: 1rem;
 }
 
-button {
-  padding: 0.2rem;
-  border: #becdcd 2px solid;
-  background-color: transparent;
-  font-size: 1rem;
-}
-
-button:hover {
-  background-color: #becdcd;
-}
-
-button:focus {
-  outline: none;
-}
-
-button:active {
-  outline: none;
-  color: #a5b4b4;
-}

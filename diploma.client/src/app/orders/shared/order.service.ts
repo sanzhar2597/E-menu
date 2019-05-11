@@ -52,5 +52,8 @@ export class OrderService {
       });
     }
   }
+  updateOrderStatus(item:any){
+    return this.httpService.get('/restaurant/update-order-status', {orderList:JSON.stringify(item)}).toPromise();
+  }
 
 }

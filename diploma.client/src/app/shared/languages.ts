@@ -80,7 +80,9 @@ export class Languages {
     stillorder: "еще заказывают:",
     withthisproduct: "with this product",
     about: "о нас",
-    account: 'Аккаунт:',
+    account: 'aккаунт:',
+    status: 'cтатус',
+    acceptfood: 'принято',
 
 
   };
@@ -166,8 +168,11 @@ export class Languages {
     stillorder: "still order:",
     withthisproduct: "with this product",
     about: "about",
-    nameapp: 'Restaurant App',
-    account: 'Account:',
+    nameapp: 'restaurant app',
+    account: 'account:',
+    status: 'status',
+    acceptfood: 'accept',
+
 
   }
 }

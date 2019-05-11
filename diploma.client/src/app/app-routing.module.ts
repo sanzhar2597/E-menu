@@ -7,9 +7,10 @@ import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {BookingComponent} from "./booking/booking.component";
 import {AboutComponent} from "./about/about.component";
+import {AuthGuard} from "./auth/auth.guard";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'order', pathMatch: 'full'},
+  {path: '', redirectTo: 'orders', pathMatch: 'full'},
   {
     path: 'order', children: [
       {path: '', component: OrderComponent},
@@ -22,7 +23,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'booking', component: BookingComponent},
-  {path: 'admin', loadChildren: "./admin/admin.module#AdminModule"},
+  {path: 'admin', loadChildren: "./admin/admin.module#AdminModule",
+    canActivate:[AuthGuard]},
+
   {path: '**', redirectTo: 'order', pathMatch: 'full'},
 ];
 

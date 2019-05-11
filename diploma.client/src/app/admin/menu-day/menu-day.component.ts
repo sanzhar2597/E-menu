@@ -58,7 +58,6 @@ export class MenuDayComponent implements OnInit {
 
   saveFoodSchedule() {
     if (this.foodSchedule.data && this.foodSchedule.id) {
-      debugger
       this.adminService.saveMenuDay(this.foodSchedule).then(value => {
         this.foodSchedule.id = Math.floor(100000 + Math.random() * 900000).toString();
         for (let key in this.responseObject) {

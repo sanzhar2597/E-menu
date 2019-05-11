@@ -95,7 +95,6 @@ export class CustomerComponent implements OnInit {
 
     this.adminService.updatePersonCan(this.ngPersonDisplay).then(
       value => {
-        debugger
         this.ngOnInit();
         for (let key in this.responseObject) {
           if (value.body == this.responseObject[key].response) {

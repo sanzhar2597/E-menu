@@ -15,12 +15,13 @@
           <a class="nav-link" routerLink="/booking">{{languagesService.languages.order.toFirstTitleCase()}}<span
             class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" id="navItem3" (click)="showMainPage('booking')">
+        <li class="nav-item" id="navItem3" (click)="showMainPage('booking')" *ngIf="login.canViewAdmin">
           <a class="nav-link" routerLink="/admin">{{languagesService.languages.admin.toFirstTitleCase()}}<span
             class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" id="navItem4" (click)="showMainPage('registration')">
-          <a class="nav-link" routerLink="/registration">{{languagesService.languages.registration.toFirstTitleCase()}}</a>
+          <a class="nav-link"
+             routerLink="/registration">{{languagesService.languages.registration.toFirstTitleCase()}}</a>
         </li>
         <li class="nav-item" id="navItem5" (click)="showMainPage('login')">
           <a class="nav-link" *ngIf="!login.isAuthenticated" (click)="showMainPage('login')"
@@ -41,9 +42,19 @@
           </div>
         </li>
       </ul>
-      <span class="navbar-text " *ngIf="login.personDisplay">
+
+      <span class="navbar-text text-center px-md-2" *ngIf="login.personDisplay">
       Аккаунт:   {{login.personDisplay.username}}
     </span>
+      <div class="btn-group px-md-2" *ngIf="login.personDisplay">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+          Action
+        </button>
+        <div class="dropdown-menu px-md-2">
+          <a class="dropdown-item px-md-2" (click)="login.exit()">{{languagesService.languages.exit}}</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -52,7 +63,8 @@
 
 
   <div class="jumbotron jumbtron-fluid">
-    <h3 class="display-4 text-center"><img src="/assets/img/food.png" alt="">{{languagesService.languages.nameapp.toFirstTitleCase()}}</h3>
+    <h3 class="display-4 text-center"><img src="/assets/img/food.png" alt="">{{languagesService.languages.nameapp.toTitleCase()}}
+    </h3>
     <div class="container">
       <div class="row">
         <div class="col-md-10 offset-md-1">
