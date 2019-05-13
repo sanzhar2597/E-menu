@@ -17,6 +17,7 @@ import static java.util.stream.Collectors.joining;
 public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 
 	public BeanGetter<RestaurantOrderDao> restaurantOrderDao;
+	public BeanGetter<AntAlgorithmRegisterImpl> antAlgorithmRegister;
 
 	@Override
 	public ArrayList<Item> getItemList() {
@@ -147,9 +148,27 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 				items.add(restaurantOrderDao.get().selectItemById(itemCount.itemId));
 			}
 		return items;
-	}
+	};
+	@Override
+	public List<Item> prepareOfferAlgorithmAnt (List<OrderItem> orderItems) {
 
-	;
+		antAlgorithmRegister.get().AntColonyOptimization(orderItems.size(),0,orderItems.size());
+
+		String collect = orderItems.stream().map(orderItem -> orderItem.itemId + "").collect(joining(","));
+		List<Item> items = new ArrayList<>();
+		List<ItemCount> itemCounts = new ArrayList<>();
+		itemCounts = restaurantOrderDao.get().prepareOffer(collect);
+		if(itemCounts.size() == 0)
+			{
+				return items;
+			}
+		for(ItemCount itemCount : itemCounts)
+			{
+				System.out.println(itemCount);
+				items.add(restaurantOrderDao.get().selectItemById(itemCount.itemId));
+			}
+		return items;
+	};
 
 
 	public static void main(String[] args) {

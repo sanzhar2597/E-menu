@@ -22,4 +22,6 @@ public interface RestaurantOrderRegister {
 	String deleteOrderbyId(Integer id);
 
 	List<Item> prepareOffer(List<OrderItem> orderItems);
+
+	List<Item> prepareOfferAlgorithmAnt(List<OrderItem> orderItems);
 }
