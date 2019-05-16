@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   constructor(public login: LoginService,
               private currentRoute: ActivatedRoute,
               public languagesService: LanguagesService,
-              public adminService:AdminService) {
+              public adminService: AdminService) {
 
     this.const_languages = languagesService.CONST_LANGUAGES;
   }
@@ -33,6 +33,10 @@ export class AppComponent implements OnInit {
 
   changeLanguage(translate: string) {
     this.languagesService.changeLanguages(translate);
+  }
+
+  linkTelegram() {
+    window.open("https://telegram.me/booking_diploma_bot", "_blank")
   }
 
   /*showMainPage(name: string, id): any {

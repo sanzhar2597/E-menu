@@ -46,6 +46,10 @@
           <option *ngFor="let tab of bookingService.table">{{tab}}</option>
         </select>
       </div>
+
+      <div class="form-group">
+        <button type="button" (click)="selectTable()" class="btn btn-primary">Primary</button>
+      </div>
     </div>
   </div>
   <div class="form-group">

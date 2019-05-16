@@ -17,4 +17,5 @@ public interface TelegramRegister {
 
 	void setInlineButtons(Message message, String text);
 
+	void setLinkPage(Message message, String text);
 }

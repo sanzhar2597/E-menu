@@ -11,10 +11,6 @@ export class BookingService {
   public processResponse = "";
 
   constructor(private httpService: HttpService) {
-    this.getRestaurantTable().then(value => {
-        this.table = value.body
-      }
-    )
   }
 
 

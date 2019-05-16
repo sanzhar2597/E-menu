@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {AlertComponent} from "../alert/alert.component";
 import {NgForm} from "@angular/forms";
 import {LanguagesService} from "../shared/languages.service";
+import {TableSelectionComponent} from "../table-selection/table-selection.component";
 
 @Component({
   selector: 'app-booking',
@@ -26,6 +27,11 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.bookingService.getRestaurantTable().then(value => {
+        this.bookingService.table = value.body
+        this.resetForm();
+      }
+    )
     this.resetForm();
     this.getPhoneNumber();
 
@@ -105,6 +111,29 @@ export class BookingComponent implements OnInit {
       if (value1.username) {
         this.isRegisteredClient = true;
         this.bookingService.booking.phoneNumber = value1.username;
+      }
+    });
+  }
+
+  selectTable() {
+    let scope = this
+    console.log(this.bookingService.table)
+    console.log(this.bookingService.booking.tableType)
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "80%";
+    dialogConfig.height = "60%";
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = false;
+    dialogConfig.data = {
+      response: scope.bookingService.table.findIndex(value => value == scope.bookingService.booking.tableType)
+    }
+    this.dialog.open(TableSelectionComponent, dialogConfig).afterClosed().subscribe(res => {
+      if (res != undefined) {
+        this.bookingService.booking.tableType = this.bookingService.table[+res]
+      }
+      else {
+        this.bookingService.booking.tableType = this.bookingService.table[0]
       }
     });
   }

@@ -19,7 +19,7 @@
       [class.table-info]="item.status==3">
     <th (click)="openForEdit(item)">{{item.orderNo}}</th>
     <td (click)="openForEdit(item)">{{item.name}}</td>
-    <td (click)="openForEdit(item)">{{item.pMethod}}</td>
+    <td (click)="openForEdit(item)" [class.pay-in-card]="item.pMethod=='Card'" [class.pay-in-cash]="item.pMethod=='Cash'" [class.pay-in-cash-or-card]="item.pMethod==''"><!--{{item.pMethod}}--></td>
     <td (click)="openForEdit(item.orderId)">{{item.gTotal}}</td>
     <td>
       <span class="badge badge-warning" *ngIf="item.status==1">В ожидании</span>

@@ -44,9 +44,10 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 		KeyboardRow keyboardFirstRow = new KeyboardRow();
 		keyboardFirstRow.add(new KeyboardButton("/help"));
 
+		keyboardFirstRow.add(new KeyboardButton("/using"));
 		KeyboardRow keyboardSecondRow = new KeyboardRow();
-		keyboardSecondRow.add(new KeyboardButton("/using"));
 		keyboardSecondRow.add(new KeyboardButton("/info"));
+		keyboardSecondRow.add(new KeyboardButton("/website"));
 		keyboardRowList.add(keyboardFirstRow);
 		keyboardRowList.add(keyboardSecondRow);
 		replyKeyboardMarkup.setKeyboard(keyboardRowList);
@@ -226,7 +227,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 						for(Map.Entry<String, String> entry : mapInlineText.entrySet())
 							{
 								List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
-								rowInline1.add(new InlineKeyboardButton().setText(entry.getKey()).setCallbackData(entry.getKey()));
+								rowInline1.add(new InlineKeyboardButton().setText(entry.getKey()).setCallbackData(entry.getKey()).setUrl(""));
 								rowsInline.add(rowInline1);
 							}
 
@@ -256,6 +257,36 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 					{
 						e.printStackTrace();
 					}
+			}
+
+
+	}
+
+	@Override
+	public void setLinkPage(Message message, String text) {
+
+
+		SendMessage sendMessage = new SendMessage();
+
+
+		sendMessage.setChatId(message.getChatId());
+
+		sendMessage.setText(text);
+		InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
+		sendMessage.setReplyMarkup(markupInline);
+		List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
+
+		List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
+		rowInline1.add(new InlineKeyboardButton().setText("E-Order").setUrl("https://vk.com/feed"));
+		rowsInline.add(rowInline1);
+		markupInline.setKeyboard(rowsInline);
+		try
+			{
+				sendMessage(sendMessage);
+
+			} catch(TelegramApiException e)
+			{
+				e.printStackTrace();
 			}
 
 
@@ -305,7 +336,8 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 							sendMsg(message, "Как пользоватся этим ботом ? \n" +
 								"/help -Помощь Пользователю \n" +
 								"/using - Что делает бот\n" +
-								"/info - Информация о боте");
+								"/info - Информация о боте\n" +
+								"/website - Сайт где вы можете в режиме реального времени делать свой заказ не ожидая официанта, \nзаранее забронировать место и сделать предзаказ, \nуслуга заказа еды на вынос");
 							break;
 						case "/using":
 							sendMsg(message,
@@ -316,6 +348,9 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 							break;
 						case "/info":
 							sendMsg(message, "Бот разработан в 2019 году 10 марта. \nдля Дипломной Работы.");
+							break;
+						case "/website":
+							setLinkPage(message, "Сайт где вы можете сделать заказ в режиме реального времени");
 							break;
 						default:
 							try

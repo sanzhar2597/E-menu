@@ -10,7 +10,7 @@ import {AboutComponent} from "./about/about.component";
 import {AuthGuard} from "./auth/auth.guard";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'orders', pathMatch: 'full'},
+  {path: '', redirectTo: 'order', pathMatch: 'full'},
   {
     path: 'order', children: [
       {path: '', component: OrderComponent},

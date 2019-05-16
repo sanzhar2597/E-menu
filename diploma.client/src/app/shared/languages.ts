@@ -2,7 +2,7 @@ export class Languages {
   public RU_LANGUAGE = {
     firstname: 'назар',
     lastname: 'абу',
-    nameapp: 'ресторан приложение',
+    nameapp: 'E-Order',
     language: 'язык',
     russian: 'русский',
     english: 'английский',
@@ -83,6 +83,7 @@ export class Languages {
     account: 'aккаунт:',
     status: 'cтатус',
     acceptfood: 'принято',
+    telegrambot: 'телеграм',
 
 
   };
@@ -168,10 +169,12 @@ export class Languages {
     stillorder: "still order:",
     withthisproduct: "with this product",
     about: "about",
-    nameapp: 'restaurant app',
+    nameapp: 'E-Order',
     account: 'account:',
     status: 'status',
     acceptfood: 'accept',
+    telegrambot: 'telegram',
+
 
 
   }

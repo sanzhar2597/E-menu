@@ -31,6 +31,9 @@
           <a class="nav-link" (click)="showMainPage('about')"
              routerLink="/about">{{languagesService.languages.about.toFirstTitleCase()}}</a>
         </li>
+        <li class="nav-item" id="navItem7" (click)="linkTelegram()">
+          <a class="nav-link" (click)="linkTelegram()">{{languagesService.languages.telegrambot.toFirstTitleCase()}}</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">
@@ -63,7 +66,7 @@
 
 
   <div class="jumbotron jumbtron-fluid">
-    <h3 class="display-4 text-center"><img src="/assets/img/food.png" alt="">{{languagesService.languages.nameapp.toTitleCase()}}
+    <h3 class="display-4 text-center"><img src="/assets/img/food.png" alt="">  {{languagesService.languages.nameapp}}
     </h3>
     <div class="container">
       <div class="row">

@@ -39,7 +39,7 @@ public class ForwardFilter implements Filter {
 
 
   private boolean isContinueChain(String target) {
-    if (target.startsWith("/restaurant/api/")) {
+    if (target.startsWith("/e-order/api/")) {
       return true;
     }
 

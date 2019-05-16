@@ -9,26 +9,26 @@ import {Languages} from "../shared/languages";
 import {LanguagesService} from "../shared/languages.service";
 
 
-const languagesServices = new Languages();
-const routes: Routes = [
+export const languagesServices = new Languages();
+export const routes: Routes = [
   {
     path: '',            //<---- parent component declared here
     component: AdminComponent,
     children: [                          //<---- child components declared here
       {
-        path: languagesServices.RU_LANGUAGE.urlfooditem,
+        path: "food-item",
         component: FoodItemComponent
       },
       {
-        path: languagesServices.RU_LANGUAGE.urlcustomer,
+        path: "customer",
         component: CustomerComponent
       },
       {
-        path: languagesServices.RU_LANGUAGE.urltable,
+        path: "table",
         component: TableComponent
       },
       {
-        path: languagesServices.RU_LANGUAGE.urlmenuday,
+        path: "menu-day",
         component: MenuDayComponent
       },
     ]
@@ -37,7 +37,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule,],
 })
 export class AdminRoutingModule {
 }

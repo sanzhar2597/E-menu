@@ -24,6 +24,8 @@ import {NextOperationComponent} from './next-operation/next-operation.component'
 import {MatProgressSpinnerModule} from "@angular/material";
 import {AlertComponent} from './alert/alert.component';
 import {LanguagesService} from "./shared/languages.service";
+import { TableSelectionComponent } from './table-selection/table-selection.component';
+import { BoldDirectiveDirective } from './bold-directive.directive';
 
 
 @NgModule({
@@ -40,12 +42,14 @@ import {LanguagesService} from "./shared/languages.service";
     BookingComponent,
     NextOperationComponent,
     AlertComponent,
+    TableSelectionComponent,
+    BoldDirectiveDirective,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
     BrowserAnimationsModule, MatDialogModule, MatProgressSpinnerModule, ToastrModule.forRoot()
   ],
-  entryComponents: [OrderItemsComponent, NextOperationComponent, AlertComponent],
+  entryComponents: [OrderItemsComponent, NextOperationComponent, AlertComponent, TableSelectionComponent],
   providers: [HttpService, LoginService, ClientListService, OrderService,  ],
   bootstrap: [AppComponent]
 })

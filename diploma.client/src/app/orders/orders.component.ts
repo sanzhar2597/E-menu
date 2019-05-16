@@ -8,7 +8,7 @@ import {LoginService} from "../login/login.service";
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styles: []
+  styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
   orderList;
@@ -30,7 +30,6 @@ export class OrdersComponent implements OnInit {
 
 
       this.orderList = res.body
-      debugger
     });
   }
 
