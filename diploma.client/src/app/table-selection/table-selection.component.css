@@ -1,0 +1,238 @@
+.table-place {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  height: 500px;
+  background-image: url("/assets/img/booking.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.table-part-left {
+  position: relative;
+  left: 50px;
+  width: 100px;
+}
+
+.table-one {
+  position: relative;
+  width: 30px;
+  height: 45px;
+  top: 102px;
+  left: 10px;
+  border-radius: 5px;
+  background-color: #93549e;
+  padding-left: 7px;
+
+}
+
+.table-two {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  top: 160px;
+  border-radius: 50%;
+  background-color: #93549e;
+  padding-left: 5px;
+
+}
+
+.table-three {
+  position: relative;
+  width: 27px;
+  height: 22px;
+  top: 200px;
+  border-radius: 13%;
+  background-color: #93549e;
+  padding-left: 5px;
+
+}
+
+.table-four {
+  position: relative;
+  width: 35px;
+  height: 22px;
+  top: 258px;
+  left: -4px;
+  border-radius: 13%;
+  background-color: #93549e;
+  padding-left: 10px;
+
+}
+
+.table-part-center-left {
+  position: relative;
+  left: 169.5px;
+  width: 100px;
+
+}
+
+.table-five {
+  position: relative;
+  width: 22px;
+  height: 38px;
+  top: 150px;
+  border-radius: 5px;
+  background-color: #93549e;
+  padding-left: 5px;
+
+}
+
+.table-six {
+  position: relative;
+  width: 22px;
+  height: 38px;
+  top: 174px;
+  border-radius: 5px;
+  background-color: #93549e;
+  padding-left: 5px;
+
+}
+
+.table-seven {
+  position: relative;
+  width: 22px;
+  height: 38px;
+  top: 195px;
+  border-radius: 5px;
+  background-color: #93549e;
+  padding-left: 5px;
+
+}
+
+.table-part-center {
+  position: relative;
+  left: 274.5px;
+  width: 100px;
+
+
+}
+
+.table-eight {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  top: 26px;
+  border-radius: 50%;
+  background-color: #93549e;
+  padding-left: 7px;
+
+}
+
+.table-nine {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  top: -1px;
+  border-radius: 50%;
+  background-color: #93549e;
+  left: 86px;
+  padding-left: 7px;
+
+}
+
+.table-ten {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background-color: #93549e;
+  left: 3px;
+  top: 43px;
+  padding-left: 7px;
+
+}
+
+.table-eleven {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background-color: #93549e;
+  left: 87px;
+  top: 12px;
+  padding-left: 7px;
+
+}
+
+.table-part-up {
+  position: relative;
+  left: 300.5px;
+  top: -190px;
+  width: 100px;
+
+
+}
+
+.table-twelve {
+  position: relative;
+  width: 23px;
+  height: 30px;
+  top: 29px;
+  border-radius: 16%;
+  background-color: #93549e;
+  padding-left: 5px;
+
+}
+.table-thirteen {
+  position: relative;
+  width: 23px;
+  height: 30px;
+  top: -1px;
+  border-radius: 15%;
+  background-color: #93549e;
+  left: 73px;
+  padding-left: 5px;
+
+}
+
+.table-part-right {
+  position: relative;
+  left: 454.5px;
+  top: -250px;
+  width: 100px;
+
+}
+
+.table-fourteen {
+  position: relative;
+  width: 23px;
+  height: 30px;
+  top: 30px;
+  border-radius: 16%;
+  background-color: #93549e;
+  padding-left: 5px;
+}
+.table-fifteen {
+  position: relative;
+  width: 23px;
+  height: 30px;
+  top: 63px;
+  border-radius: 15%;
+  background-color: #93549e;
+  padding-left: 5px;
+
+}
+.table-sixteen {
+  position: relative;
+  width: 23px;
+  height: 30px;
+  top: 87px;
+  border-radius: 15%;
+  background-color: #93549e;
+  padding-left: 5px;
+
+}
+.table-seventeen {
+  position: relative;
+  width: 23px;
+  height: 37px;
+  top: 112px;
+  border-radius: 15%;
+  background-color: #93549e;
+  padding-left: 5px;
+
+}
