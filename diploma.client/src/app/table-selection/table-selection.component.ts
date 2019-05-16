@@ -121,12 +121,14 @@ export class TableSelectionComponent implements OnInit {
 
   createstaticTable() {
     let count = 0;
-
     for (let key in this.staticTable) {
       for (let item in this.staticTable[key]) {
+        if (count == this.data.response) {
+          this.selectedItem = this.staticTable[key][item]
+        }
         this.staticTable[key][item].id = count++
-        if(count%2==0)
-        this.staticTable[key][item].enable=true;
+        if (this.data.count >= count)
+          this.staticTable[key][item].enable = true;
       }
     }
   }

@@ -126,6 +126,7 @@ export class BookingComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = false;
     dialogConfig.data = {
+      count: scope.bookingService.table.length,
       response: scope.bookingService.table.findIndex(value => value == scope.bookingService.booking.tableType)
     }
     this.dialog.open(TableSelectionComponent, dialogConfig).afterClosed().subscribe(res => {
