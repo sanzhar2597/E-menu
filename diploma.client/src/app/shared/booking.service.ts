@@ -23,6 +23,9 @@ export class BookingService {
     let booking = this.booking;
     return this.httpService.get('/booking/save', {booking: JSON.stringify(booking)}).toPromise();
   }
+  getPersonId(username:string){
+    return this.httpService.get('/booking/person-id', {username:username}).toPromise();
+  }
 
   getRestaurantTable() {
     return this.httpService.get('/booking/restaurant-table').toPromise();

@@ -15,16 +15,16 @@ public interface RestaurantOrderDao {
 	@Select("select * from item where item_id =#{itemId}")
 	Item selectItemById(@Param("itemId") Integer itemId);
 
-	@Select("select customer_id as customerId, name as name from customer")
-	ArrayList<Customer> selectCustomer();
+	@Select("select id as personId, username as name from person")
+	ArrayList<Person> selectCustomer();
 
 
-	@Select("insert into oorder(oorder_no, customer_id, p_method, g_total, booking_id) " +
-		"values (#{order.orderNo}, #{order.customerId}, #{order.pMethod}, #{order.gTotal}, #{order.bookingId}) returning oorder_id")
+	@Select("insert into oorder(oorder_no, person_id, p_method, g_total, booking_id) " +
+		"values (#{order.orderNo}, #{order.personId}, #{order.pMethod}, #{order.gTotal}, #{order.bookingId}) returning oorder_id")
 	Integer insertOorder(@Param("order") Orders orders);
 
 	@Update("update oorder set " +
-		"oorder_no =#{orders.orderNo}, customer_id= #{orders.customerId}, " +
+		"oorder_no =#{orders.orderNo}, person_id= #{orders.personId}, " +
 		"p_method= #{orders.pMethod}, g_total= #{orders.gTotal} " +
 		"where oorder_id = #{orders.orderId}")
 	void updateOorder(@Param("orders") Orders orders);
@@ -57,23 +57,37 @@ public interface RestaurantOrderDao {
 		"values (#{orderStatus.orderId}, #{orderStatus.orderItemId}, #{orderStatus.updateDate}, #{orderStatus.status})")
 	Integer insertOrderStatus(@Param("orderStatus") OrderStatus orderStatus);
 
-	@Select("select\n" +
+	@Select("select distinct o.oorder_no, \n" +
 		"  o.oorder_id   as orderId,\n" +
 		"  o.oorder_no   as orderNo,\n" +
-		"  c.name        as name,\n" +
+		"  c.username        as name,\n" +
 		"  o.g_total     as gTotal,\n" +
 		"  o.p_method    as pMethod,\n" +
 		"  b.record_date_day,\n" +
 		"  status.status as status\n" +
 		"from oorder o\n" +
-		"  inner join customer c on o.customer_id = c.customer_id\n" +
-		"  inner join order_status status on o.oorder_id = status.oorder_id" +
+		"  left join person c on o.person_id= c.id\n" +
+		"  left join order_status status on o.oorder_id = status.oorder_id" +
 		"  left join booking b on o.booking_id = b.booking_id")
 	List<OrderList> selectOrderList();
 
+	@Select("select distinct o.oorder_no, \n" +
+		"  o.oorder_id   as orderId,\n" +
+		"  o.oorder_no   as orderNo,\n" +
+		"  c.username        as name,\n" +
+		"  o.g_total     as gTotal,\n" +
+		"  o.p_method    as pMethod,\n" +
+		"  b.record_date_day,\n" +
+		"  status.status as status\n" +
+		"from oorder o\n" +
+		"  left join person c on o.person_id= c.id\n" +
+		"  left join order_status status on o.oorder_id = status.oorder_id" +
+		"  left join booking b on o.booking_id = b.booking_id where c.id = #{personId}")
+	List<OrderList> selectOrderListById(@Param("personId") String personId);
+
 	@Select("select o.oorder_id as orderId, o.oorder_no as orderNo," +
-		" c.name as name , o.g_total as gTotal, o.p_method as pMethod from\n" +
-		"  oorder o inner join customer c on o.customer_id= c.customer_id " +
+		" c.username as name , o.g_total as gTotal, o.p_method as pMethod from\n" +
+		"  oorder o inner join person c on o.person_id= c.id" +
 		"where o.oorder_id = #{id}\n")
 	List<OrderList> selectorderById(@Param("id") Integer id);
 
@@ -96,7 +110,7 @@ public interface RestaurantOrderDao {
 
 	@Select("select o.oorder_id as orderId, " +
 		" o.oorder_no as orderNo, " +
-		" o.customer_id as customerId, " +
+		" o.person_id as personId, " +
 		" o.p_method as pMethod, " +
 		" o.g_total as gTotal, " +
 		" o.booking_id as bookingId, " +

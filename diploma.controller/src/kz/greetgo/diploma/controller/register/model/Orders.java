@@ -13,7 +13,7 @@ public class Orders {
 
 	public String orderNo;
 
-	public Integer customerId;
+	public String personId;
 
 	public String pMethod;
 
@@ -30,7 +30,7 @@ public class Orders {
 			"orderItems=" + orderItems +
 			", orderId=" + orderId +
 			", orderNo='" + orderNo + '\'' +
-			", customerId=" + customerId +
+			", personId=" + personId +
 			", pMethod='" + pMethod + '\'' +
 			", gTotal=" + gTotal +
 			", bookingId=" + bookingId +

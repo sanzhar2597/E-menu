@@ -33,7 +33,7 @@ public class RestaurantOrderController implements Controller {
 	@ToJson
 	@PublicAccess
 	@OnGet("/customer")
-	public ArrayList<Customer> getCustomerList() {
+	public ArrayList<Person> getCustomerList() {
 
 		return restaurantOrderRegister.get().getCustomerList();
 	}
@@ -53,6 +53,14 @@ public class RestaurantOrderController implements Controller {
 	public List<OrderList> getOrderList() {
 
 		return restaurantOrderRegister.get().getOrderList();
+	}
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/get-orders-by-id")
+	public List<OrderList> getOrderListById(@Par("id") String personId) {
+
+		return restaurantOrderRegister.get().getOrderListById(personId);
 	}
 
 	@ToJson

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {LanguagesService} from "../shared/languages.service";
 import {LoginService} from "../login/login.service";
+import {BookingService} from "../shared/booking.service";
 
 @Component({
   selector: 'app-orders',
@@ -13,23 +14,48 @@ import {LoginService} from "../login/login.service";
 export class OrdersComponent implements OnInit {
   orderList;
   todayTime;
+  personId:number| string;
 
   constructor(private service: OrderService,
               private router: Router,
               private toastr: ToastrService,
               public languagesService: LanguagesService,
-              public loginService: LoginService) {
+              public loginService: LoginService,
+              public bookingService:BookingService,) {
   }
 
   ngOnInit() {
-    this.refreshList();
+    this.getPersonId()
+
+    // this.refreshList();
     this.todayTime = this.formatDate(new Date())
   }
 
-  refreshList() {
-    this.service.getOrderList().then(res => {
-      console.log("RES::::", res)
+  getPersonId() {
+    this.loginService.getPersonDisplay().then(value1 => {
+      if (value1.username) {
+        this.bookingService.getPersonId(value1.username).then(value => {
+          this.personId = value1.username;
+      this.refreshList(this.personId)
 
+        })
+      }
+      else {
+      this.userForLocalStorage();
+        this.refreshList(this.personId)
+      }
+
+    });
+  }
+
+  userForLocalStorage() {
+    let person: any = JSON.parse(localStorage.getItem('person'))
+    this.personId = person.id
+  }
+
+
+  refreshList(id:string| number) {
+    this.service.getOrderList(id).then(res => {
 
       this.orderList = res.body
       this.showDate()
@@ -75,7 +101,7 @@ export class OrdersComponent implements OnInit {
 
     item.status = 2;
     this.service.updateOrderStatus(item).then(value => {
-      this.refreshList()
+      this.refreshList(this.personId)
     })
 
   }
@@ -84,7 +110,7 @@ export class OrdersComponent implements OnInit {
 
     item.status = 3;
     this.service.updateOrderStatus(item).then(value => {
-      this.refreshList()
+      this.refreshList(this.personId)
     })
   }
 
@@ -106,7 +132,7 @@ export class OrdersComponent implements OnInit {
   onOrderDelete(id: number) {
     if (confirm('Are you sure to delete this record?')) {
       this.service.deleteOrder(id).then(res => {
-        this.refreshList();
+        this.refreshList(this.personId);
         this.toastr.warning("Deleted Successfully", "Restaurent App.");
       });
     }

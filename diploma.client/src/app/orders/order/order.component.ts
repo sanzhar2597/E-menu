@@ -22,6 +22,9 @@ export class OrderComponent implements OnInit {
 
   customerList: Customer[];
 
+  username: String = "";
+  isAuthorized: boolean = false;
+
   isValid: boolean;
 
   constructor(public service: OrderService,
@@ -56,18 +59,55 @@ export class OrderComponent implements OnInit {
         console.log("RES: :", res)
       }).catch(e => console.log(e))
 
+
+    this.getPersonId()
   }
 
   static formDataAssign(obj: Order): Order {
     let order: Order = new Order();
     order.orderId = obj.orderId;
     order.orderNo = obj.orderNo;
-    order.customerId = obj.customerId;
+    order.personId = obj.personId;
     order.pMethod = obj.pMethod;
     order.gTotal = obj.gTotal;
     order.bookingId = obj.bookingId;
     order.status = obj.status
     return order
+  }
+
+  changeUserName(username: string) {
+
+    var person = JSON.parse(localStorage.getItem('person'))
+    person.name = username
+    person.isChange = true;
+    localStorage.setItem('person', JSON.stringify(person))
+    console.log('1111')
+  }
+
+  getPersonId() {
+    this.loginService.getPersonDisplay().then(value1 => {
+      if (value1.username) {
+        this.bookingService.getPersonId(value1.username).then(value => {
+          this.isAuthorized = true;
+          this.username = value1.username
+          this.service.formData.personId = value.body
+        })
+      }
+      else {
+        this.userForLocalStorage()
+      }
+
+    });
+  }
+
+  userForLocalStorage() {
+    let person: any = JSON.parse(localStorage.getItem('person'))
+    if (!this.service.formData.personId) {
+      this.service.formData.personId = person.id
+    }
+    if(person.isChange){
+      this.username = person.name
+    }
   }
 
   resetForm(form?: NgForm) {
@@ -76,7 +116,7 @@ export class OrderComponent implements OnInit {
     this.service.formData = {
       orderId: 0,
       orderNo: Math.floor(100000 + Math.random() * 900000).toString(),
-      customerId: 0,
+      personId: JSON.parse(localStorage.getItem('person')).id,
       pMethod: '',
       gTotal: 0,
       bookingId: null,
@@ -115,7 +155,7 @@ export class OrderComponent implements OnInit {
 
   validateForm() {
     this.isValid = true;
-    if (this.service.formData.customerId == 0) {
+    if (this.service.formData.personId == "") {
       this.isValid = false;
     }
     else if (this.service.orderItems.length == 0) {

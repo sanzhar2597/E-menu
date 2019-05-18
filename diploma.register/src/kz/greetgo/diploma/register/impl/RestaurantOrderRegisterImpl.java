@@ -27,7 +27,7 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 	}
 
 	@Override
-	public ArrayList<Customer> getCustomerList() {
+	public ArrayList<Person> getCustomerList() {
 
 		return restaurantOrderDao.get().selectCustomer();
 	}
@@ -51,6 +51,7 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 							orderStatus.orderItemId = orderItemId;
 							orderStatus.updateDate = new Timestamp(new Date().getTime());
 							orderStatus.status = 1;
+
 							restaurantOrderDao.get().insertOrderStatus(orderStatus);
 						}
 						orderStatus = new OrderStatus();
@@ -97,6 +98,15 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 		orderLists = restaurantOrderDao.get().selectOrderList();
 		return orderLists;
 	}
+
+	@Override
+	public List<OrderList> getOrderListById(String personId) {
+
+		List<OrderList> orderLists = new ArrayList<>();
+		orderLists = restaurantOrderDao.get().selectOrderListById(personId);
+
+		return orderLists;
+	};
 
 	@Override
 	public void updateOrderStatus(OrderList orderList) {
@@ -168,7 +178,9 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 				items.add(restaurantOrderDao.get().selectItemById(itemCount.itemId));
 			}
 		return items;
-	};
+	}
+
+
 
 
 	public static void main(String[] args) {

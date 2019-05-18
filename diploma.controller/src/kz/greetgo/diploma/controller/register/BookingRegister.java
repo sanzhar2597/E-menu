@@ -9,9 +9,9 @@ public interface BookingRegister {
 
 	String checkTime(Booking booking);
 
-	void insertBooking(Booking booking) throws ParseException;
+	void insertBooking(Booking booking) throws Exception;
 
 	List<String> getRestaurantTable();
 
-
+	String getPersonId(String username);
 }

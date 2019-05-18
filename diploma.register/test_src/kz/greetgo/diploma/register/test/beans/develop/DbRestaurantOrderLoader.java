@@ -60,7 +60,7 @@ public class DbRestaurantOrderLoader {
 
 		restaurantOrderTestDao.get().insertItem(id, name, price);
 	}
-	private void addCustomer(Integer id, String name) {
+	private void addCustomer(String id, String name) {
 
 		restaurantOrderTestDao.get().insertCustomer(id, name);
 	}
@@ -84,14 +84,14 @@ public class DbRestaurantOrderLoader {
 	}
 	private void loadCustomer() {
 
-		addCustomer(takeDefaultIdIncreased(), "Chingis");
-		addCustomer(increaseIdincreased(), "Nazar");
-		addCustomer(increaseIdincreased(), "Arman");
-		addCustomer(increaseIdincreased(), "Leha");
-		addCustomer(increaseIdincreased(), "Nazarbaev");
-		addCustomer(increaseIdincreased(), "Putin");
-		addCustomer(increaseIdincreased(), "Sanzhar");
-		addCustomer(increaseIdincreased(), "Baktugul");
+		addCustomer(String.valueOf(takeDefaultIdIncreased()), "Chingis");
+		addCustomer(String.valueOf(increaseIdincreased()), "Nazar");
+		addCustomer(String.valueOf(increaseIdincreased()), "Arman");
+		addCustomer(String.valueOf(increaseIdincreased()), "Leha");
+		addCustomer(String.valueOf(increaseIdincreased()), "Nazarbaev");
+		addCustomer(String.valueOf(increaseIdincreased()), "Putin");
+		addCustomer(String.valueOf(increaseIdincreased()), "Sanzhar");
+		addCustomer(String.valueOf(increaseIdincreased()), "Baktugul");
 
 	}
 }

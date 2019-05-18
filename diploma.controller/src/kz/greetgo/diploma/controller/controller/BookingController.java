@@ -32,9 +32,18 @@ public class BookingController implements Controller {
 	@ToJson
 	@PublicAccess
 	@OnGet("/save")
-	public void insertBooking(@Par("booking") @Json Booking booking) throws ParseException {
+	public void insertBooking(@Par("booking") @Json Booking booking) throws Exception {
 
 		bookingRegister.get().insertBooking(booking);
+	}
+
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/person-id")
+	public String getPersonId(@Par("username") String username) throws Exception {
+
+		return bookingRegister.get().getPersonId(username);
 	}
 
 
@@ -43,7 +52,7 @@ public class BookingController implements Controller {
 	@OnGet("/restaurant-table")
 	public List<String> getRestaurantTable() throws ParseException {
 
-		return  bookingRegister.get().getRestaurantTable();
+		return bookingRegister.get().getRestaurantTable();
 	}
 
 }

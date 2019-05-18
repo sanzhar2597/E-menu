@@ -9,7 +9,7 @@ public interface RestaurantOrderRegister {
 
 	ArrayList<Item> getItemList();
 
-	ArrayList<Customer> getCustomerList();
+	ArrayList<Person> getCustomerList();
 
 	void postOrderItems(Orders orders);
 
@@ -24,4 +24,6 @@ public interface RestaurantOrderRegister {
 	List<Item> prepareOffer(List<OrderItem> orderItems);
 
 	List<Item> prepareOfferAlgorithmAnt(List<OrderItem> orderItems);
+
+	List<OrderList> getOrderListById(String personId);
 }

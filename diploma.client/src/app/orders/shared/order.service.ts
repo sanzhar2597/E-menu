@@ -25,9 +25,8 @@ export class OrderService {
     return this.httpService.post('/restaurant' + '/order-items', {orderItems: JSON.stringify(orderItems)})
   }
 
-  getOrderList() {
-
-    return this.httpService.get('/restaurant/get-orders').toPromise();
+  getOrderList(id:string|number) {
+    return this.httpService.get('/restaurant/get-orders-by-id',{id}).toPromise();
   }
 
   getOrderByID(id: number): any {

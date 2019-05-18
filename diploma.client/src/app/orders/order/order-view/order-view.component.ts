@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OrderComponent} from "../order.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrderItemsComponent} from "../../order-items/order-items.component";
@@ -33,7 +33,7 @@ export class OrderViewComponent implements OnInit {
               private currentRoute: ActivatedRoute,
               private bookingService: BookingService,
               private languagesService: LanguagesService,
-              public loginService : LoginService) {
+              public loginService: LoginService) {
   }
 
   ngOnInit() {
@@ -63,7 +63,7 @@ export class OrderViewComponent implements OnInit {
     let order: Order = new Order();
     order.orderId = obj.orderId;
     order.orderNo = obj.orderNo;
-    order.customerId = obj.customerId;
+    order.personId = obj.personId;
     order.pMethod = obj.pMethod;
     order.gTotal = obj.gTotal;
     order.bookingId = obj.bookingId;
@@ -77,7 +77,7 @@ export class OrderViewComponent implements OnInit {
     this.service.formData = {
       orderId: 0,
       orderNo: Math.floor(100000 + Math.random() * 900000).toString(),
-      customerId: 0,
+      personId:  JSON.parse(localStorage.getItem('person')).id,
       pMethod: '',
       gTotal: 0,
       bookingId: null,
@@ -116,7 +116,7 @@ export class OrderViewComponent implements OnInit {
 
   validateForm() {
     this.isValid = true;
-    if (this.service.formData.customerId== 0) {
+    if (this.service.formData.personId == "") {
       this.isValid = false;
     }
     else if (this.service.orderItems.length == 0) {

@@ -12,11 +12,16 @@
       </div>
       <div class="form-group">
         <label>{{languagesService.languages.customer.toFirstTitleCase()}}</label>
-        <select name="customerId" #customerId="ngModel" [(ngModel)]="service.formData.customerId" class="form-control"
-                [class.is-invalid]="!isValid && service.formData.customerId==0">
+        <!--<select name="personId"1 #personId="ngModel" [(ngModel)]="service.formData.personId" class="form-control"
+                [class.is-invalid]="!isValid && service.formData.personId==''">
           <option value="0">-{{languagesService.languages.select}}-</option>
-          <option *ngFor="let item of customerList" [value]="item.customerId">{{item.name}}</option>
-        </select>
+          <option *ngFor="let item of customerList" [value]="item.personId">{{item.name}}</option>
+        </select>-->
+        <input *ngIf="!isAuthorized" name="personId" #personId="ngModel" [(ngModel)]="username" class="form-control"
+               (keyup)="changeUserName(username)"
+               [class.is-invalid]="username =='' ">
+        <input *ngIf="isAuthorized" name="personId" #personId="ngModel" [(ngModel)]="username" class="form-control"
+               disabled>
       </div>
     </div>
     <div class="col-md-6">

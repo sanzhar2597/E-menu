@@ -1,14 +1,14 @@
 package kz.greetgo.diploma.controller.register.model;
 
-public class Customer {
+public class Person {
 
-	public Integer customerId;
+	public String personId;
 
 	@Override
 	public String toString() {
 
-		return "Customer{" +
-			"cusomerId=" + customerId +
+		return "Person{" +
+			"cusomerId=" + personId +
 			", name='" + name + '\'' +
 			'}';
 	}

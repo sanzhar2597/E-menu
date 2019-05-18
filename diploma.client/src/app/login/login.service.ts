@@ -39,7 +39,7 @@ export class LoginService {
     return this.hasCan(UserCan.VIEW_ADMIN);
   }
   public get canViewWaiter(): boolean {
-    return this.hasCan(UserCan.VIEW_WAITER);
+    return this.hasCan(UserCan.VIEW_STAFF);
   }
 
   private hasCan(needCan: UserCan) {

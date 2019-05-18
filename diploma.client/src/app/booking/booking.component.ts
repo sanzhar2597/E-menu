@@ -48,8 +48,9 @@ export class BookingComponent implements OnInit {
       recordDateTo: "12:00",
       tableType: this.bookingService.table.length ? this.bookingService.table[0] : "",
       phoneNumber: "8707",
-      customerId: "",
+      personId: "",
     }
+    this.userForLocalStorage()
   }
 
   onSubmit(form: NgForm) {
@@ -111,8 +112,23 @@ export class BookingComponent implements OnInit {
       if (value1.username) {
         this.isRegisteredClient = true;
         this.bookingService.booking.phoneNumber = value1.username;
+
+        this.bookingService.getPersonId(value1.username).then(value => {
+          this.bookingService.booking.personId = value.body
+        })
       }
+      else {
+        this.userForLocalStorage()
+      }
+
     });
+  }
+
+  userForLocalStorage() {
+    let person: any = JSON.parse(localStorage.getItem('person'))
+    if (!this.bookingService.booking.personId) {
+      this.bookingService.booking.personId = person.id
+    }
   }
 
   selectTable() {

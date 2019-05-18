@@ -8,8 +8,8 @@
 |   |  |  |--order-items.component.ts|.html|.css
 |   |  |
 |   |  +--● shared
-|   |     |--customer.model.ts
-|   |     |--customer.service.ts
+|   |     |--person.model.ts
+|   |     |--person.service.ts
 |   |     |--item.model.ts
 |   |     |--item.service.ts
 |   |     |--orderItem.model.ts

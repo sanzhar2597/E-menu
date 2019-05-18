@@ -8,5 +8,5 @@ export class Booking {
   public recordDateTo:string;
   public tableType:string;
   public phoneNumber:string;
-  public customerId:number|string;
+  public personId:number|string;
 }

@@ -62,7 +62,7 @@ public class DbBookingLoader {
 		booking.recordDateTo = String.valueOf(DateUtils.addHours(new Date(), 2));
 		booking.tableType = table.name;
 		booking.phoneNumber = "8787777777777777";
-		booking.customerId = 1;
+		booking.personId= bookingTestDao.get().getPersonId();
 		bookingTestDao.get().insertBooking(booking);
 	}
 

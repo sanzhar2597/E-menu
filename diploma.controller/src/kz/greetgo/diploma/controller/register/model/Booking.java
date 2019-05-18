@@ -11,7 +11,7 @@ public class Booking {
 	public String recordDateTo;
 	public String tableType;
 	public String phoneNumber;
-	public Integer customerId;
+	public String personId;
 
 	@Override
 	public String toString() {
@@ -25,7 +25,7 @@ public class Booking {
 			", recordDateTo='" + recordDateTo + '\'' +
 			", tableType=" + tableType +
 			", phoneNumber='" + phoneNumber + '\'' +
-			", customerId=" + customerId +
+			", personId=" + personId +
 			'}';
 	}
 }

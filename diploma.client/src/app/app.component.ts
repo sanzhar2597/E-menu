@@ -22,10 +22,27 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     await this.login.start();
+    this.login.getPersonDisplay().then(value => {
+      this.createLocalStorageUser()
+    })
     // document.getElementById("navItem1").classList.add("active")
   }
 
   addClass() {
+  }
+
+  createLocalStorageUser() {
+    var person: any = {};
+    if (!this.isLocalStorageUser()) {
+      person.name = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      person.id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      localStorage.setItem('person', JSON.stringify(person))
+    }
+
+  }
+
+  isLocalStorageUser() {
+    return localStorage.getItem('person')
   }
 
   showMainPage(title: string, id?: any) {

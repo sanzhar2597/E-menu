@@ -7,7 +7,7 @@ public enum UserCan {
   VIEW_ABOUT,
   VIEW_ADMIN,
   VIEW_MANAGER,
-  VIEW_WAITER,
+  VIEW_STAFF,
   ;
 
   //The following code would be not removed after regenerating

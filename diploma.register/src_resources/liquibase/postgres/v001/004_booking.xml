@@ -14,8 +14,8 @@
         record_date_to varchar(100),
         table_type varchar(100),
         phone_number varchar(100),
-        customer_id int,
-        foreign key(customer_id) references customer(customer_id)
+        person_id varchar(100),
+        foreign key(person_id) references person(id)
       )
     ]]></sql>
   </changeSet>

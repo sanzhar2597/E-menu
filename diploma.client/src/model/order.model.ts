@@ -1,7 +1,7 @@
 export class Order {
   orderId: number;
   orderNo: string;
-  customerId: number;
+  personId: string;
   pMethod: string;
   gTotal: number;
   bookingId:number;
