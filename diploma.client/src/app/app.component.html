@@ -19,20 +19,12 @@
           <a class="nav-link" routerLink="/admin">{{languagesService.languages.admin.toFirstTitleCase()}}<span
             class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" id="navItem4" (click)="showMainPage('registration')">
-          <a class="nav-link"
-             routerLink="/registration">{{languagesService.languages.registration.toFirstTitleCase()}}</a>
-        </li>
-        <li class="nav-item" id="navItem5" (click)="showMainPage('login')">
-          <a class="nav-link" *ngIf="!login.isAuthenticated" (click)="showMainPage('login')"
-             routerLink="/login">{{languagesService.languages.login.toFirstTitleCase()}}</a>
-        </li>
         <li class="nav-item" id="navItem6" (click)="showMainPage('login')">
           <a class="nav-link" (click)="showMainPage('about')"
              routerLink="/about">{{languagesService.languages.about.toFirstTitleCase()}}</a>
         </li>
-        <li class="nav-item" id="navItem7" (click)="linkTelegram()">
-          <a class="nav-link" (click)="linkTelegram()">{{languagesService.languages.telegrambot.toFirstTitleCase()}}</a>
+        <li class="nav-item" id="navItem8" (click)="showMainPage('orders')">
+          <a class="nav-link" (click)="showMainPage('orders')" routerLink="/orders">{{languagesService.languages.listorders.toFirstTitleCase()}}</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -44,7 +36,19 @@
             <a class="dropdown-item" (click)="changeLanguage(const_languages.EN_LANGUAGE)">{{languagesService.languages.english}}</a>
           </div>
         </li>
+        <li class="nav-item" id="navItem4" (click)="showMainPage('registration')">
+          <a class="nav-link"
+             routerLink="/registration">{{languagesService.languages.registration.toFirstTitleCase()}}</a>
+        </li>
+        <li class="nav-item" id="navItem5" (click)="showMainPage('login')">
+          <a class="nav-link" *ngIf="!login.isAuthenticated" (click)="showMainPage('login')"
+             routerLink="/login">{{languagesService.languages.login.toFirstTitleCase()}}</a>
+        </li>
+        <li class="nav-item" id="navItem7" (click)="linkTelegram()">
+          <a class="nav-link" (click)="linkTelegram()">{{languagesService.languages.telegrambot.toFirstTitleCase()}}</a>
+        </li>
       </ul>
+
 
       <span class="navbar-text text-center px-md-2" *ngIf="login.personDisplay">
       Аккаунт:   {{login.personDisplay.username}}

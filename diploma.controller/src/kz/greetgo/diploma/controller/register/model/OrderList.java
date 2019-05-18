@@ -1,5 +1,7 @@
 package kz.greetgo.diploma.controller.register.model;
 
+import java.util.Date;
+
 public class OrderList {
 
 	public Integer orderId;
@@ -14,6 +16,8 @@ public class OrderList {
 
 	public Integer status;
 
+	public Date recordDateDay;
+
 	@Override
 	public String toString() {
 
@@ -24,6 +28,7 @@ public class OrderList {
 			", gTotal=" + gTotal +
 			", pMethod='" + pMethod + '\'' +
 			", status=" + status +
+			", recordDateDay=" + recordDateDay +
 			'}';
 	}
 }

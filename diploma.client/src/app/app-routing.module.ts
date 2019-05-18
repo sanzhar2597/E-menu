@@ -8,6 +8,7 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {BookingComponent} from "./booking/booking.component";
 import {AboutComponent} from "./about/about.component";
 import {AuthGuard} from "./auth/auth.guard";
+import {OrderViewComponent} from "./orders/order/order-view/order-view.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'order', pathMatch: 'full'},
@@ -16,6 +17,13 @@ const routes: Routes = [
       {path: '', component: OrderComponent},
       {path: 'edit/:id', component: OrderComponent},
       {path: '', component: OrderComponent},
+    ]
+  },
+  {
+    path: 'order-view', children: [
+      {path: '', component: OrderViewComponent},
+      {path: 'edit/:id', component: OrderViewComponent},
+      {path: '', component: OrderViewComponent},
     ]
   },
   {path: 'orders', component: OrdersComponent},

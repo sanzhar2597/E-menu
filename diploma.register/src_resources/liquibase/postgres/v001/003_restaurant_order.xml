@@ -31,6 +31,7 @@
         customer_id int,
         p_method varchar(100),
         g_total decimal,
+        booking_id int,
         foreign key(customer_id) references customer(customer_id)
       )
     ]]></sql>

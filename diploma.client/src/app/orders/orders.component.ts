@@ -12,6 +12,7 @@ import {LoginService} from "../login/login.service";
 })
 export class OrdersComponent implements OnInit {
   orderList;
+  todayTime;
 
   constructor(private service: OrderService,
               private router: Router,
@@ -22,6 +23,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     this.refreshList();
+    this.todayTime = this.formatDate(new Date())
   }
 
   refreshList() {
@@ -30,7 +32,43 @@ export class OrdersComponent implements OnInit {
 
 
       this.orderList = res.body
+      this.showDate()
+      this.sortByKey(this.orderList, "orderNo")
+
     });
+  }
+
+  sortByKey(array, key) {
+    return array.sort(function (a, b) {
+      var x = a[key];
+      var y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
+
+  showDate() {
+    for (let key in this.orderList) {
+      if (!this.orderList[key].recordDateDay) {
+        this.orderList[key].recordDateDay = "online"
+        continue
+      }
+      this.orderList[key].recordDateDay = this.formatDate(new Date(this.orderList[key].recordDateDay))
+    }
+  }
+
+  formatDate(date) {
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
   }
 
   changeStatusAccept(item: any) {
@@ -50,15 +88,17 @@ export class OrdersComponent implements OnInit {
     })
   }
 
-  openForEdit(item:any) {
+  openForEdit(item: any) {
 
-    if (item.status > 1) {
+    if (item.status > 1 || this.loginService.canViewWaiter) {
+      this.router.navigate(['/order-view/edit/' + item.orderId]);
       return
     }
 
-    if (this.loginService.canViewWaiter) {
+    /*if (this.loginService.canViewWaiter) {
       return
-    }
+    }*/
+
 
     this.router.navigate(['/order/edit/' + item.orderId]);
   }

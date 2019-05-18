@@ -26,6 +26,7 @@ import {AlertComponent} from './alert/alert.component';
 import {LanguagesService} from "./shared/languages.service";
 import { TableSelectionComponent } from './table-selection/table-selection.component';
 import { BoldDirectiveDirective } from './bold-directive.directive';
+import { OrderViewComponent } from './orders/order/order-view/order-view.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { BoldDirectiveDirective } from './bold-directive.directive';
     AlertComponent,
     TableSelectionComponent,
     BoldDirectiveDirective,
+    OrderViewComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,

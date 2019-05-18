@@ -1,18 +1,28 @@
-.pay-in-card{
+.pay-in-card {
   background-image: url("/assets/img/card-in-use.png");
   background-position: center;
   background-size: contain;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
 }
-.pay-in-cash{
+
+.pay-in-cash {
   background-image: url("/assets/img/cash-in-hand.png");
   background-position: center;
   background-size: contain;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
 }
-.pay-in-cash-or-card{
+
+.pay-in-cash-or-card {
   background-image: url("/assets/img/card-and-cash.png");
   background-position: center;
   background-size: contain;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
+}
+
+a.btn.text-secondary {
+  cursor: copy;
+}
+
+a.btn.text-secondary.not-allowed {
+  cursor: not-allowed;
 }

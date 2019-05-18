@@ -84,6 +84,8 @@ export class Languages {
     status: 'cтатус',
     acceptfood: 'принято',
     telegrambot: 'телеграм',
+    recorddateday:"забронированный день",
+    listorders:"список заказов",
 
 
   };
@@ -174,6 +176,9 @@ export class Languages {
     status: 'status',
     acceptfood: 'accept',
     telegrambot: 'telegram',
+    recorddateday:"booked day",
+    listorders:"list orders",
+
 
 
 

@@ -1,0 +1,42 @@
+<form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
+  <table class="table table-borderless">
+    <thead class="thead-light">
+    <th>{{languagesService.languages.food}}</th>
+    <th>{{languagesService.languages.price}}</th>
+    <th>{{languagesService.languages.quantity}}</th>
+    <th>{{languagesService.languages.total}}</th>
+    <th>
+      <a href="" class="btn btn-sm btn-success text-white"  *ngIf="service.formData.status==1 && !loginService.canViewWaiter" (click)="addOrEditOrderItem(null, service.formData.orderId)"><i
+        class="fa fa-plus"></i></a>
+    </th>
+    </thead>
+    <tbody>
+    <tr *ngIf="service.orderItems.length==0" [class.text-danger]="!isValid && service.orderItems.length==0">
+      <td class="font-italic text-center" colspan="5">
+        {{languagesService.languages.nofooditemselectd}}
+      </td>
+    </tr>
+
+    <tr *ngFor="let item of service.orderItems; let i=index">
+      <td>{{item.itemName}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.total}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div [hidden]="!service.items.length">
+    <div *ngFor="let item of service.items, index as ind" class="alert alert-warning alert-dismissible fade show"
+         role="alert">
+      <strong>{{languagesService.languages.withthisproduct}}- '{{ (service.orderItems.length-ind >= ind ?
+        service.orderItems[service.orderItems.length-1-ind].itemName :
+        service.orderItems[service.orderItems.length-1].itemName)}}' {{ind}}
+        {{languagesService.languages.stillorder}} </strong> {{item.name}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+</form>
+

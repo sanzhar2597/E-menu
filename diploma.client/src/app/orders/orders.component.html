@@ -5,6 +5,8 @@
   <th>{{languagesService.languages.pmethod.toFirstTitleCase()}}</th>
   <th>{{languagesService.languages.gtotal.toFirstTitleCase()}}</th>
   <th>{{languagesService.languages.status.toFirstTitleCase()}}</th>
+  <th>{{languagesService.languages.recorddateday.toFirstTitleCase()}}</th>
+
   <th *ngIf="loginService.canViewWaiter"
       class="text-center">{{languagesService.languages.acceptfood.toFirstTitleCase()}}
   </th>
@@ -19,15 +21,24 @@
       [class.table-info]="item.status==3">
     <th (click)="openForEdit(item)">{{item.orderNo}}</th>
     <td (click)="openForEdit(item)">{{item.name}}</td>
-    <td (click)="openForEdit(item)" [class.pay-in-card]="item.pMethod=='Card'" [class.pay-in-cash]="item.pMethod=='Cash'" [class.pay-in-cash-or-card]="item.pMethod==''"><!--{{item.pMethod}}--></td>
-    <td (click)="openForEdit(item.orderId)">{{item.gTotal}}</td>
+    <td (click)="openForEdit(item)" [class.pay-in-card]="item.pMethod=='Card'"
+        [class.pay-in-cash]="item.pMethod=='Cash'" [class.pay-in-cash-or-card]="item.pMethod==''">
+      <!--{{item.pMethod}}--></td>
+    <td (click)="openForEdit(item)">{{item.gTotal}}</td>
     <td>
       <span class="badge badge-warning" *ngIf="item.status==1">В ожидании</span>
       <span class="badge badge-primary" *ngIf="item.status==2">В процессе</span>
       <span class="badge badge-success" *ngIf="item.status==3">Завершено</span>
     </td>
+    <td (click)="openForEdit(item)">{{item.recordDateDay}}
+    </td>
     <td *ngIf="loginService.canViewWaiter">
-      <a class="btn text-secondary" *ngIf="item.status==1"
+
+      <a class="btn text-secondary not-allowed"
+         *ngIf="item.status==1 && (item.recordDateDay !='online' && item.recordDateDay !=todayTime)">
+        не доступен <i class="fa fa-check-square-o"></i></a>
+      <a class="btn text-secondary"
+         *ngIf="item.status==1 && (item.recordDateDay =='online' || item.recordDateDay ==todayTime)"
          (click)="changeStatusAccept(item)">Принять <i class="fa fa-check-square-o"></i></a>
 
       <a class="btn text-primary" *ngIf="item.status==2"
@@ -36,6 +47,7 @@
       <a class="btn text-success" *ngIf="item.status==3">завершено <i class="fa fa-check-square-o"></i></a>
 
     </td>
+
     <td *ngIf="!loginService.canViewWaiter">
       <a class="btn text-danger" *ngIf="item.status==1"
          (click)="onOrderDelete(item.orderId)"><i class="fa fa-trash fa-lg"></i></a>

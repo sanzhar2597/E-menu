@@ -1,24 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import {OrderService} from "../shared/order.service";
-import {NgForm} from "@angular/forms";
-import {MatDialog, MatDialogConfig} from "@angular/material";
-import {OrderItemsComponent} from "../order-items/order-items.component";
-import {CustomerService} from "../shared/customer.service";
+import { Component, OnInit } from '@angular/core';
+import {OrderComponent} from "../order.component";
 import {ActivatedRoute, Router} from "@angular/router";
+import {OrderItemsComponent} from "../../order-items/order-items.component";
+import {Order} from "../../../../model/order.model";
+import {LoginService} from "../../../login/login.service";
+import {LanguagesService} from "../../../shared/languages.service";
+import {CustomerService} from "../../shared/customer.service";
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {OrderService} from "../../shared/order.service";
+import {BookingService} from "../../../shared/booking.service";
+import {NgForm} from "@angular/forms";
+import {Item} from "../../../../model/item.model";
 import {ToastrService} from "ngx-toastr";
-import {Order} from "../../../model/order.model";
-import {Item} from "../../../model/item.model";
-import {BookingService} from "../../shared/booking.service";
-import {LanguagesService} from "../../shared/languages.service";
-import {LoginService} from "../../login/login.service";
-import {Customer} from "../../../model/customer.model";
+import {Customer} from "../../../../model/customer.model";
 
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styles: []
+  selector: 'app-order-view',
+  templateUrl: './order-view.component.html',
+  styleUrls: ['./order-view.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderViewComponent implements OnInit {
 
   customerList: Customer[];
 
@@ -32,7 +33,7 @@ export class OrderComponent implements OnInit {
               private currentRoute: ActivatedRoute,
               private bookingService: BookingService,
               private languagesService: LanguagesService,
-              public loginService: LoginService) {
+              public loginService : LoginService) {
   }
 
   ngOnInit() {
@@ -115,7 +116,7 @@ export class OrderComponent implements OnInit {
 
   validateForm() {
     this.isValid = true;
-    if (this.service.formData.customerId == 0) {
+    if (this.service.formData.customerId== 0) {
       this.isValid = false;
     }
     else if (this.service.orderItems.length == 0) {

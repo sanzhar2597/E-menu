@@ -19,8 +19,8 @@ public interface RestaurantOrderDao {
 	ArrayList<Customer> selectCustomer();
 
 
-	@Select("insert into oorder( oorder_no, customer_id, p_method, g_total) " +
-		"values (#{order.orderNo}, #{order.customerId}, #{order.pMethod}, #{order.gTotal}) returning oorder_id")
+	@Select("insert into oorder(oorder_no, customer_id, p_method, g_total, booking_id) " +
+		"values (#{order.orderNo}, #{order.customerId}, #{order.pMethod}, #{order.gTotal}, #{order.bookingId}) returning oorder_id")
 	Integer insertOorder(@Param("order") Orders orders);
 
 	@Update("update oorder set " +
@@ -63,10 +63,12 @@ public interface RestaurantOrderDao {
 		"  c.name        as name,\n" +
 		"  o.g_total     as gTotal,\n" +
 		"  o.p_method    as pMethod,\n" +
+		"  b.record_date_day,\n" +
 		"  status.status as status\n" +
 		"from oorder o\n" +
 		"  inner join customer c on o.customer_id = c.customer_id\n" +
-		"  inner join order_status status on o.oorder_id = status.oorder_id")
+		"  inner join order_status status on o.oorder_id = status.oorder_id" +
+		"  left join booking b on o.booking_id = b.booking_id")
 	List<OrderList> selectOrderList();
 
 	@Select("select o.oorder_id as orderId, o.oorder_no as orderNo," +
@@ -92,9 +94,16 @@ public interface RestaurantOrderDao {
 	void deleteOrderItemByorderId(@Param("id") Integer id);
 
 
-	@Select("select oorder_id as orderId, oorder_no as orderNo, " +
-		"customer_id as customerId, p_method as pMethod, " +
-		" g_total as gTotal from oorder where oorder_id = #{id}")
+	@Select("select o.oorder_id as orderId, " +
+		" o.oorder_no as orderNo, " +
+		" o.customer_id as customerId, " +
+		" o.p_method as pMethod, " +
+		" o.g_total as gTotal, " +
+		" o.booking_id as bookingId, " +
+		" status.status as status  " +
+		" from oorder o " +
+		" inner join order_status status on o.oorder_id = status.oorder_id " +
+		" where o.oorder_id = #{id}")
 	Orders selectorOrdersById(@Param("id") Integer id);
 
 	@Select("select\n" +

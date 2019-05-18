@@ -53,6 +53,7 @@ export class OrderService {
     }
   }
   updateOrderStatus(item:any){
+      item.recordDateDay = null
     return this.httpService.get('/restaurant/update-order-status', {orderList:JSON.stringify(item)}).toPromise();
   }
 

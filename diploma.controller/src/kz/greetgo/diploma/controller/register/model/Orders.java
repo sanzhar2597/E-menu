@@ -21,4 +21,20 @@ public class Orders {
 
 	public Integer bookingId;
 
+	public Integer status;
+
+	@Override
+	public String toString() {
+
+		return "Orders{" +
+			"orderItems=" + orderItems +
+			", orderId=" + orderId +
+			", orderNo='" + orderNo + '\'' +
+			", customerId=" + customerId +
+			", pMethod='" + pMethod + '\'' +
+			", gTotal=" + gTotal +
+			", bookingId=" + bookingId +
+			", status=" + status +
+			'}';
+	}
 }
