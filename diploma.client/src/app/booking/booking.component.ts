@@ -5,7 +5,7 @@ import {NextOperationComponent} from "../next-operation/next-operation.component
 import {LoginService} from "../login/login.service";
 import {Router} from "@angular/router";
 import {AlertComponent} from "../alert/alert.component";
-import {NgForm} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {LanguagesService} from "../shared/languages.service";
 import {TableSelectionComponent} from "../table-selection/table-selection.component";
 
@@ -18,15 +18,36 @@ export class BookingComponent implements OnInit {
 
 
   public isRegisteredClient = false;
+  public form: FormGroup = new FormGroup({
+    phoneNumber: new FormControl('', Validators.required)
+  });
+
+
+  userForm: FormGroup;
+  mask: any[] = ['8', '(', /[1-9]/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
+
 
   constructor(public bookingService: BookingService,
               private dialog: MatDialog,
               private login: LoginService,
               private router: Router,
-              public languagesService: LanguagesService) {
+              public languagesService: LanguagesService,
+              public fb: FormBuilder,) {
   }
 
   ngOnInit() {
+
+
+    this.userForm = this.fb.group({
+      phoneNumber: ['', [
+        Validators.required,
+        Validators.pattern('[\\d]{1}\\(?[\\d]{3}\\)?[\\d]{3}-?[\\d]{2}-?[\\d]{2}')
+      ]
+      ],
+    });
+
+    console.log("dasdasa!!!!:", this.userForm.getRawValue())
+
     this.bookingService.getRestaurantTable().then(value => {
         this.bookingService.table = value.body
         this.resetForm();
@@ -35,6 +56,11 @@ export class BookingComponent implements OnInit {
     this.resetForm();
     this.getPhoneNumber();
 
+  }
+
+  unmask(val) {
+    if (!val) return val;
+    return val.replace(/\D+/g, '');
   }
 
 
@@ -54,7 +80,12 @@ export class BookingComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    this.bookingService.booking.phoneNumber =this.userForm.getRawValue().phoneNumber
+    this.unmask(this.bookingService.booking.phoneNumber);
     event.preventDefault();
+    if(!this.userForm.get('phoneNumber').valid){
+      return
+    }
     let self = this;
     console.log(this.bookingService.booking)
     const dialogConfig = new MatDialogConfig();

@@ -31,14 +31,18 @@
       </div>
     </div>
     <div class="col-md-12">
-      <div class="form-group">
-        <label>{{languagesService.languages.numberoftelephone.toFirstTitleCase()}}</label>
-        <div class="input-group">
-          <input name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="bookingService.booking.phoneNumber"
-                 class="form-control" type="number" disabled={{isRegisteredClient}}>
-        </div>
-      </div>
 
+      <form  [formGroup]="userForm" >
+        <div class="form-group">
+          <label>{{languagesService.languages.numberoftelephone.toFirstTitleCase()}}</label>
+          <div class="input-group">
+            <input class="form-control" type="text" placeholder="8(___)___-__-__" [textMask]="{mask: mask}"
+                   formControlName="phoneNumber" [ngClass]="{'is-invalid': userForm.get('phoneNumber').touched
+           && userForm.get('phoneNumber').invalid}"
+            >
+          </div>
+        </div>
+      </form>
       <div class="form-group">
         <label>{{languagesService.languages.reservationtable.toFirstTitleCase()}}</label>
         <select name="tableType" #tableType="ngModel" [(ngModel)]="bookingService.booking.tableType"
@@ -58,3 +62,4 @@
   </div>
 
 </form>
+

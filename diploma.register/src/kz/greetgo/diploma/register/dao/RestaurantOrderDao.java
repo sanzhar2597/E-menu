@@ -78,6 +78,7 @@ public interface RestaurantOrderDao {
 		"  o.g_total     as gTotal,\n" +
 		"  o.p_method    as pMethod,\n" +
 		"  b.record_date_day,\n" +
+		"  b.phone_number as phoneNumber,\n" +
 		"  status.status as status\n" +
 		"from oorder o\n" +
 		"  left join person c on o.person_id= c.id\n" +

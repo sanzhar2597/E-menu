@@ -8,7 +8,7 @@ import {LoginComponent} from './login/login.component';
 import {HttpService} from "./http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
-import {FormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ClientListComponent} from './client-list/client-list.component';
 import {ClientListService} from "./client-list/client-list.service";
 import {AboutComponent} from './about/about.component';
@@ -23,10 +23,11 @@ import {BookingComponent} from './booking/booking.component';
 import {NextOperationComponent} from './next-operation/next-operation.component';
 import {MatProgressSpinnerModule} from "@angular/material";
 import {AlertComponent} from './alert/alert.component';
-import {LanguagesService} from "./shared/languages.service";
-import { TableSelectionComponent } from './table-selection/table-selection.component';
-import { BoldDirectiveDirective } from './bold-directive.directive';
-import { OrderViewComponent } from './orders/order/order-view/order-view.component';
+import {TableSelectionComponent} from './table-selection/table-selection.component';
+import {BoldDirectiveDirective} from './bold-directive.directive';
+import {OrderViewComponent} from './orders/order/order-view/order-view.component';
+import {CommonModule} from "@angular/common";
+import {TextMaskModule} from "angular2-text-mask";
 
 
 @NgModule({
@@ -49,11 +50,13 @@ import { OrderViewComponent } from './orders/order/order-view/order-view.compone
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
-    BrowserAnimationsModule, MatDialogModule, MatProgressSpinnerModule, ToastrModule.forRoot()
+    BrowserAnimationsModule, MatDialogModule, MatProgressSpinnerModule, ToastrModule.forRoot(),
+    ReactiveFormsModule, CommonModule, TextMaskModule,
+
   ],
   entryComponents: [OrderItemsComponent, NextOperationComponent, AlertComponent, TableSelectionComponent],
-  providers: [HttpService, LoginService, ClientListService, OrderService,  ],
-  bootstrap: [AppComponent]
+  providers: [HttpService, LoginService, ClientListService, OrderService, FormBuilder],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

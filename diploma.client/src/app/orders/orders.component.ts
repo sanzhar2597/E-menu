@@ -14,14 +14,15 @@ import {BookingService} from "../shared/booking.service";
 export class OrdersComponent implements OnInit {
   orderList;
   todayTime;
-  personId:number| string;
+  isAuthorized: boolean = false;
+  personId: number | string;
 
   constructor(private service: OrderService,
               private router: Router,
               private toastr: ToastrService,
               public languagesService: LanguagesService,
               public loginService: LoginService,
-              public bookingService:BookingService,) {
+              public bookingService: BookingService,) {
   }
 
   ngOnInit() {
@@ -35,13 +36,14 @@ export class OrdersComponent implements OnInit {
     this.loginService.getPersonDisplay().then(value1 => {
       if (value1.username) {
         this.bookingService.getPersonId(value1.username).then(value => {
+          this.isAuthorized = true
           this.personId = value1.username;
-      this.refreshList(this.personId)
+          this.refreshList(this.personId)
 
         })
       }
       else {
-      this.userForLocalStorage();
+        this.userForLocalStorage();
         this.refreshList(this.personId)
       }
 
@@ -54,13 +56,12 @@ export class OrdersComponent implements OnInit {
   }
 
 
-  refreshList(id:string| number) {
+  refreshList(id: string | number) {
     this.service.getOrderList(id).then(res => {
 
       this.orderList = res.body
       this.showDate()
       this.sortByKey(this.orderList, "orderNo")
-
     });
   }
 
