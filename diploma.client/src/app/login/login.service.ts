@@ -3,6 +3,7 @@ import {HttpService} from "../http.service";
 import {PersonDisplay} from "../../model/PersonDisplay";
 import {UserCan} from "../../model/UserCan";
 import {Router} from "@angular/router";
+import {getExpressionLoweringTransformFactory} from "@angular/compiler-cli/src/transformers/lower_expressions";
 
 @Injectable({
   providedIn: 'root'
@@ -121,5 +122,6 @@ export class LoginService {
     } catch (e) {
       this.loading = false;
     }
+    window.location.reload()
   }
 }

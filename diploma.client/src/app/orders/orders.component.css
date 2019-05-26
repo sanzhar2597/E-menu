@@ -26,3 +26,19 @@ a.btn.text-secondary {
 a.btn.text-secondary.not-allowed {
   cursor: not-allowed;
 }
+.thead-light-color{
+  background: #B3DDD1;
+  box-shadow: 5px 10px 20px #D1DCE2 inset;
+}
+.order-table{
+  background-color: #f2f2f2;
+  /*box-shadow: 100px 20px 38px 13px #B3DDD1 inset;*/
+}
+tbody{
+  text-align: center
+}
+thead{
+  text-align: center;
+}
+tr:nth-child(even) {background-color:#e5e5e5;}
+tr:nth-child(odd) {background-color: #f2f2f2;}

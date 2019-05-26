@@ -1,6 +1,8 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-  <div class="row">
-    <div class="col-md-12">
+<div class="col-md-6 offset-md-3">
+
+<form class=" shadow bg-light  p-3 mb-5 rounded" #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <div class="row ">
+    <div class="col-md-10 offset-md-1">
       <div class="form-group">
         <label>{{languagesService.languages.numberofpeople.toFirstTitleCase()}}</label>
         <div class="input-group">
@@ -17,7 +19,7 @@
                type="date" [value]="bookingService.booking.recordDateDay" class="form-control">
       </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-10 offset-md-1">
       <div class="form-group">
         <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>
         <input name="recordDateFrom" #recordDateFrom="ngModel" [(ngModel)]="bookingService.booking.recordDateFrom"
@@ -30,9 +32,9 @@
                type="time" [value]="bookingService.booking.recordDateTo" class="form-control">
       </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-10 offset-md-1">
 
-      <form  [formGroup]="userForm" >
+      <form [formGroup]="userForm">
         <div class="form-group">
           <label>{{languagesService.languages.numberoftelephone.toFirstTitleCase()}}</label>
           <div class="input-group">
@@ -45,21 +47,25 @@
       </form>
       <div class="form-group">
         <label>{{languagesService.languages.reservationtable.toFirstTitleCase()}}</label>
-        <select name="tableType" #tableType="ngModel" [(ngModel)]="bookingService.booking.tableType"
+        <input type="text" class="form-control" name="tableType" #tableType="ngModel"
+               [(ngModel)]="bookingService.booking.tableType" READONLY>
+        <!--<select name="tableType" #tableType="ngModel" [(ngModel)]="bookingService.booking.tableType"
                 class="form-control">
           <option *ngFor="let tab of bookingService.table">{{tab}}</option>
-        </select>
+        </select>-->
       </div>
 
-      <div class="form-group">
-        <button type="button" (click)="selectTable()" class="btn btn-primary">Primary</button>
+      <div class="form-group  d-flex bd-highlight mb-3 ">
+        <button type="button" (click)="selectTable()" class="btn btn-primary  mr-auto p-2 bd-highlight">
+          {{languagesService.languages.choosetable}}
+        </button>
+        <button type="submit" class="btn btn-dark ap-2 bd-highlight"><i class="fa fa-database"></i>{{languagesService.languages.submit}}
+        </button>
       </div>
     </div>
   </div>
-  <div class="form-group">
-    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i>{{languagesService.languages.submit}}
-    </button>
-  </div>
+
 
 </form>
 
+</div>

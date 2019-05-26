@@ -16,7 +16,7 @@ import {Customer} from "../../../model/customer.model";
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styles: []
+  styleUrls: ['../orders.component.css']
 })
 export class OrderComponent implements OnInit {
 
@@ -24,6 +24,8 @@ export class OrderComponent implements OnInit {
 
   username: String = "";
   isAuthorized: boolean = false;
+
+  isChangeOrder: boolean = false;
 
   isValid: boolean;
 
@@ -48,7 +50,6 @@ export class OrderComponent implements OnInit {
     }
     else {
       this.service.getOrderByID(+orderID).then(res => {
-        console.log('orderById: ', res)
         this.service.formData = OrderComponent.formDataAssign(res.body as Order);
         this.service.orderItems = res.body.orderItems;
       });
@@ -56,7 +57,6 @@ export class OrderComponent implements OnInit {
     this.customerService.getCustomerList()
       .then(res => {
         this.customerList = res.body as Customer[];
-        console.log("RES: :", res)
       }).catch(e => console.log(e))
 
 
@@ -105,7 +105,7 @@ export class OrderComponent implements OnInit {
     if (!this.service.formData.personId) {
       this.service.formData.personId = person.id
     }
-    if(person.isChange){
+    if (person.isChange) {
       this.username = person.name
     }
   }
@@ -127,6 +127,7 @@ export class OrderComponent implements OnInit {
 
   addOrEditOrderItem(orderItemIndex, orderId) {
     event.preventDefault();
+    this.isChangeOrder = true;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
@@ -139,6 +140,7 @@ export class OrderComponent implements OnInit {
 
   onDeleteOrderItem(orderItemId: number, i: number) {
     event.preventDefault();
+    this.isChangeOrder = true;
     this.service.orderItems.splice(i, 1)
     this.updateGrandTotal();
     this.service.offerPrepare().then(res => {
@@ -165,7 +167,7 @@ export class OrderComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log("this.service.formData", this.service.formData);
+    event.preventDefault();
     if (this.validateForm()) {
       this.service.saveOrUpdateOrder().subscribe(res => {
         this.resetForm();

@@ -56,13 +56,34 @@ export class OrdersComponent implements OnInit {
   }
 
 
-  refreshList(id: string | number) {
-    this.service.getOrderList(id).then(res => {
+  expectUser() {
+    if (this.loginService.personDisplay && this.loginService.personDisplay.username) {
+      if (this.loginService.canViewWaiter || this.loginService.canViewAdmin) {
+        return true
+      }
+    }
+    return false
 
-      this.orderList = res.body
-      this.showDate()
-      this.sortByKey(this.orderList, "orderNo")
-    });
+  }
+
+
+  refreshList(id: string | number) {
+
+    if (this.expectUser()) {
+      this.service.getOrderList().then(res => {
+        this.orderList = res.body
+        this.showDate()
+        this.sortByKey(this.orderList, "orderNo")
+      });
+    }
+    else {
+      this.service.getOrderListById(id).then(res => {
+        this.orderList = res.body;
+        this.showDate()
+        this.sortByKey(this.orderList, "orderNo")
+      });
+    }
+
   }
 
   sortByKey(array, key) {

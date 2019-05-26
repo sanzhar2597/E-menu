@@ -28,6 +28,8 @@ import {BoldDirectiveDirective} from './bold-directive.directive';
 import {OrderViewComponent} from './orders/order/order-view/order-view.component';
 import {CommonModule} from "@angular/common";
 import {TextMaskModule} from "angular2-text-mask";
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { SimpleInstructionComponent } from './simple-instruction/simple-instruction.component';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import {TextMaskModule} from "angular2-text-mask";
     TableSelectionComponent,
     BoldDirectiveDirective,
     OrderViewComponent,
+    ContactUsComponent,
+    SimpleInstructionComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,

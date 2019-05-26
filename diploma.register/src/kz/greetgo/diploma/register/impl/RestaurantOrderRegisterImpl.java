@@ -4,12 +4,15 @@ import kz.greetgo.depinject.core.Bean;
 import kz.greetgo.depinject.core.BeanGetter;
 import kz.greetgo.diploma.controller.register.RestaurantOrderRegister;
 import kz.greetgo.diploma.controller.register.model.*;
+import kz.greetgo.diploma.register.beans.all.IdGenerator;
 import kz.greetgo.diploma.register.dao.RestaurantOrderDao;
+import kz.greetgo.security.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
@@ -17,7 +20,13 @@ import static java.util.stream.Collectors.joining;
 public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 
 	public BeanGetter<RestaurantOrderDao> restaurantOrderDao;
+
 	public BeanGetter<AntAlgorithmRegisterImpl> antAlgorithmRegister;
+
+	public BeanGetter<IdGenerator> idGenerator;
+
+	public BeanGetter<PasswordEncoder> passwordEncoder;
+
 
 	@Override
 	public ArrayList<Item> getItemList() {
@@ -38,6 +47,13 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 		List<Order> orderList = new ArrayList<>();
 		Integer orderItemId;
 		OrderStatus orderStatus = new OrderStatus();
+		try
+			{
+				insertPerson(orders.personId);
+			} catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 
 		if(orders.orderId == 0)
 			{
@@ -88,7 +104,34 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 
 					}
 
+				deleteOrderItems(orders);
+
 			}
+	}
+
+	private void deleteOrderItems(Orders order) {
+
+		List<Integer> ids = restaurantOrderDao.get().selectorOrderItemsById(order.orderId).stream().map(v -> v.orderItemId).collect(Collectors.toList());
+		for(OrderItem orderItem : order.orderItems)
+			{
+				if(ids.contains(orderItem.orderItemId))
+					{
+						ids.remove(orderItem.orderItemId);
+					}
+			}
+		if(ids.size() != 0)
+			{
+				for(Integer id : ids)
+					{
+						restaurantOrderDao.get().deleteOrderStatusByOrderItemId(id);
+					}
+				for(Integer id : ids)
+					{
+						restaurantOrderDao.get().deleteorderItemsById(id);
+					}
+			}
+
+		System.out.println(ids);
 	}
 
 	@Override
@@ -106,7 +149,9 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 		orderLists = restaurantOrderDao.get().selectOrderListById(personId);
 
 		return orderLists;
-	};
+	}
+
+	;
 
 	@Override
 	public void updateOrderStatus(OrderList orderList) {
@@ -134,6 +179,8 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 	@Override
 	public String deleteOrderbyId(Integer id) {
 
+
+		restaurantOrderDao.get().deleteOrderStatusByOrderId(id);
 		restaurantOrderDao.get().deleteOrderItemByorderId(id);
 		restaurantOrderDao.get().deleteOrdeeById(id);
 		System.out.println("deleted: " + id);
@@ -158,11 +205,14 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 				items.add(restaurantOrderDao.get().selectItemById(itemCount.itemId));
 			}
 		return items;
-	};
-	@Override
-	public List<Item> prepareOfferAlgorithmAnt (List<OrderItem> orderItems) {
+	}
 
-		antAlgorithmRegister.get().AntColonyOptimization(orderItems.size(),0,orderItems.size());
+	;
+
+	@Override
+	public List<Item> prepareOfferAlgorithmAnt(List<OrderItem> orderItems) {
+
+		antAlgorithmRegister.get().AntColonyOptimization(orderItems.size(), 0, orderItems.size());
 
 		String collect = orderItems.stream().map(orderItem -> orderItem.itemId + "").collect(joining(","));
 		List<Item> items = new ArrayList<>();
@@ -181,6 +231,21 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 	}
 
 
+	private void user(String id) throws Exception {
+
+		String accountName = idGenerator.get().newId();
+		String encryptPassword = passwordEncoder.get().encode("111");
+		restaurantOrderDao.get().insertPerson(id, accountName, encryptPassword);
+	}
+
+	private void insertPerson(String personId) throws Exception {
+
+		String id = restaurantOrderDao.get().selectPersonID(personId);
+		if(id == null)
+			{
+				user(personId);
+			}
+	}
 
 
 	public static void main(String[] args) {

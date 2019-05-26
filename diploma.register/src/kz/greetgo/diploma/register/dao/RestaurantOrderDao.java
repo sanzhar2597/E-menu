@@ -92,8 +92,7 @@ public interface RestaurantOrderDao {
 		"where o.oorder_id = #{id}\n")
 	List<OrderList> selectorderById(@Param("id") Integer id);
 
-	@Delete("delete from oorder where oorder_id = #{id}")
-	void deleteOrdeeById(@Param("id") Integer id);
+
 
 	@Select("select \n" +
 		"item_id as itemId, count(*) as count \n" +
@@ -105,20 +104,34 @@ public interface RestaurantOrderDao {
 		"order by count desc limit 2")
 	List<ItemCount> prepareOffer(@Param("itemId") String itemId);
 
+	@Delete("delete from oorder where oorder_id = #{id}")
+	void deleteOrdeeById(@Param("id") Integer id);
+
 	@Delete("delete from order_items where oorder_id = #{id}")
 	void deleteOrderItemByorderId(@Param("id") Integer id);
 
+	@Delete("delete from order_items where order_item_id = #{id}")
+	void deleteorderItemsById(@Param("id") Integer id);
 
-	@Select("select o.oorder_id as orderId, " +
-		" o.oorder_no as orderNo, " +
-		" o.person_id as personId, " +
-		" o.p_method as pMethod, " +
-		" o.g_total as gTotal, " +
-		" o.booking_id as bookingId, " +
-		" status.status as status  " +
-		" from oorder o " +
-		" inner join order_status status on o.oorder_id = status.oorder_id " +
-		" where o.oorder_id = #{id}")
+	@Delete("delete from order_status where order_item_id = #{id}")
+	void deleteOrderStatusByOrderItemId(@Param("id") Integer id);
+
+	@Delete("delete from order_status where oorder_id = #{id}")
+	void deleteOrderStatusByOrderId(@Param("id") Integer id);
+
+
+	@Select("select distinct\n" +
+		"  o.oorder_id   as orderId,\n" +
+		"  o.oorder_no   as orderNo,\n" +
+		"  o.person_id   as personId,\n" +
+		"  o.p_method    as pMethod,\n" +
+		"  o.g_total     as gTotal,\n" +
+		"  o.booking_id  as bookingId,\n" +
+		"  status.status as status\n" +
+		"  from oorder o\n" +
+		"  left join order_status status on o.oorder_id = status.oorder_id\n" +
+		"  left join person c on o.person_id = c.id" +
+		"  where o.oorder_id = #{id}")
 	Orders selectorOrdersById(@Param("id") Integer id);
 
 	@Select("select\n" +
@@ -134,6 +147,7 @@ public interface RestaurantOrderDao {
 		"  inner join oorder as oo on o.oorder_id = oo.oorder_id where o.oorder_id = #{id}")
 	List<OrderItem> selectorOrderItemsById(@Param("id") Integer id);
 
+
 	@Select("select user_can from person_cans where person_id = #{personId}")
 	List<UserCan> loadCans(String personId);
 
@@ -144,10 +158,14 @@ public interface RestaurantOrderDao {
 										@Param("encodedPassword") String encodedPassword
 	);
 
+
 	@Update("update Person set ${fieldName} = #{fieldValue} where id = #{id}")
 	void updatePersonField(@Param("id") String id,
 												 @Param("fieldName") String fieldName,
 												 @Param("fieldValue") Object fieldValue);
 
+
+	@Select("select id from Person where id = #{id}")
+	String selectPersonID(@Param("id") String id);
 
 }

@@ -1,14 +1,14 @@
-<form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
+<form class="shadow rounded" #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
   <table class="table table-borderless">
     <thead class="thead-light">
     <th>{{languagesService.languages.food}}</th>
     <th>{{languagesService.languages.price}}</th>
     <th>{{languagesService.languages.quantity}}</th>
     <th>{{languagesService.languages.total}}</th>
-    <th>
+    <!--<th>
       <a href="" class="btn btn-sm btn-success text-white"  *ngIf="service.formData.status==1 && !loginService.canViewWaiter" (click)="addOrEditOrderItem(null, service.formData.orderId)"><i
         class="fa fa-plus"></i></a>
-    </th>
+    </th>-->
     </thead>
     <tbody>
     <tr *ngIf="service.orderItems.length==0" [class.text-danger]="!isValid && service.orderItems.length==0">
