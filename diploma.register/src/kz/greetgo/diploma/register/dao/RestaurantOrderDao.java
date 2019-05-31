@@ -147,6 +147,9 @@ public interface RestaurantOrderDao {
 		"  inner join oorder as oo on o.oorder_id = oo.oorder_id where o.oorder_id = #{id}")
 	List<OrderItem> selectorOrderItemsById(@Param("id") Integer id);
 
+	@Select("select id, messages, person_id as personId, item_id as itemId  from comments where item_id = #{itemId}")
+	List<Comments> getCommentsByItemId(@Param("itemId") Integer itemId);
+
 
 	@Select("select user_can from person_cans where person_id = #{personId}")
 	List<UserCan> loadCans(String personId);

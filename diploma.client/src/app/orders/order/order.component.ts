@@ -12,6 +12,8 @@ import {BookingService} from "../../shared/booking.service";
 import {LanguagesService} from "../../shared/languages.service";
 import {LoginService} from "../../login/login.service";
 import {Customer} from "../../../model/customer.model";
+import {CommentsComponent} from "../../comments/comments.component";
+import {Comments} from "../../../model/comments.model";
 
 @Component({
   selector: 'app-order',
@@ -28,6 +30,8 @@ export class OrderComponent implements OnInit {
   isChangeOrder: boolean = false;
 
   isValid: boolean;
+
+  comments: Array<Comments> = [];
 
   constructor(public service: OrderService,
               private dialog: MatDialog,
@@ -117,7 +121,7 @@ export class OrderComponent implements OnInit {
       orderId: 0,
       orderNo: Math.floor(100000 + Math.random() * 900000).toString(),
       personId: JSON.parse(localStorage.getItem('person')).id,
-      pMethod: '',
+      pMethod: this.languagesService.languages.cash,
       gTotal: 0,
       bookingId: null,
       status: 1,
@@ -146,6 +150,26 @@ export class OrderComponent implements OnInit {
     this.service.offerPrepare().then(res => {
       this.service.items = res.body as Item[]
     })
+  }
+
+  onViewComment(orderItemId: number, i: number) {
+    event.preventDefault();
+    let itemId = this.service.orderItems[i].itemId;
+    this.service.getCommentsbyItemId(itemId).then(value => {
+      this.comments = value.body as Comments[];
+
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
+      dialogConfig.disableClose = false;
+      dialogConfig.width = "70%";
+      dialogConfig.height = "80%";
+      dialogConfig.data = {comments: this.comments}
+      dialogConfig.panelClass = 'backgound-mat-dialogs';
+      this.dialog.open(CommentsComponent, dialogConfig).afterClosed().subscribe(res => {
+      })
+
+    });
+
   }
 
   updateGrandTotal() {

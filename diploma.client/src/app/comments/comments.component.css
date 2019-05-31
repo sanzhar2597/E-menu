@@ -1,0 +1,49 @@
+.avatar {
+  position: absolute;
+  background: url("../../assets/img/avatar.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 10px;
+  height: 40px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .header-container{
+   margin-left: 1vw;
+  }
+}
+
+.comments-color{
+  /*background-color: #f2f2f2;*/
+}
+.mat-dialog-container{
+  background-color: #f2f2f2;
+
+}
+
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+}
+.show-scrollTop {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+}
+
+.fixed-scroll-position{
+  position: fixed;
+  background-color: #e5e5e5;
+  right: 20%;
+  z-index: 100;
+}
+
+.position-fixed-comment{
+}

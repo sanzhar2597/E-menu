@@ -1,0 +1,158 @@
+<div class="comments-color" id="commentPage">
+  <div class="position-fixed-comment">
+    <a href="#downpage" class=" btn text-info fixed-scroll-position" (click)="scrollDown()">Add comment</a>
+  </div>
+  <div class="text-center " style="margin-bottom: 50px"><h3>Comments</h3></div>
+  <div class="">
+    <div class="col-md-12  bg-light shadow rounded row">
+      <div class="col-md-5 row header-container">
+        <div class="avatar col-md-4"></div>
+        <div class="col-md-12 offset-md-1 ">
+          <h6 class="text-muted time col-md-12">1 minute ago</h6>
+          <div class="title col-md-12">
+            <a href="#"><b class="title border">food:</b></a>
+            Popatos with brokoalies.
+          </div>
+          <div class="title col-md-12 ">
+            <a href="#"><b class="title border">author:</b></a>
+            made a post.
+          </div>
+        </div>
+        <div class="stats col-md-12 offset-md-1">
+          <a href="#" class="btn btn-default stat-item ">
+            <i class="fa fa-thumbs-up icon"></i>2
+          </a>
+          <a href="#" class="btn btn-default stat-item">
+            <i class="fa fa-thumbs-down icon"></i>12
+          </a>
+        </div>
+      </div>
+      <div class="col-md-7">В целом еда была очень вкусная, особенно Кхан самса и салат из баклажанов 😭😍.
+        Интерьер тоже на высоте. одно но, обслуживание немного медленное, приносили нам счёт минут 20? 😂 из за этого 4
+        ⭐️
+        из пяти.
+      </div>
+    </div>
+    <br>
+  </div>
+
+
+  <div class="" *ngFor="let comment of comments">
+    <div class="col-md-12  bg-light shadow rounded row">
+      <div class="col-md-5 row header-container">
+        <div class=" avatar col-md-4"></div>
+        <div class="col-md-12 offset-md-1 ">
+          <h6 class="text-muted time col-md-12">1 minute ago</h6>
+          <div class="title col-md-12">
+            <a href="#"><b class="title border">food:</b></a>
+            Popatos with brokoalies.
+          </div>
+          <div class="title col-md-12 ">
+            <a href="#"><b class="title border">author:</b></a>
+            made a post.
+          </div>
+          <a href="#" class="btn btn-default stat-item ">
+            <i class="fa fa-thumbs-up icon"></i>2
+          </a>
+          <a href="#" class="btn btn-default stat-item">
+            <i class="fa fa-thumbs-down icon"></i>12
+          </a>
+        </div>
+      </div>
+      <div class="col-md-7">{{comment.messages}}
+      </div>
+    </div>
+    <br>
+  </div>
+  <div class="">
+    <div class="col-md-12  bg-light shadow rounded row">
+      <div class="col-md-5 row header-container">
+        <div class="avatar col-md-4"></div>
+        <div class="col-md-12 offset-md-1 ">
+          <h6 class="text-muted time col-md-12">1 minute ago</h6>
+          <div class="title col-md-12">
+            <a href="#"><b class="title border">food:</b></a>
+            Popatos with brokoalies.
+          </div>
+          <div class="title col-md-12 ">
+            <a href="#"><b class="title border">author:</b></a>
+            made a post.
+          </div>
+        </div>
+        <div class="stats col-md-12 offset-md-1">
+          <a href="#" class="btn btn-default stat-item ">
+            <i class="fa fa-thumbs-up icon"></i>2
+          </a>
+          <a href="#" class="btn btn-default stat-item">
+            <i class="fa fa-thumbs-down icon"></i>12
+          </a>
+        </div>
+      </div>
+      <div class="col-md-7">В целом еда была очень вкусная, особенно Кхан самса и салат из баклажанов 😭😍.
+        Интерьер тоже на высоте. одно но, обслуживание немного медленное, приносили нам счёт минут 20? 😂 из за этого 4
+        ⭐️
+        из пяти.
+      </div>
+    </div>
+    <br>
+  </div>
+
+  <div class="">
+    <div class="col-md-12  bg-light shadow rounded row">
+      <div class="col-md-5 row header-container">
+        <div class="avatar col-md-4"></div>
+        <div class="col-md-12 offset-md-1 ">
+          <h6 class="text-muted time col-md-12">1 minute ago</h6>
+          <div class="title col-md-12">
+            <a href="#"><b class="title border">food:</b></a>
+            Popatos with brokoalies.
+          </div>
+          <div class="title col-md-12 ">
+            <a href="#"><b class="title border">author:</b></a>
+            made a post.
+          </div>
+          <a href="#" class="btn btn-default stat-item ">
+            <i class="fa fa-thumbs-up icon"></i>2
+          </a>
+          <a href="#" class="btn btn-default stat-item">
+            <i class="fa fa-thumbs-down icon"></i>12
+          </a>
+        </div>
+      </div>
+      <div class="col-md-7">Доброго времени суток! Сегодня мы пригласили на Ифтар 38 человек! Были разочарованы очень!
+        Нам
+        обещали так, что при заказе у нас слюнки текли, но все оказалось банальным надувательство администратора.
+        Администратор обещал блюда как на картинке в меню. Действительно самый худший плов в Алматы!!!! Интерьер
+        классный,
+        просто супер дизайнерская работа! Но люди пришли на Ифтар, им не до интерьера, у них Пост. Лагман закали
+        отдельным
+        гостям, такой лагман, что я думаю на барахолке вкуснее! Шашлык - это просто мошенничество!!!
+        Извините за такой критичный отзыв, я под таким впечатлением, что перед гостями готов был сквозь землю
+        провалиться!
+        Единственное блюдо, которое было вкусным и всем понравилось - это «маргеланский пирожок». Если бы мы знали,
+        заказали бы только его, всё равно плов не стали есть. Не заказывайте их фирменный салат «Нават», только не на
+        Ифтар, его можно съесть на завтрак. Мне очень стыдно за самый лучший ( в прошлом) ресторан города в национальном
+        стиле «Жерүйық». Не знаю как у них в обычные дни, но к Ифтару они совсем не готовы!!!
+      </div>
+    </div>
+    <br>
+  </div>
+
+
+  <div id="downpage" class="">
+    <form autocomplete="off" (submit)="onSubmit()">
+      <div class="col-md-12   bg-light shadow rounded row">
+        <div class="form-group col-md-12">
+          <label for="commentText">Оставить комментарий:</label>
+          <textarea class="form-control" placeholder="введите комментарий" name="commentText"
+                    id="commentText"></textarea>
+        </div>
+        <div class="form-group col-md-3 offset-md-9">
+          <button type="submit" class="form-control btn btn-dark "><i class="fa fa-paper-plane" aria-hidden="true">
+            Отправить</i></button>
+        </div>
+      </div>
+    </form>
+    <br>
+  </div>
+</div>

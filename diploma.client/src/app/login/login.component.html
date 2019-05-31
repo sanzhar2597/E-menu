@@ -1,5 +1,5 @@
 <div class="shadow bg-light rounded col-md-6 offset-md-3">
-  <h3 class="text-center">{{languagesService.languages.login.toUpperCase()}}</h3>
+  <h3 class="text-center padding-header" >{{languagesService.languages.login.toUpperCase()}}</h3>
   <div *ngIf="loginService.loading">
     {{languagesService.languages.loadingwait}}
   </div>
@@ -10,13 +10,13 @@
         <div class="" *ngIf="!loginService.personDisplay">
           <div class="form-group">
 
-            <input type="text" class="form-control" placeholder="{{languagesService.languages.username}}"
+            <input type="text" class="form-control" placeholder=" {{languagesService.languages.username}}"
                    [(ngModel)]="loginService.username"
                    aria-label="languagesService.languages.username" aria-describedby="button-addon2">
           </div>
           <div class="form-group">
 
-            <input type="password" class="form-control" placeholder="{{languagesService.languages.password}}"
+            <input type="password" class="form-control" placeholder=" {{languagesService.languages.password}}"
                    [(ngModel)]="loginService.password"
                    aria-label="languagesService.languages.password" aria-describedby="button-addon2">
           </div>

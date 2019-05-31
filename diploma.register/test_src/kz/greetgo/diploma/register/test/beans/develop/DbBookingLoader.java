@@ -3,6 +3,7 @@ package kz.greetgo.diploma.register.test.beans.develop;
 import kz.greetgo.depinject.core.Bean;
 import kz.greetgo.depinject.core.BeanGetter;
 import kz.greetgo.diploma.controller.register.model.Booking;
+import kz.greetgo.diploma.controller.register.model.Comments;
 import kz.greetgo.diploma.controller.register.model.Table;
 import kz.greetgo.diploma.register.beans.all.IdGenerator;
 import kz.greetgo.diploma.register.test.dao.BookingTestDao;
@@ -37,6 +38,7 @@ public class DbBookingLoader {
 		booking();
 		booking();
 		booking();
+		addComments();
 		logger.info("Finish loading persons");
 	}
 
@@ -62,7 +64,7 @@ public class DbBookingLoader {
 		booking.recordDateTo = String.valueOf(DateUtils.addHours(new Date(), 2));
 		booking.tableType = table.name;
 		booking.phoneNumber = "8787777777777777";
-		booking.personId= bookingTestDao.get().getPersonId();
+		booking.personId = bookingTestDao.get().getPersonId();
 		bookingTestDao.get().insertBooking(booking);
 	}
 
@@ -79,9 +81,29 @@ public class DbBookingLoader {
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "hall";
 		bookingTestDao.get().insertRestaurantTable(table);
-
 	}
 
+	private void addComments() {
+
+		Comments comments = new Comments();
+		comments.personId = bookingTestDao.get().getPersonId();
+		comments.messages = "Зашли с семьей 23 января поужинать. Заказали сет шашлычный. " +
+			"Во первых официант с недовольным видом принимала заказ и без конца намекала на спиртное, " +
+			"зачем навязывать если люди не пьют. В вторых заказ ожидали долго, " +
+			"в третьих еще весь шашлык имел запах неприятный, тухлый, но ели через силу. " +
+			"И в итоге из нашей семьи 2 человек из 4 отравились сразу вечером этого же дня. " +
+			"3 дня была рвота и понос. Позвонила администратору сказала помет меры. " +
+			"И после этого директор заведения даже не извенился за такое. Видимо туда заходят все выпивать, " +
+			"а таким людям пойдёт и тухлое мясо все равно не поймут потом от чего отравились. Я считаю, " +
+			"что в первую очередь нужно контролировать свою кухню так может человек и умереть от не свежей продукции. " +
+			"Теперь от вида этого ПАБА меня тошнит. Больше не приду никогда туда и другим не советую.";
+
+		for(Integer itemId : bookingTestDao.get().getItemId())
+			{
+				comments.itemId = itemId;
+				bookingTestDao.get().insertComments(comments);
+			}
+	}
 
 }
 

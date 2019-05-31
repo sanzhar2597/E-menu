@@ -25,9 +25,10 @@ export class OrderService {
     return this.httpService.post('/restaurant' + '/order-items', {orderItems: JSON.stringify(orderItems)})
   }
 
-  getOrderListById(id:string|number) {
-    return this.httpService.get('/restaurant/get-orders-by-id',{id}).toPromise();
+  getOrderListById(id: string | number) {
+    return this.httpService.get('/restaurant/get-orders-by-id', {id}).toPromise();
   }
+
   getOrderList() {
     return this.httpService.get('/restaurant/get-orders',).toPromise();
   }
@@ -54,9 +55,14 @@ export class OrderService {
       });
     }
   }
-  updateOrderStatus(item:any){
-      item.recordDateDay = null
-    return this.httpService.get('/restaurant/update-order-status', {orderList:JSON.stringify(item)}).toPromise();
+
+  updateOrderStatus(item: any) {
+    item.recordDateDay = null
+    return this.httpService.get('/restaurant/update-order-status', {orderList: JSON.stringify(item)}).toPromise();
+  }
+
+  getCommentsbyItemId(itemId: number) {
+    return this.httpService.get('/restaurant/get-comments-by-item-id', {itemId}).toPromise();
   }
 
 }

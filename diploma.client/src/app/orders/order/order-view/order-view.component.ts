@@ -13,6 +13,8 @@ import {NgForm} from "@angular/forms";
 import {Item} from "../../../../model/item.model";
 import {ToastrService} from "ngx-toastr";
 import {Customer} from "../../../../model/customer.model";
+import {OrderItem} from "../../../../model/orderItem.model";
+import {CommentsComponent} from "../../../comments/comments.component";
 
 @Component({
   selector: 'app-order-view',
@@ -77,7 +79,7 @@ export class OrderViewComponent implements OnInit {
     this.service.formData = {
       orderId: 0,
       orderNo: Math.floor(100000 + Math.random() * 900000).toString(),
-      personId:  JSON.parse(localStorage.getItem('person')).id,
+      personId: JSON.parse(localStorage.getItem('person')).id,
       pMethod: '',
       gTotal: 0,
       bookingId: null,
@@ -140,5 +142,19 @@ export class OrderViewComponent implements OnInit {
     if (this.bookingService.booking.bookingId) {
       this.service.formData.bookingId = this.bookingService.booking.bookingId;
     }
+  }
+
+  showComments(item: OrderItem) {
+    event.preventDefault();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = false;
+    dialogConfig.width = "70%";
+    dialogConfig.height= "80%";
+    dialogConfig.data = item
+    dialogConfig.panelClass = 'backgound-mat-dialogs';
+
+    this.dialog.open(CommentsComponent, dialogConfig).afterClosed().subscribe(res => {
+    })
   }
 }

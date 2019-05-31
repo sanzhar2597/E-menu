@@ -1,5 +1,5 @@
 <div class="col-md-10 offset-md-1">
-  <form class="shadow-sm p-3 mb-5 rounded bg-light" #form="ngForm" autocomplete="off" *ngIf="service.formData"
+  <form class="shadow p-3 mb-5 rounded bg-light" #form="ngForm" autocomplete="off" *ngIf="service.formData"
         (submit)="onSubmit(form)">
     <div class="row offset-md-2">
       <div class="col-md-5">
@@ -30,7 +30,6 @@
         <div class="form-group">
           <label>{{languagesService.languages.paymentmethod.toFirstTitleCase()}}</label>
           <select name="pMethod" #pMethod="ngModel" [(ngModel)]="service.formData.pMethod" class="form-control">
-            <option value="">-{{languagesService.languages.select}}-</option>
             <option value="Cash">{{languagesService.languages.cash}}</option>
             <option value="Card">{{languagesService.languages.card}}</option>
           </select>
@@ -76,13 +75,16 @@
               class="fa fa-pencil"></i></a>
             <a href="" class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem(item.orderId, i)"><i
               class="fa fa-trash"></i></a>
+            <a href="" class="btn btn-sm btn-dark text-white ml-1" (click)="onViewComment(item.orderId, i)"><i
+              class="fa fa-commenting" aria-hidden="true"></i></a>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
     <div>
-      <div *ngIf="isChangeOrder" class="alert alert-warning alert-dismissible fade show" id="shangeOrderAlert" role="alert">
+      <div *ngIf="isChangeOrder" class="alert alert-warning alert-dismissible fade show" id="shangeOrderAlert"
+           role="alert">
         <p> если вы изменили свой заказ или удалили, то для обновления данных нужно нажать на кнопку отправить </p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>

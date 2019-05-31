@@ -11,6 +11,7 @@ import {AuthGuard} from "./auth/auth.guard";
 import {OrderViewComponent} from "./orders/order/order-view/order-view.component";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {SimpleInstructionComponent} from "./simple-instruction/simple-instruction.component";
+import {CommentsComponent} from "./comments/comments.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'order', pathMatch: 'full'},

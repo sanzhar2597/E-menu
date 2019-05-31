@@ -98,5 +98,16 @@ public class RestaurantOrderController implements Controller {
 		return restaurantOrderRegister.get().prepareOffer(orderItems);
 	}
 
+	@ToJson
+	@PublicAccess
+	@OnGet("/get-comments-by-item-id")
+	public List<Comments> getCommentsByItemId(@Par("itemId") @Json Integer itemId) {
+
+		System.out.println(itemId);
+		return restaurantOrderRegister.get().getCommentsByItemId(itemId);
+	}
+
+
+
 
 }

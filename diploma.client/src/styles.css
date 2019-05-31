@@ -25,5 +25,7 @@ body{
 
 }
 
-
+.backgound-mat-dialogs .mat-dialog-container{
+  background-color: #f2f2f2;
+}
 

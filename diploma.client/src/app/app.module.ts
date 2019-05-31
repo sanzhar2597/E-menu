@@ -28,8 +28,9 @@ import {BoldDirectiveDirective} from './bold-directive.directive';
 import {OrderViewComponent} from './orders/order/order-view/order-view.component';
 import {CommonModule} from "@angular/common";
 import {TextMaskModule} from "angular2-text-mask";
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { SimpleInstructionComponent } from './simple-instruction/simple-instruction.component';
+import {ContactUsComponent} from './contact-us/contact-us.component';
+import {SimpleInstructionComponent} from './simple-instruction/simple-instruction.component';
+import {CommentsComponent} from './comments/comments.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { SimpleInstructionComponent } from './simple-instruction/simple-instruct
     OrderViewComponent,
     ContactUsComponent,
     SimpleInstructionComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
@@ -58,7 +60,7 @@ import { SimpleInstructionComponent } from './simple-instruction/simple-instruct
     ReactiveFormsModule, CommonModule, TextMaskModule,
 
   ],
-  entryComponents: [OrderItemsComponent, NextOperationComponent, AlertComponent, TableSelectionComponent],
+  entryComponents: [OrderItemsComponent, NextOperationComponent, AlertComponent, TableSelectionComponent, CommentsComponent],
   providers: [HttpService, LoginService, ClientListService, OrderService, FormBuilder],
   bootstrap: [AppComponent],
 })

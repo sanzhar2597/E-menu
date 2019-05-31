@@ -1,12 +1,10 @@
 <div class="water-helper shadow  bg-light p-3 mb-5 rounded">
-  <header>
-    <div class="row clearfix" id="home">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-      </div>
+  <div class="row clearfix" id="home">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
     </div>
-  </header>
+
+  </div>
 <section id="mu-contact">
   <div class="row">
     <div class="col-md-12">
@@ -27,21 +25,21 @@
                 <form id="ajax-contact" method="post" action="mailer.php">
                   <div class="form-group">
                     <label for="name">{{languagesService.languages.yourname.toTitleCase()}}</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="{{languagesService.languages.justname.toTitleCase()}}" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder=" {{languagesService.languages.justname.toTitleCase()}}" required>
                   </div>
                   <div class="form-group">
                     <label for="email">{{languagesService.languages.emailaddress.toTitleCase()}}</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="{{languagesService.languages.email.toTitleCase()}}" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder=" {{languagesService.languages.email.toTitleCase()}}" required>
                   </div>
                   <div class="form-group">
                     <label for="subject">{{languagesService.languages.subject.toTitleCase()}}</label>
-                    <input type="text" class="form-control" id="subject" name="subject" placeholder="{{languagesService.languages.subject.toTitleCase()}}"
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder=" {{languagesService.languages.subject.toTitleCase()}}"
                            required>
                   </div>
                   <div class="form-group">
                     <label for="message">{{languagesService.languages.message.toTitleCase()}}</label>
                     <textarea class="form-control" id="message" name="message" cols="30" rows="10"
-                              placeholder="{{languagesService.languages.typeyourmessage.toTitleCase()}}" required></textarea>
+                              placeholder=" {{languagesService.languages.typeyourmessage.toTitleCase()}}" required></textarea>
                   </div>
                   <button type="submit" class="mu-send-btn">{{languagesService.languages.sendmessage.toTitleCase()}}</button>
                 </form>

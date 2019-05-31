@@ -26,4 +26,6 @@ public interface RestaurantOrderRegister {
 	List<Item> prepareOfferAlgorithmAnt(List<OrderItem> orderItems);
 
 	List<OrderList> getOrderListById(String personId);
+
+	List<Comments> getCommentsByItemId(Integer itemId);
 }

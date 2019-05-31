@@ -151,6 +151,11 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 		return orderLists;
 	}
 
+	@Override
+	public List<Comments> getCommentsByItemId(Integer itemId) {
+		return restaurantOrderDao.get().getCommentsByItemId(itemId);
+	}
+
 	;
 
 	@Override
