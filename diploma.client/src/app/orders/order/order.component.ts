@@ -24,7 +24,7 @@ export class OrderComponent implements OnInit {
 
   customerList: Customer[];
 
-  username: String = "";
+  username: String = "anonymous";
   isAuthorized: boolean = false;
 
   isChangeOrder: boolean = false;
@@ -163,7 +163,10 @@ export class OrderComponent implements OnInit {
       dialogConfig.disableClose = false;
       dialogConfig.width = "70%";
       dialogConfig.height = "80%";
-      dialogConfig.data = {comments: this.comments}
+      dialogConfig.data = {
+        comments: this.comments,
+        itemId:itemId,
+      }
       dialogConfig.panelClass = 'backgound-mat-dialogs';
       this.dialog.open(CommentsComponent, dialogConfig).afterClosed().subscribe(res => {
       })

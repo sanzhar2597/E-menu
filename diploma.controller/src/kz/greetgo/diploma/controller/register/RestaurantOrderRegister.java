@@ -28,4 +28,10 @@ public interface RestaurantOrderRegister {
 	List<OrderList> getOrderListById(String personId);
 
 	List<Comments> getCommentsByItemId(Integer itemId);
+
+	String setComments(Comments comments);
+
+	String setCommentsLike(CommentsLike commentsLike);
+
+	List<CommentsLike> setCommentsLikeByPersonId(String personId);
 }

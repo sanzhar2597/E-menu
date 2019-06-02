@@ -49,6 +49,8 @@
          messages text,
          person_id varchar(100),
          item_id int,
+         anonym boolean DEFAULT false,
+         date timestamp,
          primary key(id),
          foreign key(person_id) references person(id),
          foreign key(item_id) references item(item_id)
@@ -63,7 +65,7 @@
          comments_id int,
          liked int,
          disliked int,
-         primary key(id),
+         primary key(person_id,comments_id),
          foreign key(person_id) references person(id),
          foreign key(comments_id) references comments(id)
         )

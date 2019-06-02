@@ -2,6 +2,7 @@ package kz.greetgo.diploma.register.test.dao;
 
 import kz.greetgo.diploma.controller.register.model.Booking;
 import kz.greetgo.diploma.controller.register.model.Comments;
+import kz.greetgo.diploma.controller.register.model.CommentsLike;
 import kz.greetgo.diploma.controller.register.model.Table;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -24,13 +25,20 @@ public interface BookingTestDao {
 	@Select("select id from person limit 1")
 	String getPersonId();
 
+	@Select("select id from person")
+	List<String> listPersonId();
+
 
 	@Insert("insert into restaurant_table(name, status) " +
 		"values (#{table.name}, #{table.status})")
 	void insertRestaurantTable(@Param("table") Table table);
 
 
-	@Insert("insert into comments(item_id, person_id, messages ) " +
-		"values ( #{comments.itemId}, #{comments.personId}, #{comments.messages})")
+	@Insert("insert into comments(item_id, person_id, messages,date ) " +
+		"values ( #{comments.itemId}, #{comments.personId}, #{comments.messages}, #{comments.date})")
 	void insertComments(@Param("comments") Comments comments);
+
+	@Insert("insert into comments_like(comments_id, person_id, liked ,disliked) " +
+		"values ( #{commentsLike.commentsId}, #{commentsLike.personId}, #{commentsLike.liked}, #{commentsLike.disliked})")
+	void insertCommentsLike(@Param("commentsLike") CommentsLike commentsLike);
 }

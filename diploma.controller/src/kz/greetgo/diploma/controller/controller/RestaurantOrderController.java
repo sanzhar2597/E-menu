@@ -66,9 +66,9 @@ public class RestaurantOrderController implements Controller {
 	@ToJson
 	@PublicAccess
 	@OnGet("/update-order-status")
-	public void updateOrderStatus( @Par("orderList") @Json OrderList orderList) {
+	public void updateOrderStatus(@Par("orderList") @Json OrderList orderList) {
 
-		 restaurantOrderRegister.get().updateOrderStatus(orderList);
+		restaurantOrderRegister.get().updateOrderStatus(orderList);
 	}
 
 	@ToJson
@@ -107,7 +107,29 @@ public class RestaurantOrderController implements Controller {
 		return restaurantOrderRegister.get().getCommentsByItemId(itemId);
 	}
 
+	@ToJson
+	@PublicAccess
+	@OnGet("/set-comments")
+	public String setComments(@Par("comments") @Json Comments comments) {
 
+		return restaurantOrderRegister.get().setComments(comments);
+	}
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/set-comments-like")
+	public String setCommentsLike(@Par("commentsLike") @Json CommentsLike commentsLike) {
+
+		return restaurantOrderRegister.get().setCommentsLike(commentsLike);
+	}
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/set-comments-like-by-person-id")
+	public List<CommentsLike> setCommentsLikeByPersonId(@Par("personId") String personId) {
+
+		return restaurantOrderRegister.get().setCommentsLikeByPersonId(personId);
+	}
 
 
 }

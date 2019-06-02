@@ -1,7 +1,7 @@
 <div class="app-root-color col-md-10 offset-md-1">
   <nav class="navbar navbar-expand-lg navbar-light  navbar-color bg-light shadow p-3 mb-5 rounded">
     <a class="navbar-brand col-md-1">
-      <img  id='logoPhoto' src="/e-order/assets/img/food.png" >
+      <img  id='logoPhoto' src="assets/img/food.png" >
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
           <a class="nav-link" routerLink="/">{{languagesService.languages.order.toFirstTitleCase()}}<span
             class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" id="navItem2" (click)="showMainPage('booking')">
+        <li  *ngIf="!login.canViewAdmin" class="nav-item" id="navItem2" (click)="showMainPage('booking')">
           <a class="nav-link" routerLink="/booking">{{languagesService.languages.booking.toFirstTitleCase()}}<span
             class="sr-only">(current)</span></a>
         </li>
@@ -25,7 +25,7 @@
           <a class="nav-link" routerLink="/admin">{{languagesService.languages.admin.toFirstTitleCase()}}<span
             class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" id="navItem6" (click)="showMainPage('login')">
+        <li  *ngIf="!login.canViewAdmin" class="nav-item" id="navItem6" (click)="showMainPage('login')">
           <a class="nav-link" (click)="showMainPage('about')"
              routerLink="/about">{{languagesService.languages.about.toFirstTitleCase()}}</a>
         </li>
@@ -63,13 +63,13 @@
         </li>
       </ul>
 
-      <span class="navbar-text text-center px-md-2" *ngIf="login.personDisplay">
-      Аккаунт:   {{login.personDisplay.username}}
-    </span>
+
       <div class="btn-group px-md-2" *ngIf="login.personDisplay">
-        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        <button type="button" class="btn  shesterenka-color dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-          Action
+          <i class="fa fa-cog" aria-hidden="true"> <span class="navbar-text text-center px-md-2" *ngIf="login.personDisplay">
+      Аккаунт:   {{login.personDisplay.username}}
+    </span></i>
         </button>
         <div class="dropdown-menu px-md-2">
           <a class="dropdown-item px-md-2" (click)="login.exit()">{{languagesService.languages.exit}}</a>

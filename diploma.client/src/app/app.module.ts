@@ -15,13 +15,21 @@ import {AboutComponent} from './about/about.component';
 import {OrdersComponent} from './orders/orders.component';
 import {OrderComponent} from './orders/order/order.component';
 import {OrderItemsComponent} from './orders/order-items/order-items.component';
-import {AppRoutingModule} from './/app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 import {OrderService} from "./orders/shared/order.service";
 import {HeaderComponent} from './header/header.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {BookingComponent} from './booking/booking.component';
 import {NextOperationComponent} from './next-operation/next-operation.component';
-import {MatProgressSpinnerModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatProgressSpinnerModule,
+  MatSelectModule
+} from "@angular/material";
 import {AlertComponent} from './alert/alert.component';
 import {TableSelectionComponent} from './table-selection/table-selection.component';
 import {BoldDirectiveDirective} from './bold-directive.directive';
@@ -31,6 +39,7 @@ import {TextMaskModule} from "angular2-text-mask";
 import {ContactUsComponent} from './contact-us/contact-us.component';
 import {SimpleInstructionComponent} from './simple-instruction/simple-instruction.component';
 import {CommentsComponent} from './comments/comments.component';
+import {AmazingTimePickerModule} from "amazing-time-picker";
 
 
 @NgModule({
@@ -57,8 +66,8 @@ import {CommentsComponent} from './comments/comments.component';
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
     BrowserAnimationsModule, MatDialogModule, MatProgressSpinnerModule, ToastrModule.forRoot(),
-    ReactiveFormsModule, CommonModule, TextMaskModule,
-
+    ReactiveFormsModule, CommonModule, TextMaskModule, MatDatepickerModule, MatNativeDateModule, MatInputModule,
+  AmazingTimePickerModule, MatSelectModule, MatCardModule, MatButtonModule
   ],
   entryComponents: [OrderItemsComponent, NextOperationComponent, AlertComponent, TableSelectionComponent, CommentsComponent],
   providers: [HttpService, LoginService, ClientListService, OrderService, FormBuilder],

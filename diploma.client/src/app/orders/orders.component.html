@@ -21,7 +21,9 @@
         [class.table-warning]="item.status==1"
         [class.table-info]="item.status==3">
       <th (click)="openForEdit(item)">{{item.orderNo}}</th>
-      <td (click)="openForEdit(item)">{{(item.phoneNumber ? item.phoneNumber : item.name)}}</td>
+      <!--<td  (click)="openForEdit(item)">{{(item.phoneNumber ? item.phoneNumber : languagesService.languages.anonymous.toFirstTitleCase() )}}</td>-->
+      <td *ngIf="loginService.personDisplay" (click)="openForEdit(item)">{{item.phoneNumber ? item.phoneNumber : item.name}}</td>
+      <td  *ngIf="!loginService.personDisplay" (click)="openForEdit(item)">{{item.phoneNumber ? item.phoneNumber : languagesService.languages.anonymous.toFirstTitleCase()}}</td>
       <td (click)="openForEdit(item)" [class.pay-in-card]="item.pMethod=='Card'"
           [class.pay-in-cash]="item.pMethod=='Cash'" [class.pay-in-cash-or-card]="item.pMethod==''">
         <!--{{item.pMethod}}--></td>

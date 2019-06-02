@@ -72,7 +72,7 @@ export class Languages {
     quantity: "Количество",
     total: "Всего",
     submitsuccesfully: "Успешно отправлено",
-    cash: "Сash",
+    cash: "Cash",
     card: "Сard",
     granttotal: "Общий счет",
     paymentmethod: "Cпособ оплаты",
@@ -110,9 +110,12 @@ export class Languages {
     email:'Адрес',
     justname:'Имя',
     enterin:" Вошли как",
-
+    createdsuccess:"Успешно создан аккаунт! \nТеперь можете войти под своим аккаунтом",
+    createdsuccessfail:"Уже зарегестрирова номер. Выберите другой номер.",
     reserved:'Все права защищены',
     copyright:'Авторское право 2019',
+    anonymous:'аноним',
+    categorytype:'категории меню',
 
 
     abouttext1:'В Unicorn Pub мы предлагаем отличную качественную еду и приглашаем вас насладиться вкусной кухней.',
@@ -180,7 +183,7 @@ recepientusername:'Пароль получателя',
     empty: 'empty',
     full: 'full',
     update: 'update',
-    username: 'Username',
+    username: 'Username\'s number',
     role: "Role",
     submit: " Submit",
     fullname: "Full name",
@@ -261,6 +264,10 @@ yourname:'Your name',
     completed:'Completed',
     reserved:'All right reserved',
     copyright:'Copyright 2019 ',
+    createdsuccess:"Successfully created an account! \nNow you can log in with your account",
+    createdsuccessfail:"Already registered number. Choose another number.",
+    anonymous:'anonymous',
+    categorytype:'menu categories',
 
 
   }

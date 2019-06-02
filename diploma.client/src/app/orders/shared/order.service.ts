@@ -3,6 +3,8 @@ import {Order} from "../../../model/order.model";
 import {OrderItem} from "../../../model/orderItem.model";
 import {HttpService} from "../../http.service";
 import {Item} from "../../../model/item.model";
+import {Comments} from "../../../model/comments.model";
+import {CommentsLike} from "../../../model/comments-like.model";
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +65,20 @@ export class OrderService {
 
   getCommentsbyItemId(itemId: number) {
     return this.httpService.get('/restaurant/get-comments-by-item-id', {itemId}).toPromise();
+  }
+
+  setComments(comments: Comments) {
+    return this.httpService.get('/restaurant/set-comments', {comments: JSON.stringify(comments)}).toPromise()
+  }
+
+  setCommentsLike(commentsLike: CommentsLike) {
+    return this.httpService.get('/restaurant/set-comments-like', {commentsLike: JSON.stringify(commentsLike)}).toPromise()
+
+  }
+
+  setCommentsLikeByPersonid(personId: string) {
+    return this.httpService.get('/restaurant/set-comments-like-by-person-id', {personId: personId}).toPromise()
+
   }
 
 }

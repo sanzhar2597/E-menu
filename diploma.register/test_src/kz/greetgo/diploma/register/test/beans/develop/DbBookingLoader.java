@@ -4,6 +4,7 @@ import kz.greetgo.depinject.core.Bean;
 import kz.greetgo.depinject.core.BeanGetter;
 import kz.greetgo.diploma.controller.register.model.Booking;
 import kz.greetgo.diploma.controller.register.model.Comments;
+import kz.greetgo.diploma.controller.register.model.CommentsLike;
 import kz.greetgo.diploma.controller.register.model.Table;
 import kz.greetgo.diploma.register.beans.all.IdGenerator;
 import kz.greetgo.diploma.register.test.dao.BookingTestDao;
@@ -11,6 +12,7 @@ import kz.greetgo.util.RND;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.log4j.Logger;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -39,6 +41,7 @@ public class DbBookingLoader {
 		booking();
 		booking();
 		addComments();
+		addCommentsLike();
 		logger.info("Finish loading persons");
 	}
 
@@ -98,11 +101,34 @@ public class DbBookingLoader {
 			"что в первую очередь нужно контролировать свою кухню так может человек и умереть от не свежей продукции. " +
 			"Теперь от вида этого ПАБА меня тошнит. Больше не приду никогда туда и другим не советую.";
 
+		comments.date = new Date();
+		comments.date = new Timestamp(comments.date.getTime());
+
 		for(Integer itemId : bookingTestDao.get().getItemId())
 			{
 				comments.itemId = itemId;
 				bookingTestDao.get().insertComments(comments);
 			}
+	}
+
+	private void addCommentsLike() {
+
+		int i = 1;
+		CommentsLike commentsLike = new CommentsLike();
+		commentsLike.commentsId = 1;
+		for(String personId : bookingTestDao.get().listPersonId())
+			{
+				commentsLike.personId = personId;
+				for(int index = 1; index < 5; index++)
+					{
+						commentsLike.commentsId = index;
+						commentsLike.liked = 1;
+						commentsLike.disliked = 1;
+						bookingTestDao.get().insertCommentsLike(commentsLike);
+					}
+
+			}
+
 	}
 
 }

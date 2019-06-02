@@ -4,6 +4,8 @@ import {PersonDisplay} from "../../model/PersonDisplay";
 import {UserCan} from "../../model/UserCan";
 import {Router} from "@angular/router";
 import {getExpressionLoweringTransformFactory} from "@angular/compiler-cli/src/transformers/lower_expressions";
+import {languagesServices} from "../admin/admin-routing.module";
+import {LanguagesService} from "../shared/languages.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,8 @@ export class LoginService {
   public loading = true;
 
   constructor(private http: HttpService,
-              private router: Router) {
+              private router: Router,
+              private languagesService:LanguagesService) {
   }
 
   private started = false;
@@ -87,6 +90,7 @@ export class LoginService {
         password: this.password,
       }, "text").toPromise().then(resp => resp.body as string);
       await this.refresh();
+      this.router.navigate(["/order"]);
       this.loading = false;
     } catch (e) {
       this.loading = false;
@@ -103,7 +107,12 @@ export class LoginService {
         password: this.password,
       }, "text").toPromise().then(resp => consoleDate = (resp.body as string))
       console.log("REGISTRATE: ", consoleDate);
-      alert(consoleDate)
+      if("Created" ==consoleDate){
+        alert(this.languagesService.languages.createdsuccess)
+      }
+      else if('уже зарегестрирова номер, Выберите другой номер.' == consoleDate){
+        alert(this.languagesService.languages.createdsuccessfail)
+      }
       await this.refresh();
       this.loading = false;
       this.router.navigate(["/login"]);

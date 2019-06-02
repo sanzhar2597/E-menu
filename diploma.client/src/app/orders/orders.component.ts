@@ -72,12 +72,14 @@ export class OrdersComponent implements OnInit {
     if (this.expectUser()) {
       this.service.getOrderList().then(res => {
         this.orderList = res.body
+
         this.showDate()
         this.sortByKey(this.orderList, "orderNo")
       });
     }
     else {
       this.service.getOrderListById(id).then(res => {
+
         this.orderList = res.body;
         this.showDate()
         this.sortByKey(this.orderList, "orderNo")

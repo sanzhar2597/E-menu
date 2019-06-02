@@ -146,14 +146,82 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 	public List<OrderList> getOrderListById(String personId) {
 
 		List<OrderList> orderLists = new ArrayList<>();
-		orderLists = restaurantOrderDao.get().selectOrderListById(personId);
+		String id = restaurantOrderDao.get().getPersonId(personId);
+		if(isNullOrEmpty(id))
+			{
+				orderLists = restaurantOrderDao.get().selectOrderListById(personId);
 
+			} else
+			{
+				orderLists = restaurantOrderDao.get().selectOrderListById(id);
+			}
 		return orderLists;
+	}
+
+	private boolean isNullOrEmpty(String str) {
+
+		if(str != null && !str.isEmpty())
+			return false;
+		return true;
 	}
 
 	@Override
 	public List<Comments> getCommentsByItemId(Integer itemId) {
+
 		return restaurantOrderDao.get().getCommentsByItemId(itemId);
+	}
+
+	@Override
+	public String setComments(Comments comments) {
+
+
+		String id = restaurantOrderDao.get().getPersonId(comments.personId);
+		comments.date = new Timestamp(comments.date.getTime());
+		if(isNullOrEmpty(id))
+			{
+				restaurantOrderDao.get().setComments(comments);
+
+			} else
+			{
+				comments.personId = id;
+				restaurantOrderDao.get().setComments(comments);
+			}
+		return "set comments";
+	}
+
+	@Override
+	public String setCommentsLike(CommentsLike commentsLike) {
+
+		String id = restaurantOrderDao.get().getPersonId(commentsLike.personId);
+		if(!isNullOrEmpty(id))
+			{
+				commentsLike.personId = id;
+			}
+		if(!isNullOrEmpty(restaurantOrderDao.get().selectCommentsByLiked(commentsLike)))
+			{
+				commentsLike.liked = null;
+			}
+		if(!isNullOrEmpty(restaurantOrderDao.get().selectCommentsByDisliked(commentsLike)))
+			{
+				commentsLike.disliked = null;
+			}
+
+		restaurantOrderDao.get().setCommentsLike(commentsLike);
+
+
+		return "set comments";
+	}
+
+	@Override
+	public List<CommentsLike> setCommentsLikeByPersonId(String personId) {
+
+		String id = restaurantOrderDao.get().getPersonId(personId);
+		if(!isNullOrEmpty(id))
+			{
+				personId = id;
+			}
+
+		return restaurantOrderDao.get().setCommentsLikeByPersonId(personId);
 	}
 
 	;

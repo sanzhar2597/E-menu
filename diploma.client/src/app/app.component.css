@@ -11,6 +11,17 @@
   position:relative;
 
 }
+.shesterenka-color{
+  background-color: #acb3ba;
+}
+
+.shesterenka-color:focus{
+  background-color: #3f596b;
+  box-shadow: 0 0 0 0.1rem #3f596b !important;
+}
+
+
+
 .app-navbar{
   margin-left: auto;
   margin-right: auto;
