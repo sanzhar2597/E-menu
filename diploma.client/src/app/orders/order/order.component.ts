@@ -14,6 +14,9 @@ import {LoginService} from "../../login/login.service";
 import {Customer} from "../../../model/customer.model";
 import {CommentsComponent} from "../../comments/comments.component";
 import {Comments} from "../../../model/comments.model";
+import {ItemService} from "../shared/item.service";
+import {ItemList} from "../../../model/item-list.model";
+import {OrderItem} from "../../../model/orderItem.model";
 
 @Component({
   selector: 'app-order',
@@ -32,15 +35,20 @@ export class OrderComponent implements OnInit {
   isValid: boolean;
 
   comments: Array<Comments> = [];
+  public itemList: Item[];
+  public itemListList: ItemList[];
+  category: string = 'menu1';
+  isValidOrderItem: boolean = false;
 
   constructor(public service: OrderService,
+              private itemService: ItemService,
               private dialog: MatDialog,
               private customerService: CustomerService,
               private toastr: ToastrService,
               private router: Router,
               private currentRoute: ActivatedRoute,
               private bookingService: BookingService,
-              private languagesService: LanguagesService,
+              public languagesService: LanguagesService,
               public loginService: LoginService) {
   }
 
@@ -65,6 +73,8 @@ export class OrderComponent implements OnInit {
 
 
     this.getPersonId()
+    this.selectListItem();
+
   }
 
   static formDataAssign(obj: Order): Order {
@@ -165,7 +175,7 @@ export class OrderComponent implements OnInit {
       dialogConfig.height = "80%";
       dialogConfig.data = {
         comments: this.comments,
-        itemId:itemId,
+        itemId: itemId,
       }
       dialogConfig.panelClass = 'backgound-mat-dialogs';
       this.dialog.open(CommentsComponent, dialogConfig).afterClosed().subscribe(res => {
@@ -203,10 +213,120 @@ export class OrderComponent implements OnInit {
       })
     }
   }
+  onSubmitMatButton() {
+    event.preventDefault();
+    if (this.validateForm()) {
+      this.service.saveOrUpdateOrder().subscribe(res => {
+        this.resetForm();
+        this.toastr.success(this.languagesService.languages.submitsuccesfully, this.languagesService.languages.nameapp);
+        this.router.navigate(['/orders']);
+      })
+    }
+  }
 
   checkBooking() {
     if (this.bookingService.booking.bookingId) {
       this.service.formData.bookingId = this.bookingService.booking.bookingId;
     }
   }
+
+  getList() {
+    this.itemService.getItemListByCategory(this.category)
+      .then(res => {
+        this.itemList = res.body as Item[];
+        console.table(this.itemList)
+        this.itemListList = this.itemList.map((value, index) => {
+          let orderItem = new OrderItem();
+          orderItem = {
+            orderItemId: null,
+            orderId: this.service.formData.orderId,
+            itemId: 0,
+            itemName: '',
+            price: value.price,
+            quantity: 1,
+            total: 0
+          };
+          orderItem.total = parseFloat((orderItem.quantity * orderItem.price).toFixed(2));
+
+          let items = {
+            orderItem: orderItem,
+            ...value
+          }
+          return items;
+        })
+      })
+      .catch(e => console.log("NAZAR: ", e))
+  }
+
+  selectListItem() {
+    this.itemService.getItemListByCategory(this.category)
+      .then(res => {
+        this.itemList = res.body as Item[];
+        console.table(this.itemList)
+        this.itemListList = this.itemList.map((value, index) => {
+          let orderItem = new OrderItem();
+          orderItem = {
+            orderItemId: null,
+            orderId: this.service.formData.orderId,
+            itemId: value.itemId,
+            itemName: value.name,
+            price: value.price,
+            quantity: 1,
+            total: 0
+          };
+          orderItem.total = parseFloat((orderItem.quantity * orderItem.price).toFixed(2));
+
+          let items = {
+            orderItem: orderItem,
+            ...value
+          }
+          return items;
+        })
+      })
+      .catch(e => console.log("NAZAR: ", e))
+  }
+
+  updateTotal(item: ItemList, e) {
+    if (this.invalidChars.includes(e.key)) {
+      e.preventDefault();
+    }
+    item.orderItem.quantity = +(item.orderItem.quantity + '').replace(/^0+/, '');
+    item.orderItem.total = parseFloat((item.orderItem.quantity * item.price).toFixed(2))
+  }
+
+  invalidChars = [
+    "-",
+    "+",
+    "e",
+  ];
+
+  validateFormOrderItem(item: ItemList) {
+    this.isValidOrderItem = true;
+    if (item.orderItem.itemId == 0) {
+      this.isValidOrderItem = false
+    }
+    else if (!item.orderItem.quantity) {
+      this.isValidOrderItem = false
+    }
+    return this.isValidOrderItem
+  }
+
+  submitOrderItem(item: ItemList) {
+    if (!this.validateFormOrderItem(item)) {
+      return
+    }
+    else {
+      this.isChangeOrder = true;123
+      this.service.orderItems.push(item.orderItem);
+      this.service.offerPrepare().then(res => {
+        console.log("OFFER PREPARE: ", res.body);
+        if (res.body.length)
+          this.service.items = res.body as Item[]
+        this.updateGrandTotal();
+      });
+
+    }
+
+  }
+
 }

@@ -17,6 +17,7 @@
     <sql endDelimiter=";;"><![CDATA[
       create table item (
         item_id serial primary key,
+        category varchar(100) default 'menu1',
         name varchar(100),
         price decimal
       )

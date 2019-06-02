@@ -224,7 +224,12 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 		return restaurantOrderDao.get().setCommentsLikeByPersonId(personId);
 	}
 
-	;
+	@Override
+	public List<Item> getItemListByCategory(String category) {
+
+		return restaurantOrderDao.get().selectItemByCategory(category);
+	}
+
 
 	@Override
 	public void updateOrderStatus(OrderList orderList) {

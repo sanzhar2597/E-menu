@@ -12,6 +12,11 @@ public interface RestaurantOrderDao {
 	@Select("select *from item")
 	ArrayList<Item> selectItem();
 
+
+	@Select("select item_id, name, price from item where category=#{category};")
+	List<Item> selectItemByCategory(@Param("category") String category);
+
+
 	@Select("select * from item where item_id =#{itemId}")
 	Item selectItemById(@Param("itemId") Integer itemId);
 

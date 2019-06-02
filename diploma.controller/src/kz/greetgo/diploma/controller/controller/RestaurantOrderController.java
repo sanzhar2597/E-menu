@@ -30,6 +30,15 @@ public class RestaurantOrderController implements Controller {
 		return restaurantOrderRegister.get().getItemList();
 	}
 
+
+	@ToJson
+	@PublicAccess
+	@OnGet("/list-item-by-category")
+	public List<Item> getItemListByCategory(@Par("category")  String category) {
+
+		return restaurantOrderRegister.get().getItemListByCategory(category);
+	}
+
 	@ToJson
 	@PublicAccess
 	@OnGet("/customer")
