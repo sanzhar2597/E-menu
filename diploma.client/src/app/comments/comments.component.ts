@@ -33,16 +33,17 @@ export class CommentsComponent implements OnInit {
   public comments: Array<Comments>;
 
   public itemId: number;
+  public isValidate: boolean = false;
+  public isCommentMessage: boolean = false;
 
   ngOnInit() {
-    this.itemId = this.data.itemId;
     this.resetComments();
     this.resetNgComments();
     this.getCommentsByPerson();
   }
 
   onSubmit() {
-    if (this.ngComments.messages.length) {
+    if (this.ngComments.messages.length && this.isValidate) {
       this.orderService.setComments(this.ngComments).then(value => {
           this.updateCommentsByServer();
           this.resetNgComments();
@@ -86,6 +87,8 @@ export class CommentsComponent implements OnInit {
   }
 
   resetComments() {
+    this.itemId = this.data.itemId;
+    this.isCommentMessage = this.data.isCommentsMessage;
     this.comments = this.data.comments as Array<Comments>;
     this.filterComments();
 
@@ -204,6 +207,16 @@ export class CommentsComponent implements OnInit {
       console.table(this.ngCommentsLike)
       console.table(this.commentsWithExtendsModels)
     })
+  }
+
+  checkValues(e) {
+    let checked = e.currentTarget.value.replace(/\s/g, '');
+    if (!!checked && checked.length > 10) {
+      this.isValidate = true;
+    }
+    else {
+      this.isValidate = false;
+    }
   }
 
 }

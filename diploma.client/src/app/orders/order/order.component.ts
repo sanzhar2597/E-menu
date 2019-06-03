@@ -176,6 +176,7 @@ export class OrderComponent implements OnInit {
       dialogConfig.data = {
         comments: this.comments,
         itemId: itemId,
+        isCommentsMessage: false,
       }
       dialogConfig.panelClass = 'backgound-mat-dialogs';
       this.dialog.open(CommentsComponent, dialogConfig).afterClosed().subscribe(res => {
@@ -213,6 +214,7 @@ export class OrderComponent implements OnInit {
       })
     }
   }
+
   onSubmitMatButton() {
     event.preventDefault();
     if (this.validateForm()) {
@@ -316,7 +318,8 @@ export class OrderComponent implements OnInit {
       return
     }
     else {
-      this.isChangeOrder = true;123
+      this.isChangeOrder = true;
+      123
       this.service.orderItems.push(item.orderItem);
       this.service.offerPrepare().then(res => {
         console.log("OFFER PREPARE: ", res.body);

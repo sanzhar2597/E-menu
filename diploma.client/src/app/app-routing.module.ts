@@ -11,7 +11,7 @@ import {AuthGuard} from "./auth/auth.guard";
 import {OrderViewComponent} from "./orders/order/order-view/order-view.component";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {SimpleInstructionComponent} from "./simple-instruction/simple-instruction.component";
-import {CommentsComponent} from "./comments/comments.component";
+import {NotViewStuffGuard} from "./not-view-stuff.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: 'order', pathMatch: 'full'},
@@ -35,9 +35,11 @@ const routes: Routes = [
   {path: 'instruction', component: SimpleInstructionComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
-  {path: 'booking', component: BookingComponent},
-  {path: 'admin', loadChildren: "./admin/admin.module#AdminModule",
-    canActivate:[AuthGuard]},
+  {path: 'booking', component: BookingComponent, canActivate: [NotViewStuffGuard]},
+  {
+    path: 'admin', loadChildren: "./admin/admin.module#AdminModule",
+    canActivate: [AuthGuard]
+  },
 
   {path: '**', redirectTo: 'order', pathMatch: 'full'},
 ];

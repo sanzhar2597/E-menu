@@ -24,7 +24,7 @@
         <td>{{item.price}}</td>
         <td>{{item.quantity}}</td>
         <td>{{item.total}}</td>
-        <td (click)="showComments(item)">
+        <td (click)="showComments(item.orderId, i)">
           <span class="badge badge-primary comments-text ">comments: 444</span>
         </td>
       </tr>

@@ -90,7 +90,15 @@ export class LoginService {
         password: this.password,
       }, "text").toPromise().then(resp => resp.body as string);
       await this.refresh();
-      this.router.navigate(["/order"]);
+      if(this.canViewWaiter){
+        this.router.navigate(["/orders"]);
+      }
+      else if(this.canViewAdmin){
+        this.router.navigate(["/admin"]);
+      }
+      else{
+        this.router.navigate(["/order"]);
+      }
       this.loading = false;
     } catch (e) {
       this.loading = false;
