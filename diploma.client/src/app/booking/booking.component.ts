@@ -28,6 +28,8 @@ export class BookingComponent implements OnInit {
 
   userForm: FormGroup;
   mask: any[] = ['8', '(', /[1-9]/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
+  public isValidateForm: boolean = false;
+  public arrayOfPeople = [1, 2, 3, 4, 5, 6, 10, 12, 14]
 
   constructor(public bookingService: BookingService,
               private dialog: MatDialog,
@@ -59,6 +61,10 @@ export class BookingComponent implements OnInit {
         this.resetForm();
       }
     )
+    this.bookingService.getRestaurantTableList().then(value => {
+        this.bookingService.tableArray = value.body
+      }
+    )
     this.resetForm();
     this.getPhoneNumber();
 
@@ -69,9 +75,11 @@ export class BookingComponent implements OnInit {
     let from = this.bookingService.booking.recordDateFrom.substring(0, 2);
     let to = this.bookingService.booking.recordDateTo.substring(0, 2);
     if (+from + 2 > +to) {
+      this.isValidateForm = false;
       return true
     }
     else {
+      this.isValidateForm = true;
       return false
     }
   }
@@ -146,7 +154,7 @@ export class BookingComponent implements OnInit {
   resetForm() {
     this.bookingService.booking = {
       bookingId: Math.floor(100000 + Math.random() * 900000),
-      numberOfPeople: "1",
+      numberOfPeople: 1,
       recordTime: new Date(),
       recordDateDay: this.defaultDateDay(),
       recordDateFrom: this.defaultDateHourFrom(),
@@ -163,6 +171,10 @@ export class BookingComponent implements OnInit {
     this.unmask(this.bookingService.booking.phoneNumber);
     event.preventDefault();
     if (!this.userForm.get('phoneNumber').valid) {
+      return
+    }
+    if (!this.isValidateForm) {
+      alert(this.languagesService.languages.bookingInvalid)
       return
     }
     let self = this;
@@ -253,11 +265,15 @@ export class BookingComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.data = {
       count: scope.bookingService.table.length,
-      response: scope.bookingService.table.findIndex(value => value == scope.bookingService.booking.tableType)
+      response: scope.bookingService.table.findIndex(value => value == scope.bookingService.booking.tableType),
+      table: this.bookingService.table,
+      tableArray: this.bookingService.tableArray,
     }
     this.dialog.open(TableSelectionComponent, dialogConfig).afterClosed().subscribe(res => {
+
       if (res != undefined) {
-        this.bookingService.booking.tableType = this.bookingService.table[+res]
+        this.bookingService.booking.tableType = this.bookingService.table[+res.id]
+        this.bookingService.booking.numberOfPeople = res.personNumber
       }
       else {
         this.bookingService.booking.tableType = this.bookingService.table[0]

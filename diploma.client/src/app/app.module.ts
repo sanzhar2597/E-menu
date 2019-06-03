@@ -40,6 +40,8 @@ import {ContactUsComponent} from './contact-us/contact-us.component';
 import {SimpleInstructionComponent} from './simple-instruction/simple-instruction.component';
 import {CommentsComponent} from './comments/comments.component';
 import {AmazingTimePickerModule} from "amazing-time-picker";
+import {SliderModule} from "angular-image-slider";
+import {SlideshowModule} from "ng-simple-slideshow";
 
 
 @NgModule({
@@ -67,7 +69,7 @@ import {AmazingTimePickerModule} from "amazing-time-picker";
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,
     BrowserAnimationsModule, MatDialogModule, MatProgressSpinnerModule, ToastrModule.forRoot(),
     ReactiveFormsModule, CommonModule, TextMaskModule, MatDatepickerModule, MatNativeDateModule, MatInputModule,
-  AmazingTimePickerModule, MatSelectModule, MatCardModule, MatButtonModule
+    AmazingTimePickerModule, MatSelectModule, MatCardModule, MatButtonModule, SliderModule, SlideshowModule
   ],
   entryComponents: [OrderItemsComponent, NextOperationComponent, AlertComponent, TableSelectionComponent, CommentsComponent],
   providers: [HttpService, LoginService, ClientListService, OrderService, FormBuilder],

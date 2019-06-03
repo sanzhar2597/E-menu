@@ -1140,8 +1140,6 @@ if it's not present, don't show loader */
  .mu-about-us-right {
    display: inline;
    float: left;
-   margin-top: 20px;
-   padding-top: 30px;
    padding-left: 15px;
    width: 100%;
  }

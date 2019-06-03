@@ -78,6 +78,9 @@ export class OrderService {
 
   setCommentsLikeByPersonid(personId: string) {
     return this.httpService.get('/restaurant/set-comments-like-by-person-id', {personId: personId}).toPromise()
+  }
+  getListCategory(){
+    return this.httpService.get('/restaurant/get-list-category').toPromise()
 
   }
 

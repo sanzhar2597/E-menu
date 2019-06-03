@@ -1,5 +1,5 @@
 <div class="app-root-color ">
-  <nav class="navbar navbar-expand-lg navbar-light  navbar-color bg-light shadow p-3 mb-5 rounded">
+  <nav class="navbar navbar-expand-lg navbar-light  navbar-color bg-light shadow-sm p-3 mb-5 rounded">
     <a class="navbar-brand col-md-1">
       <img  id='logoPhoto' src="assets/img/food.png" >
     </a>
@@ -43,8 +43,8 @@
             {{languagesService.languages.language.toFirstTitleCase()}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" (click)="changeLanguage(const_languages.RU_LANGUAGE)">русский</a>
-            <a class="dropdown-item" (click)="changeLanguage(const_languages.EN_LANGUAGE)">english</a>
+            <a class="dropdown-item" (click)="changeLanguage(const_languages.RU_LANGUAGE)">Русский</a>
+            <a class="dropdown-item" (click)="changeLanguage(const_languages.EN_LANGUAGE)">English</a>
           </div>
         </li>
         <!--<li class="nav-item" id="navItem7" (click)="linkTelegram()">
@@ -89,13 +89,10 @@
   </div>
 
 
-  <div class="preloader" [hidden]="!login.preloader">
-    <mat-spinner></mat-spinner>
-  </div>
 </div>
 
 
-<footer id="mu-footer" class="bg-light shadow rounded ">
+<footer id="mu-footer" class="bg-light shadow-sm rounded ">
   <div class="mu-footer-area">
     <div class="mu-footer-social">
       <a (click)="linkTelegram()"><i class="fa fa-telegram"></i></a>

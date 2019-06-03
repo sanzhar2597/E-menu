@@ -230,6 +230,13 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 		return restaurantOrderDao.get().selectItemByCategory(category);
 	}
 
+	@Override
+	public List<String> getListCategory() {
+
+		return  restaurantOrderDao.get().getListCategory();
+
+	}
+
 
 	@Override
 	public void updateOrderStatus(OrderList orderList) {

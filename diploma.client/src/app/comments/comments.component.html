@@ -8,7 +8,7 @@
   <div class="text-center " style="margin-bottom: 50px"><h3>Comments</h3></div>
 
   <div class="" *ngFor="let comment of commentsWithExtendsModels">
-    <div class="col-md-12  bg-light shadow rounded row padding-commments ">
+    <div class="col-md-12  bg-light shadow-sm rounded row padding-commments ">
       <div class="col-md-5 row header-container">
         <div class=" avatar col-md-4"></div>
         <div class="col-md-12 offset-md-1 ">
@@ -40,7 +40,7 @@
 
   <div id="downpage" class=""
        *ngIf="isCommentMessage && !loginService.canViewWaiter && !loginService.canViewAdmin ">
-    <form autocomplete="off" class="col-md-12  bg-light shadow rounded row" (submit)="onSubmit()">
+    <form autocomplete="off" class="col-md-12  bg-light shadow-sm rounded row" (submit)="onSubmit()">
       <mat-form-field class="mat-display col-md-12" style="padding-top: 20px;">
         <textarea matInput placeholder="Оставить комментарий:" id="commentText" name="commentText" rows="3"
                   [(ngModel)]="ngComments.messages" (keyup)="checkValues($event)"></textarea>

@@ -37,7 +37,8 @@ export class OrderComponent implements OnInit {
   comments: Array<Comments> = [];
   public itemList: Item[];
   public itemListList: ItemList[];
-  category: string = 'menu1';
+  category: string = 'menu-1';
+  arrayOfCategory:Array<string>=[];
   isValidOrderItem: boolean = false;
 
   constructor(public service: OrderService,
@@ -53,6 +54,10 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.service.getListCategory().then(value => {
+      this.arrayOfCategory = value.body as Array<string>;
+      this.category = this.arrayOfCategory[0]
+    })
     this.service.items = [];
     let orderID: string;
     orderID = this.currentRoute.snapshot.paramMap.get('id');
@@ -255,6 +260,13 @@ export class OrderComponent implements OnInit {
             ...value
           }
           return items;
+        });
+        this.itemListList.sort(function (a, b) {
+          let keyA = a.description.length;
+          let keyB = b.description.length;
+          if (keyA < keyB) return 1;
+          if (keyA > keyB) return -1;
+          return 0
         })
       })
       .catch(e => console.log("NAZAR: ", e))
@@ -283,6 +295,13 @@ export class OrderComponent implements OnInit {
             ...value
           }
           return items;
+        })
+        this.itemListList.sort(function (a, b) {
+          let keyA = a.description.length;
+          let keyB = b.description.length;
+          if (keyA < keyB) return 1;
+          if (keyA > keyB) return -1;
+          return 0
         })
       })
       .catch(e => console.log("NAZAR: ", e))

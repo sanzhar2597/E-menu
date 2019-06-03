@@ -38,6 +38,7 @@
          id serial,
          name varchar(100),
          status int,
+         person_number int,
          primary key(id, name)
       )
     ]]></sql>

@@ -13,9 +13,17 @@ export class AboutComponent implements OnInit {
 
   constructor(public languagesService: LanguagesService) {
   }
-
+  public imagesUrl;
   ngOnInit() {
-
+    this.imagesUrl = [
+      'assets/img/images.jpeg',
+      'assets/img/download.jpeg',
+      'assets/img/download(1).jpeg',
+      'assets/img/download(2).jpeg',
+      'assets/img/download(3).jpeg',
+      'assets/img/download(4).jpeg',
+      'assets/img/download(5).jpeg',
+    ];
 
   }
 

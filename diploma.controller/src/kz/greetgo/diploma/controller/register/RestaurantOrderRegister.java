@@ -36,4 +36,6 @@ public interface RestaurantOrderRegister {
 	List<CommentsLike> setCommentsLikeByPersonId(String personId);
 
 	List<Item> getItemListByCategory(String category);
+
+	List<String> getListCategory();
 }

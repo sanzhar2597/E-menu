@@ -19,7 +19,7 @@ public interface BookingTestDao {
 	void insertBooking(@Param("booking") Booking booking);
 
 
-	@Select("select item_id from item limit 5")
+	@Select("select item_id from item limit 20")
 	List<Integer> getItemId();
 
 	@Select("select id from person limit 1")
@@ -29,8 +29,8 @@ public interface BookingTestDao {
 	List<String> listPersonId();
 
 
-	@Insert("insert into restaurant_table(name, status) " +
-		"values (#{table.name}, #{table.status})")
+	@Insert("insert into restaurant_table(name, status,person_number) " +
+		"values (#{table.name}, #{table.status}, #{table.personNumber})")
 	void insertRestaurantTable(@Param("table") Table table);
 
 

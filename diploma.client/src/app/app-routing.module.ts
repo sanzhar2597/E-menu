@@ -35,7 +35,7 @@ const routes: Routes = [
   {path: 'instruction', component: SimpleInstructionComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
-  {path: 'booking', component: BookingComponent, canActivate: [NotViewStuffGuard]},
+  {path: 'booking', component: BookingComponent, },
   {
     path: 'admin', loadChildren: "./admin/admin.module#AdminModule",
     canActivate: [AuthGuard]
