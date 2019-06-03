@@ -19,7 +19,7 @@
         item_id serial primary key,
         category varchar(100) default 'menu1',
         description text,
-        image text default 'https://thumb.chocofood.kz/J1YGSDPCTtJNmA7iQCADLSU5fqM=/fit-in/400x0/https://chocofood.kz/media/site/restaurants/food/logo/2019/05/14/food_FQJ4MvW.png',
+        image text default 'https://fort-verniy.chocofood.kz/static/img/nophoto-400x0.png?v=3',
         name varchar(100),
         price decimal
       )
