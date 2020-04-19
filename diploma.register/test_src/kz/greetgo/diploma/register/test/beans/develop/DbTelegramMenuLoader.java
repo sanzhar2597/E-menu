@@ -147,7 +147,7 @@ public class DbTelegramMenuLoader {
 
 	private void loadFoodSchedule() throws ParseException {
 
-		addFoodSchedule("2019-04-01", takeDefaultIdIncreased());
+		addFoodSchedule("2020-04-19", takeDefaultIdIncreased());
 
 
 		for(int loopDay = 0; loopDay < 15; loopDay++)
@@ -166,7 +166,7 @@ public class DbTelegramMenuLoader {
 									{
 										day = "" + (loopDay + 2);
 									}
-								String fullDate = "2019-04-" + day;
+								String fullDate = "2020-04-" + day;
 
 								Integer rand = (int) (1 + Math.random() * 33);
 								String randFoodId = Integer.toString(rand);
