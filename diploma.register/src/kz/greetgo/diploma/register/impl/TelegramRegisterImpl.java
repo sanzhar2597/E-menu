@@ -277,7 +277,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 		List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
 
 		List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
-		rowInline1.add(new InlineKeyboardButton().setText("E-Order").setUrl("http://localhost:4200/order"));
+		rowInline1.add(new InlineKeyboardButton().setText("E-Order").setUrl("http://localhost:4200/order.html"));
 		rowsInline.add(rowInline1);
 		markupInline.setKeyboard(rowsInline);
 		try
