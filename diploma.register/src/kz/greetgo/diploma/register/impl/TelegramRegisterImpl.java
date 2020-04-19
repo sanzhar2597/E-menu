@@ -95,7 +95,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 
 		ArrayList<TelegramMenu> telegramMenus = new ArrayList<>();
 
-		String year = "2019-";
+		String year = "2020-";
 		String fullDate = year + dayAndMonth;
 
 
@@ -277,7 +277,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 		List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
 
 		List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
-		rowInline1.add(new InlineKeyboardButton().setText("E-Order").setUrl("https://diplomaproject.info/e-order"));
+		rowInline1.add(new InlineKeyboardButton().setText("E-Order").setUrl("http://localhost:4200/orders"));
 		rowsInline.add(rowInline1);
 		markupInline.setKeyboard(rowsInline);
 		try
@@ -347,7 +347,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 								"1) напишите день и месяц в формате месяц-день, и вы можете получить меню дня");
 							break;
 						case "/info":
-							sendMsg(message, "Бот разработан в 2019 году 10 марта. \nдля Дипломной Работы.");
+							sendMsg(message, "Бот разработан в 2020 году 20 Апреля \nдля Дипломной Работы.\nРазработчик : Абдуллаева Наргиза Сабиржановна.");
 							break;
 						case "/website":
 							setLinkPage(message, "Сайт где вы можете сделать заказ в режиме реального времени");
