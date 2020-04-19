@@ -147,7 +147,7 @@ public class DbTelegramMenuLoader {
 
 	private void loadFoodSchedule() throws ParseException {
 
-		addFoodSchedule("2020-04-19", takeDefaultIdIncreased());
+		addFoodSchedule("2020-04-20", takeDefaultIdIncreased());
 
 
 		for(int loopDay = 0; loopDay < 15; loopDay++)
