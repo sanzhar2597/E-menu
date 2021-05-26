@@ -17,7 +17,7 @@ import {AmazingTimePickerService} from 'amazing-time-picker';
 })
 export class BookingComponent implements OnInit {
   minDate = new Date();
-  maxDate = new Date(2020, 0, 1);
+  maxDate = new Date(2021, 0, 1);
 
   public isRegisteredClient = false;
   public form: FormGroup = new FormGroup({

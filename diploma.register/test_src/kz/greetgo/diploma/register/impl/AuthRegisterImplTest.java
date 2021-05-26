@@ -14,8 +14,11 @@ import kz.greetgo.security.session.SessionService;
 import kz.greetgo.util.RND;
 import org.testng.annotations.Test;
 
+import javax.net.ssl.SSLSocketFactory;
+import  javax.net.ssl.SSLSocket;
 import java.util.Arrays;
 
+import static javax.servlet.SessionTrackingMode.SSL;
 import static org.fest.assertions.api.Assertions.assertThat;
 
 public class AuthRegisterImplTest extends ParentTestNg {

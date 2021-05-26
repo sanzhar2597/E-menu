@@ -56,13 +56,13 @@ public class DbBookingLoader {
 		String id = idGenerator.get().newId();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date recordDate = sdf.parse("2019-05-05");
+		Date recordDate = sdf.parse("2020-05-05");
 
 		Booking booking = new Booking();
 		booking.bookingId = RND.plusInt(1000); ;
 		booking.numberOfPeople = RND.plusInt(1000);
 		booking.recordTime = new Date();
-		booking.recordDateDay = "2019-05-05";
+		booking.recordDateDay = "2020-05-05";
 		booking.recordDateFrom = String.valueOf(DateUtils.addHours(new Date(), 0));
 		booking.recordDateTo = String.valueOf(DateUtils.addHours(new Date(), 2));
 		booking.tableType = table.name;

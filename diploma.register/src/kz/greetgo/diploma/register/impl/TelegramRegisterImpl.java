@@ -95,7 +95,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 
 		ArrayList<TelegramMenu> telegramMenus = new ArrayList<>();
 
-		String year = "2020-";
+		String year = "2021-";
 		String fullDate = year + dayAndMonth;
 
 
@@ -161,7 +161,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 
 		if(result.length() == 0)
 			{
-				result.append("К сожалению на этот день не составили меню дня.");
+				result.append("К сожалению на этот день не составили расписание.");
 			}
 
 		return result.toString();
@@ -277,7 +277,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 		List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
 
 		List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
-		rowInline1.add(new InlineKeyboardButton().setText("E-Order").setUrl("http://localhost:4200/order.html"));
+		rowInline1.add(new InlineKeyboardButton().setText("E-Order").setUrl("http://localhost:4200/orders"));
 		rowsInline.add(rowInline1);
 		markupInline.setKeyboard(rowsInline);
 		try
@@ -337,20 +337,20 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 								"/help -Помощь Пользователю \n" +
 								"/using - Что делает бот\n" +
 								"/info - Информация о боте\n" +
-								"/website - Сайт где вы можете в режиме реального времени делать свой заказ не ожидая официанта, \nзаранее забронировать место и сделать предзаказ, \nуслуга заказа еды на вынос");
+								"/website - Сайт где вы можете в режиме реального времени делать бронирования мест \n для перевозки между городами");
 							break;
 						case "/using":
 							sendMsg(message,
 								/*"1) Что делает бот? \nНужно просто написать ваше имя или имя друга \n" +
 									"1.1) возвращает ваш уникальный id\n" +
 									"1.2) возвращает ваше зашифрованное письмо" +*/
-								"1) напишите день и месяц в формате месяц-день, и вы можете получить меню дня");
+								"1) напишите день и месяц в формате месяц-день, и вы можете получить расписание");
 							break;
 						case "/info":
-							sendMsg(message, "Бот разработан в 2020 году 20 Апреля \nдля Дипломной Работы.\nРазработчик : Абдуллаева Наргиза Сабиржановна.");
+							sendMsg(message, "Бот разработан в 2021 году 20 Апреля \nдля Диссертационный Работы.\nРазработчик : Дадаханов Санжар Курбанбайулы.");
 							break;
 						case "/website":
-							setLinkPage(message, "Сайт где вы можете сделать заказ в режиме реального времени");
+							setLinkPage(message, "Сайт где вы можете сделать бронирования в режиме реального времени");
 							break;
 						default:
 							try
