@@ -5,7 +5,8 @@
       <div class="col-md-10 offset-md-1">
         <div class="form-group ">
           <mat-form-field class="mat-display">
-            <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>
+<!--            <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>-->
+            <label>{{languagesService.languages.fromwhere}}</label>
             <mat-select [(value)]="bookingService.booking.numberOfPeople" (openedChange)="changeNumber()">
               <mat-option  *ngFor="let count of arrayOfPeople" [value]=count>{{count}}</mat-option>
             </mat-select>
@@ -13,7 +14,8 @@
         </div>
         <div class="form-group">
           <mat-form-field class="example-full-width mat-display">
-            <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>
+<!--            <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>-->
+            <label>{{languagesService.languages.whereto}}</label>
             <input matInput [matDatepicker]="dp3" [value]="bookingService.booking.recordDateDay"
                    (dateChange)="selectDateDay($event.value)"
                    [min]="minDate" [max]="maxDate" (click)="dp3.open()" readonly>
@@ -22,12 +24,21 @@
           </mat-form-field>
         </div>
         <form class="form-group" (click)="changeTimeFrom()">
-          <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>
-          <input class="form-control" atp-time-picker [(value)]="bookingService.booking.recordDateFrom" disabled/>
+<!--          <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>-->
+          <label>{{languagesService.languages.datetoreserv.toFirstTitleCase()}}</label>
+          <input class="form-control" atp-time-picker disabled/>
         </form>
         <form class="form-group" (click)="changeTimeTo()">
-          <label>{{languagesService.languages.reservationtimeto.toFirstTitleCase()}}</label>
-          <input id="recordTime" class="form-control" atp-time-picker [(value)]="bookingService.booking.recordDateTo"
+<!--          <label>{{languagesService.languages.reservationtimeto.toFirstTitleCase()}}</label>-->
+          <label>{{languagesService.languages.firstnameclient.toFirstTitleCase()}}</label>
+          <input id="recordTime" class="form-control" atp-time-picker
+                 [ngClass]="{'is-invalid': recordTimeToValidate()}" disabled/>
+
+        </form>
+        <form class="form-group" (click)="changeTimeTo()">
+          <!--          <label>{{languagesService.languages.reservationtimeto.toFirstTitleCase()}}</label>-->
+          <label>{{languagesService.languages.surnameclient.toFirstTitleCase()}}</label>
+          <input id="recordTime" class="form-control" atp-time-picker
                  [ngClass]="{'is-invalid': recordTimeToValidate()}" disabled/>
 
         </form>

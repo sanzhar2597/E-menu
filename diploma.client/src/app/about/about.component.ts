@@ -16,13 +16,13 @@ export class AboutComponent implements OnInit {
   public imagesUrl;
   ngOnInit() {
     this.imagesUrl = [
-      'assets/img/images.jpeg',
-      'assets/img/download.jpeg',
-      'assets/img/download(1).jpeg',
-      'assets/img/download(2).jpeg',
-      'assets/img/download(3).jpeg',
-      'assets/img/download(4).jpeg',
-      'assets/img/download(5).jpeg',
+      'assets/img/vokzal1.jpg',
+      'assets/img/vokzal9.jpg',
+      'assets/img/vokzal10.jpg',
+      'assets/img/vokzal8.jpg',
+      'assets/img/vokzal7.jpg',
+      'assets/img/vokzal6.jpg',
+      'assets/img/vokzal5.jpg',
     ];
 
   }
