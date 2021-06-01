@@ -5,17 +5,26 @@
       <div class="col-md-10 offset-md-1">
         <div class="form-group ">
           <mat-form-field class="mat-display">
-<!--            <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>-->
+            <!--            <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>-->
             <label>{{languagesService.languages.fromwhere}}</label>
             <mat-select [(value)]="bookingService.booking.numberOfPeople" (openedChange)="changeNumber()">
-              <mat-option  *ngFor="let count of arrayOfPeople" [value]=count>{{count}}</mat-option>
+              <mat-option *ngFor="let count of arrayOfPeople" [value]=count>{{count}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-group ">
+          <mat-form-field class="mat-display">
+            <!--            <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>-->
+            <label>{{languagesService.languages.whereto}}</label>
+            <mat-select [(value)]="bookingService.booking.numberOfPeople2" (openedChange)="changeNumber()">
+              <mat-option *ngFor="let count of arrayOfPeople" [value]=count>{{count}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field class="example-full-width mat-display">
-<!--            <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>-->
-            <label>{{languagesService.languages.whereto}}</label>
+            <!--            <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>-->
+            <label>{{languagesService.languages.datetoreserv.toFirstTitleCase()}}</label>
             <input matInput [matDatepicker]="dp3" [value]="bookingService.booking.recordDateDay"
                    (dateChange)="selectDateDay($event.value)"
                    [min]="minDate" [max]="maxDate" (click)="dp3.open()" readonly>
@@ -23,33 +32,22 @@
             <mat-datepicker #dp3 disabled="false" touchUi="true" startView="year" #picker></mat-datepicker>
           </mat-form-field>
         </div>
-        <form class="form-group" (click)="changeTimeFrom()">
-<!--          <label>{{languagesService.languages.reservationtimefrom.toFirstTitleCase()}}</label>-->
-          <label>{{languagesService.languages.datetoreserv.toFirstTitleCase()}}</label>
-          <input class="form-control" atp-time-picker disabled/>
-        </form>
-        <form class="form-group" (click)="changeTimeTo()">
-<!--          <label>{{languagesService.languages.reservationtimeto.toFirstTitleCase()}}</label>-->
-          <label>{{languagesService.languages.firstnameclient.toFirstTitleCase()}}</label>
-          <input id="recordTime" class="form-control" atp-time-picker
-                 [ngClass]="{'is-invalid': recordTimeToValidate()}" disabled/>
-
-        </form>
-        <form class="form-group" (click)="changeTimeTo()">
-          <!--          <label>{{languagesService.languages.reservationtimeto.toFirstTitleCase()}}</label>-->
-          <label>{{languagesService.languages.surnameclient.toFirstTitleCase()}}</label>
-          <input id="recordTime" class="form-control" atp-time-picker
-                 [ngClass]="{'is-invalid': recordTimeToValidate()}" disabled/>
-
-        </form>
-
-
 
 
       </div>
       <div class="col-md-10 offset-md-1">
 
         <form [formGroup]="userForm">
+          <div class="form-group">
+            <label>{{languagesService.languages.firstnameclient.toFirstTitleCase()}}</label>
+            <input formControlName="recordName" id="recordName" class="form-control"
+                   [ngClass]="{'is-invalid': recordTimeToValidate()}"/>
+          </div>
+          <div class="form-group">
+            <label>{{languagesService.languages.surnameclient.toFirstTitleCase()}}</label>
+            <input formControlName="recoredSurname" id="recoredSurname" class="form-control"
+                   [ngClass]="{'is-invalid': recordTimeToValidate()}"/>
+          </div>
           <div class="form-group">
             <label>{{languagesService.languages.numberoftelephone.toFirstTitleCase()}}</label>
             <div class="input-group">
@@ -59,10 +57,10 @@
               <!--userForm.get('phoneNumber').touched-->
             </div>
           </div>
-         <!-- <mat-form-field class="mat-display">
-            <input matInput [textMask]="{mask: mask}"
-                   formControlName="phoneNumber" [ngClass]="{'is-invalid': userForm.get('phoneNumber').invalid && !userForm.get('phoneNumber').touched }">
-          </mat-form-field>-->
+          <!-- <mat-form-field class="mat-display">
+             <input matInput [textMask]="{mask: mask}"
+                    formControlName="phoneNumber" [ngClass]="{'is-invalid': userForm.get('phoneNumber').invalid && !userForm.get('phoneNumber').touched }">
+           </mat-form-field>-->
 
         </form>
 
@@ -81,7 +79,8 @@
           <button type="button" (click)="selectTable()" class="btn btn-primary  mr-auto p-2 bd-highlight">
             {{languagesService.languages.choosetable}}
           </button>
-          <button type="submit" class="btn btn-dark ap-2 bd-highlight"><i class="fa fa-database"></i>{{languagesService.languages.submit}}
+          <button type="submit" class="btn btn-dark ap-2 bd-highlight"><i
+            class="fa fa-database"></i>{{languagesService.languages.submit}}
           </button>
         </div>
       </div>

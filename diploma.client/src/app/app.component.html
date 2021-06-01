@@ -1,7 +1,7 @@
 <div class="app-root-color ">
   <nav class="navbar navbar-expand-lg navbar-light  navbar-color bg-light shadow-sm p-3 mb-5 rounded">
     <a class="navbar-brand col-md-1">
-      <img  id='logoPhoto' src="assets/img/logo.jpg" >
+      <img id='logoPhoto' src="assets/img/logo.jpg">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,23 +9,31 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class=" navbar navbar-nav mr-auto app-navbar" (click)="addClass()">
+
         <li class="nav-item " id="navItem1" (click)="showMainPage('main')">
-          <a class="nav-link"  *ngIf="!login.canViewAdmin && !login.canViewWaiter" routerLink="/">{{languagesService.languages.order.toFirstTitleCase()}}<span
+          <a class="nav-link" *ngIf="!login.canViewAdmin && !login.canViewWaiter"
+             routerLink="/">{{languagesService.languages.order.toFirstTitleCase()}}<span
             class="sr-only">(current)</span></a>
         </li>
-        <li  *ngIf="!login.canViewAdmin" class="nav-item" id="navItem2" (click)="showMainPage('booking')">
+        <li *ngIf="!login.canViewAdmin" class="nav-item" id="navItem2" (click)="showMainPage('booking')">
           <a class="nav-link" routerLink="/booking">{{languagesService.languages.booking.toFirstTitleCase()}}<span
             class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item" id="navItem8" (click)="showMainPage('orders')">
-          <a class="nav-link" (click)="showMainPage('orders')" routerLink="/orders">{{languagesService.languages.listorders.toFirstTitleCase()}}</a>
+          <a class="nav-link" (click)="showMainPage('orders')"
+             routerLink="/orders">{{languagesService.languages.listorders.toFirstTitleCase()}}</a>
         </li>
         <li class="nav-item" id="navItem3" (click)="showMainPage('booking')" *ngIf="login.canViewAdmin">
           <a class="nav-link" routerLink="/admin">{{languagesService.languages.admin.toFirstTitleCase()}}<span
             class="sr-only">(current)</span></a>
         </li>
-        <li  *ngIf="!login.canViewAdmin && !login.canViewWaiter" class="nav-item" id="navItem6" (click)="showMainPage('login')">
+        <li class="nav-item " id="navItem" (click)="showMainPage('main')">
+          <a class="nav-link" *ngIf="!login.canViewAdmin && !login.canViewWaiter" routerLink="/schedule">Расписание<span
+            class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="!login.canViewAdmin && !login.canViewWaiter" class="nav-item" id="navItem6"
+            (click)="showMainPage('login')">
           <a class="nav-link" (click)="showMainPage('about')"
              routerLink="/about">{{languagesService.languages.about.toFirstTitleCase()}}</a>
         </li>
@@ -53,7 +61,7 @@
       </ul>
       <ul class="navbar navbar-nav justify-content-end">
 
-        <li class="nav-item right"  *ngIf="!login.isAuthenticated" id="navItem4" (click)="showMainPage('registration')">
+        <li class="nav-item right" *ngIf="!login.isAuthenticated" id="navItem4" (click)="showMainPage('registration')">
           <a class="nav-link"
              routerLink="/registration">{{languagesService.languages.registration.toUpperCase()}}</a>
         </li>
@@ -67,7 +75,8 @@
       <div class="btn-group px-md-2" *ngIf="login.personDisplay">
         <button type="button" class="btn  shesterenka-color dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-          <i class="fa fa-cog" aria-hidden="true"> <span class="navbar-text text-center px-md-2" *ngIf="login.personDisplay">
+          <i class="fa fa-cog" aria-hidden="true"> <span class="navbar-text text-center px-md-2"
+                                                         *ngIf="login.personDisplay">
       Аккаунт:   {{login.personDisplay.username}}
     </span></i>
         </button>
@@ -99,8 +108,9 @@
       <a routerLink="/contact"><i class="fa fa-phone"></i></a>
     </div>
     <div class="mu-footer-copyright">
-      <p style="color: rgba(0,0,0,0.5)">&copy; {{languagesService.languages.copyright}} <a rel="nofollow" style="color: rgb(0,0,0);"
-                                                                 href="https://github.com/sanzhar2597/E-menu/tree/TestCase">Sanzhar</a>.
+      <p style="color: rgba(0,0,0,0.5)">&copy; {{languagesService.languages.copyright}} <a rel="nofollow"
+                                                                                           style="color: rgb(0,0,0);"
+                                                                                           href="https://github.com/sanzhar2597/E-menu/tree/TestCase">Sanzhar</a>.
         {{languagesService.languages.reserved}}.</p>
     </div>
   </div>

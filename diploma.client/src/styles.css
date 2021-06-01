@@ -13,33 +13,36 @@ table.table-hover tbody tr:hover {
   cursor: pointer;
 }
 
-*{
+* {
   font-family: "Abyssinica SIL";
 }
-body{
+
+body {
 
   overflow-x: hidden;
-  height:100%;
-  padding-bottom:60px;   /* Height of the footer */
+  height: 100%;
+  padding-bottom: 60px; /* Height of the footer */
   background: #f2f2f2;
 
 }
 
-.backgound-mat-dialogs .mat-dialog-container{
+.backgound-mat-dialogs .mat-dialog-container {
   background-color: #f2f2f2;
 }
 
 
-.icon-color-grey{
+.icon-color-grey {
   background-color: #acb3ba;
 }
 
-.icon-color-blue{
+.icon-color-blue {
   background-color: #3f596b;
 }
-.icon-color-red{
+
+.icon-color-red {
   background-color: #fa7058;
 }
-.icon-color-light{
+
+.icon-color-light {
   background-color: #cdd6e0;
 }

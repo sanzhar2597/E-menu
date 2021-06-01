@@ -60,7 +60,8 @@ public class DbBookingLoader {
 
 		Booking booking = new Booking();
 		booking.bookingId = RND.plusInt(1000); ;
-		booking.numberOfPeople = RND.plusInt(1000);
+		booking.numberOfPeople = "Алматы";
+		booking.numberOfPeople2 = "Шымкент";
 		booking.recordTime = new Date();
 		booking.recordDateDay = "2021-05-05";
 		booking.recordDateFrom = String.valueOf(DateUtils.addHours(new Date(), 0));
@@ -68,6 +69,9 @@ public class DbBookingLoader {
 		booking.tableType = table.name;
 		booking.phoneNumber = "8787777777777777";
 		booking.personId = bookingTestDao.get().getPersonId();
+		booking.name = "Sanzhar";
+		booking.surname = "Dadakhanov";
+
 		bookingTestDao.get().insertBooking(booking);
 	}
 
@@ -77,56 +81,175 @@ public class DbBookingLoader {
 		table.status = 1;
 
 		table.name = "table-one";
-		table.personNumber =14;
+		table.personNumber = 14;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-two";
-		table.personNumber =6;
+		table.personNumber = 6;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-three";
-		table.personNumber =6;
+		table.personNumber = 6;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-four";
-		table.personNumber =6;
+		table.personNumber = 6;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-five";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-six";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-seven";
-		table.personNumber =6;
+		table.personNumber = 6;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-eight";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-nine";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-ten";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-eleven";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-twelve";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-thirteen";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-fourteen";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-fifteen";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-sixteen";
-		table.personNumber =4;
+		table.personNumber = 4;
 		bookingTestDao.get().insertRestaurantTable(table);
 		table.name = "table-seventeen";
-		table.personNumber =6;
+		table.personNumber = 6;
 		bookingTestDao.get().insertRestaurantTable(table);
+
+
+		table.name = "table-seventeen-1";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-2";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-3";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-4";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-5";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-6";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-7";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-8";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-9";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-10";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-11";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-12";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-13";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-14";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-15";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-16";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-17";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-18";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-19";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-20";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-21";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-22";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-23";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-24";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-25";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-26";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-27";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-28";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-29";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-30";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-31";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-32";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-33";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-34";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-35";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-36";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-37";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-38";
+		table.personNumber = 6;
+		bookingTestDao.get().insertRestaurantTable(table);
+		table.name = "table-seventeen-39";
+		table.personNumber = 6;
+
 	}
 
 	private void addComments() {
@@ -134,14 +257,14 @@ public class DbBookingLoader {
 		Comments comments = new Comments();
 		comments.personId = bookingTestDao.get().getPersonId();
 		comments.messages = "Очень хорошо! Спасибо!\n" +
-				"По другим автовокзалам так же будет?" +
+			"По другим автовокзалам так же будет?" +
 			"Добрый день! Раньше был автобус до Чолпон-Аты . Скажите сейчас есть такой маршрут? или автобус до Бишкека" +
 			"Здравствуйте.подскажите,если ребенку 3 года.мне надо покупать полный билет,чтобы у ребенка было отдельное место?есть документ об инвалидности." +
 			"Старая функция была лучше было видна как автобус уходил или не продаже и какой перевозчик.. а сейчас этого нет....жаль... Верните эту функцию если возможна... " +
 			"о что вы добавили ном.авт.и водителя ни как не сделали лучше. " +
 			"Когда появится информация номер автобуса и фамилия водителя" +
 			"Пожалуйста добавьте госномер автобуса и имя фамилия водителя на маршурут Караганда-Топар 122\n" +
-				"ПОЖАЛУЙСТА " +
+			"ПОЖАЛУЙСТА " +
 			"Здравствуйте.хотим перевезти немецкую овчарку взрослую автобусом в Екатеринбург. по каким документам на нее брать билет или просто детский и все.? и еще если мы купили билет на собаку и все справки у нас в порядке может ли водитель отказаться везти нас? везти будем в наморднике и на поводке.";
 
 		comments.date = new Date();

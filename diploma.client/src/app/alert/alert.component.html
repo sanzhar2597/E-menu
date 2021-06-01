@@ -4,9 +4,25 @@
   <div class="form-group">
     {{alertText}}
   </div>
+  <div class="back-image-ticket">
+    <div class="info-ticket">
+      <div>Имя: {{data?.booking?.name}}</div>
+      <div>Фамилия: {{data?.booking?.surname}}</div>
+      <div>Откуда: {{data?.booking?.numberOfPeople}}</div>
+      <div>Куда: {{data?.booking?.numberOfPeople2}}</div>
+      <div>Дата: {{data?.booking?.recordDateDay}}</div>
+      <div>Место: {{data?.booking?.tableType}}</div>
+    </div>
+  </div>
+  <div class="info-text-save">
+    Не забудьте сохранить билет
+  </div>
   <div class="form-group">
     <button type="button" class="btn btn-outline-dark ml-1"
             [disabled]="isLoading" (click)="close()"><i class="trash-alt"></i>{{languagesService.languages.close}}
+    </button>
+    <button type="button" class="btn btn-outline-dark ml-1"
+            [disabled]="isLoading" (click)="printing()"><i class="trash-alt"></i>Распечатать билет
     </button>
   </div>
 </form>

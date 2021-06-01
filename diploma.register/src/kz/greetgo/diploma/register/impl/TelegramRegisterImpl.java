@@ -219,7 +219,7 @@ public class TelegramRegisterImpl extends TelegramLongPollingBot implements Tele
 					}
 				if(text == null)
 					{
-						sendMessage.setText("menu-day");
+						sendMessage.setText("Расписания дня");
 						InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
 						sendMessage.setReplyMarkup(markupInline);
 						List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();

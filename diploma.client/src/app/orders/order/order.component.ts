@@ -1,22 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {OrderService} from "../shared/order.service";
-import {NgForm} from "@angular/forms";
-import {MatDialog, MatDialogConfig} from "@angular/material";
-import {OrderItemsComponent} from "../order-items/order-items.component";
-import {CustomerService} from "../shared/customer.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
-import {Order} from "../../../model/order.model";
-import {Item} from "../../../model/item.model";
-import {BookingService} from "../../shared/booking.service";
-import {LanguagesService} from "../../shared/languages.service";
-import {LoginService} from "../../login/login.service";
-import {Customer} from "../../../model/customer.model";
-import {CommentsComponent} from "../../comments/comments.component";
-import {Comments} from "../../../model/comments.model";
-import {ItemService} from "../shared/item.service";
-import {ItemList} from "../../../model/item-list.model";
-import {OrderItem} from "../../../model/orderItem.model";
+import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../shared/order.service';
+import { NgForm } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { OrderItemsComponent } from '../order-items/order-items.component';
+import { CustomerService } from '../shared/customer.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Order } from '../../../model/order.model';
+import { Item } from '../../../model/item.model';
+import { BookingService } from '../../shared/booking.service';
+import { LanguagesService } from '../../shared/languages.service';
+import { LoginService } from '../../login/login.service';
+import { Customer } from '../../../model/customer.model';
+import { CommentsComponent } from '../../comments/comments.component';
+import { Comments } from '../../../model/comments.model';
+import { ItemService } from '../shared/item.service';
+import { ItemList } from '../../../model/item-list.model';
+import { OrderItem } from '../../../model/orderItem.model';
 
 @Component({
   selector: 'app-order',
@@ -27,7 +27,7 @@ export class OrderComponent implements OnInit {
 
   customerList: Customer[];
 
-  username: String = "anonymous";
+  username: String = 'anonymous';
   isAuthorized: boolean = false;
 
   isChangeOrder: boolean = false;
@@ -37,8 +37,8 @@ export class OrderComponent implements OnInit {
   comments: Array<Comments> = [];
   public itemList: Item[];
   public itemListList: ItemList[];
-  category: string = 'menu-1';
-  arrayOfCategory:Array<string>=[];
+  category: string = 'Автобус';
+  arrayOfCategory: Array<string> = [];
   isValidOrderItem: boolean = false;
 
   constructor(public service: OrderService,
@@ -56,16 +56,15 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
     this.service.getListCategory().then(value => {
       this.arrayOfCategory = value.body as Array<string>;
-      this.category = this.arrayOfCategory[0]
-    })
+      this.category = this.arrayOfCategory[0];
+    });
     this.service.items = [];
     let orderID: string;
     orderID = this.currentRoute.snapshot.paramMap.get('id');
     if (orderID == null) {
       this.resetForm();
       this.checkBooking();
-    }
-    else {
+    } else {
       this.service.getOrderByID(+orderID).then(res => {
         this.service.formData = OrderComponent.formDataAssign(res.body as Order);
         this.service.orderItems = res.body.orderItems;
@@ -74,10 +73,10 @@ export class OrderComponent implements OnInit {
     this.customerService.getCustomerList()
       .then(res => {
         this.customerList = res.body as Customer[];
-      }).catch(e => console.log(e))
+      }).catch(e => console.log(e));
 
 
-    this.getPersonId()
+    this.getPersonId();
     this.selectListItem();
 
   }
@@ -90,17 +89,17 @@ export class OrderComponent implements OnInit {
     order.pMethod = obj.pMethod;
     order.gTotal = obj.gTotal;
     order.bookingId = obj.bookingId;
-    order.status = obj.status
-    return order
+    order.status = obj.status;
+    return order;
   }
 
   changeUserName(username: string) {
 
-    var person = JSON.parse(localStorage.getItem('person'))
-    person.name = username
+    var person = JSON.parse(localStorage.getItem('person'));
+    person.name = username;
     person.isChange = true;
-    localStorage.setItem('person', JSON.stringify(person))
-    console.log('1111')
+    localStorage.setItem('person', JSON.stringify(person));
+    console.log('1111');
   }
 
   getPersonId() {
@@ -108,24 +107,23 @@ export class OrderComponent implements OnInit {
       if (value1.username) {
         this.bookingService.getPersonId(value1.username).then(value => {
           this.isAuthorized = true;
-          this.username = value1.username
-          this.service.formData.personId = value.body
-        })
-      }
-      else {
-        this.userForLocalStorage()
+          this.username = value1.username;
+          this.service.formData.personId = value.body;
+        });
+      } else {
+        this.userForLocalStorage();
       }
 
     });
   }
 
   userForLocalStorage() {
-    let person: any = JSON.parse(localStorage.getItem('person'))
+    let person: any = JSON.parse(localStorage.getItem('person'));
     if (!this.service.formData.personId) {
-      this.service.formData.personId = person.id
+      this.service.formData.personId = person.id;
     }
     if (person.isChange) {
-      this.username = person.name
+      this.username = person.name;
     }
   }
 
@@ -141,7 +139,7 @@ export class OrderComponent implements OnInit {
       bookingId: null,
       status: 1,
     };
-    this.service.orderItems = []
+    this.service.orderItems = [];
   }
 
   addOrEditOrderItem(orderItemIndex, orderId) {
@@ -150,21 +148,21 @@ export class OrderComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.width = "50%";
-    dialogConfig.data = {orderItemIndex, orderId}
+    dialogConfig.width = '50%';
+    dialogConfig.data = {orderItemIndex, orderId};
     this.dialog.open(OrderItemsComponent, dialogConfig).afterClosed().subscribe(res => {
-      this.updateGrandTotal()
-    })
+      this.updateGrandTotal();
+    });
   }
 
   onDeleteOrderItem(orderItemId: number, i: number) {
     event.preventDefault();
     this.isChangeOrder = true;
-    this.service.orderItems.splice(i, 1)
+    this.service.orderItems.splice(i, 1);
     this.updateGrandTotal();
     this.service.offerPrepare().then(res => {
-      this.service.items = res.body as Item[]
-    })
+      this.service.items = res.body as Item[];
+    });
   }
 
   onViewComment(orderItemId: number, i: number) {
@@ -176,16 +174,16 @@ export class OrderComponent implements OnInit {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.autoFocus = true;
       dialogConfig.disableClose = false;
-      dialogConfig.width = "70%";
-      dialogConfig.height = "80%";
+      dialogConfig.width = '70%';
+      dialogConfig.height = '80%';
       dialogConfig.data = {
         comments: this.comments,
         itemId: itemId,
         isCommentsMessage: false,
-      }
+      };
       dialogConfig.panelClass = 'backgound-mat-dialogs';
       this.dialog.open(CommentsComponent, dialogConfig).afterClosed().subscribe(res => {
-      })
+      });
 
     });
 
@@ -193,20 +191,19 @@ export class OrderComponent implements OnInit {
 
   updateGrandTotal() {
     this.service.formData.gTotal = this.service.orderItems.reduce((previousValue, currentValue) => {
-      return previousValue + currentValue.total
-    }, 0)
-    this.service.formData.gTotal = parseFloat((this.service.formData.gTotal).toFixed(2))
+      return previousValue + currentValue.total;
+    }, 0);
+    this.service.formData.gTotal = parseFloat((this.service.formData.gTotal).toFixed(2));
   }
 
   validateForm() {
     this.isValid = true;
-    if (this.service.formData.personId == "") {
+    if (this.service.formData.personId == '') {
+      this.isValid = false;
+    } else if (this.service.orderItems.length == 0) {
       this.isValid = false;
     }
-    else if (this.service.orderItems.length == 0) {
-      this.isValid = false;
-    }
-    return this.isValid
+    return this.isValid;
   }
 
   onSubmit(form: NgForm) {
@@ -216,7 +213,7 @@ export class OrderComponent implements OnInit {
         this.resetForm();
         this.toastr.success(this.languagesService.languages.submitsuccesfully, this.languagesService.languages.nameapp);
         this.router.navigate(['/orders']);
-      })
+      });
     }
   }
 
@@ -227,7 +224,7 @@ export class OrderComponent implements OnInit {
         this.resetForm();
         this.toastr.success(this.languagesService.languages.submitsuccesfully, this.languagesService.languages.nameapp);
         this.router.navigate(['/orders']);
-      })
+      });
     }
   }
 
@@ -241,7 +238,7 @@ export class OrderComponent implements OnInit {
     this.itemService.getItemListByCategory(this.category)
       .then(res => {
         this.itemList = res.body as Item[];
-        console.table(this.itemList)
+        console.table(this.itemList);
         this.itemListList = this.itemList.map((value, index) => {
           let orderItem = new OrderItem();
           orderItem = {
@@ -258,7 +255,7 @@ export class OrderComponent implements OnInit {
           let items = {
             orderItem: orderItem,
             ...value
-          }
+          };
           return items;
         });
         this.itemListList.sort(function (a, b) {
@@ -266,17 +263,17 @@ export class OrderComponent implements OnInit {
           let keyB = b.description.length;
           if (keyA < keyB) return 1;
           if (keyA > keyB) return -1;
-          return 0
-        })
+          return 0;
+        });
       })
-      .catch(e => console.log("NAZAR: ", e))
+      .catch(e => console.log('NAZAR: ', e));
   }
 
   selectListItem() {
     this.itemService.getItemListByCategory(this.category)
       .then(res => {
         this.itemList = res.body as Item[];
-        console.table(this.itemList)
+        console.table(this.itemList);
         this.itemListList = this.itemList.map((value, index) => {
           let orderItem = new OrderItem();
           orderItem = {
@@ -293,18 +290,18 @@ export class OrderComponent implements OnInit {
           let items = {
             orderItem: orderItem,
             ...value
-          }
+          };
           return items;
-        })
+        });
         this.itemListList.sort(function (a, b) {
           let keyA = a.description.length;
           let keyB = b.description.length;
           if (keyA < keyB) return 1;
           if (keyA > keyB) return -1;
-          return 0
-        })
+          return 0;
+        });
       })
-      .catch(e => console.log("NAZAR: ", e))
+      .catch(e => console.log('NAZAR: ', e));
   }
 
   updateTotal(item: ItemList, e) {
@@ -312,38 +309,36 @@ export class OrderComponent implements OnInit {
       e.preventDefault();
     }
     item.orderItem.quantity = +(item.orderItem.quantity + '').replace(/^0+/, '');
-    item.orderItem.total = parseFloat((item.orderItem.quantity * item.price).toFixed(2))
+    item.orderItem.total = parseFloat((item.orderItem.quantity * item.price).toFixed(2));
   }
 
   invalidChars = [
-    "-",
-    "+",
-    "e",
+    '-',
+    '+',
+    'e',
   ];
 
   validateFormOrderItem(item: ItemList) {
     this.isValidOrderItem = true;
     if (item.orderItem.itemId == 0) {
-      this.isValidOrderItem = false
+      this.isValidOrderItem = false;
+    } else if (!item.orderItem.quantity) {
+      this.isValidOrderItem = false;
     }
-    else if (!item.orderItem.quantity) {
-      this.isValidOrderItem = false
-    }
-    return this.isValidOrderItem
+    return this.isValidOrderItem;
   }
 
   submitOrderItem(item: ItemList) {
     if (!this.validateFormOrderItem(item)) {
-      return
-    }
-    else {
+      return;
+    } else {
       this.isChangeOrder = true;
-      123
+      123;
       this.service.orderItems.push(item.orderItem);
       this.service.offerPrepare().then(res => {
-        console.log("OFFER PREPARE: ", res.body);
+        console.log('OFFER PREPARE: ', res.body);
         if (res.body.length)
-          this.service.items = res.body as Item[]
+          this.service.items = res.body as Item[];
         this.updateGrandTotal();
       });
 

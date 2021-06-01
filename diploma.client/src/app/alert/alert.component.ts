@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {BookingService} from "../shared/booking.service";
-import {NgForm} from "@angular/forms";
-import {LanguagesService} from "../shared/languages.service";
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { BookingService } from '../shared/booking.service';
+import { NgForm } from '@angular/forms';
+import { LanguagesService } from '../shared/languages.service';
 
 @Component({
   selector: 'app-alert',
@@ -31,7 +31,7 @@ export class AlertComponent implements OnInit {
       this.alertText = this.languagesService.languages.placetaken;
     }
     if (this.data.response == this.languagesService.languages.empty) {
-      this.saveBooking()
+      this.saveBooking();
     }
   }
 
@@ -39,7 +39,7 @@ export class AlertComponent implements OnInit {
     this.bookingService.saveBooking().then(res => {
       this.alertText = this.languagesService.languages.successbooked;
       this.isLoading = false;
-    })
+    });
   }
 
   close() {
@@ -48,6 +48,10 @@ export class AlertComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     event.preventDefault();
+  }
+
+  printing() {
+    window.print();
   }
 }
 

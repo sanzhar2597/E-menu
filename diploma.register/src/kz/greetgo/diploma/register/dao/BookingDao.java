@@ -10,10 +10,10 @@ import java.util.List;
 
 public interface BookingDao {
 
-	@Insert("insert into booking(booking_id, number_of_people, record_time, record_date_day, record_date_from, " +
-		"record_date_to, table_type, phone_number, person_id) " +
-		"values (#{booking.bookingId}, #{booking.numberOfPeople}, #{booking.recordTime}, #{booking.recordDateDay}, " +
-		"#{booking.recordDateFrom}, #{booking.recordDateTo}, #{booking.tableType}, #{booking.phoneNumber}, #{booking.personId})")
+	@Insert("insert into booking(booking_id, number_of_people, number_of_people2, record_time, record_date_day, record_date_from, " +
+		"record_date_to, table_type, phone_number, person_id, name, surname ) " +
+		"values (#{booking.bookingId}, #{booking.numberOfPeople}, #{booking.numberOfPeople2}, #{booking.recordTime}, #{booking.recordDateDay}, " +
+		"#{booking.recordDateFrom}, #{booking.recordDateTo}, #{booking.tableType}, #{booking.phoneNumber}, #{booking.personId}, #{booking.name}, #{booking.surname})")
 	void insertBooking(@Param("booking") Booking booking);
 
 

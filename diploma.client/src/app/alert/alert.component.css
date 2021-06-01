@@ -1,0 +1,21 @@
+.back-image-ticket {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  height: 250px;
+  background-image: url("/assets/img/tickets.png");
+  background-position: top;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.info-ticket {
+  padding-top: 32px;
+  padding-left: 84px;
+}
+
+.info-text-save {
+  padding-bottom: 40px;
+}
