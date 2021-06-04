@@ -99,50 +99,61 @@ public class DbTelegramMenuLoader {
 
 	private void loadFoodType() {
 
-		addFoodType(takeDefaultIdIncreased(), "Алматы-Астана", "первое меню"); // id 1
-		addFoodType(increaseIdincreased(), "Шымкент-Астана", "второе меню"); // id 2
-		addFoodType(increaseIdincreased(), "Астана-Кызылорда", "список десертов"); // // id 3
-		addFoodType(increaseIdincreased(), "Кызылорда-Караганда", "списов чаев"); // id 4
-		addFoodType(increaseIdincreased(), "Караганда-Сарыагаш", "список кальянов"); // id 5
+		addFoodType(takeDefaultIdIncreased(), "Алматы-Астана", "Алматы-Астана"); // id 1
+		addFoodType(increaseIdincreased(), "Шымкент-Астана", "Шымкент-Астана"); // id 2
+		addFoodType(increaseIdincreased(), "Астана-Кызылорда", "Астана-Кызылорда"); // // id 3
+		addFoodType(increaseIdincreased(), "Кызылорда-Караганда", "Кызылорда-Караганда"); // id 4
+		addFoodType(increaseIdincreased(), "Караганда-Сарыагаш", "Караганда-Сарыагаш"); // id 5
+		addFoodType(increaseIdincreased(), "Алматы-Туркестан", "Алматы-Туркестан"); // id 6
+		addFoodType(increaseIdincreased(), "Алматы-Кокшетау", "Алматы-Кокшетау"); // id 7
+		addFoodType(increaseIdincreased(), "Алматы-Тараз", "Алматы-Тараз"); // id 8
+		addFoodType(increaseIdincreased(), "Алматы-Жетисай", "Алматы-Жетисай"); // id 9
+		addFoodType(increaseIdincreased(), "Алматы-Караганда", "Алматы-Караганда"); // id 10
+		addFoodType(increaseIdincreased(), "Алматы-Кентау", "Алматы-Кентау"); // id 11
+		addFoodType(increaseIdincreased(), "Кентау-Шымкент", "Алматы-Кентау"); // id 12
+		addFoodType(increaseIdincreased(), "Атырау-Кентау", "Алматы-Кентау"); // id 13
+		addFoodType(increaseIdincreased(), "Актау-Атырау", "Алматы-Кентау"); // id 14
+		addFoodType(increaseIdincreased(), "Алматы-Актобе", "Алматы-Кентау"); // id 15
+
 	}
 
 	private void loadFoodList() {
 
-		addFoodList(takeDefaultIdIncreased(), "Микроавтобус лада", "1", "дата:18:00, стоимость:5000тг");
-		addFoodList(increaseIdincreased(), "Ботамоти", "1", "2000 tenge");
-		addFoodList(increaseIdincreased(), "Ботвинья", "1", "500 tenge");
-		addFoodList(increaseIdincreased(), "Боттарга", "1", "2050 tenge");
-		addFoodList(increaseIdincreased(), "Боярышниковые хлопья", "1", "500 tenge");
-		addFoodList(increaseIdincreased(), "Аммицу", "1", "500 tenge");
-		addFoodList(increaseIdincreased(), "Зельц", "1", "950 tenge");
-		addFoodList(increaseIdincreased(), "Гренки", "1", "500 tenge");
-		addFoodList(increaseIdincreased(), "Свинина с овощами, тушеная в сливках", "2", "500 tenge");
-		addFoodList(increaseIdincreased(), "Картофель, запеченный в мундире", "2", "750 tenge");
-		addFoodList(increaseIdincreased(), "Макароны, запеченные с помидорами, под сыром", "2", "500 tenge");
-		addFoodList(increaseIdincreased(), "Азу по‑татарски", "2", "500 tenge");
-		addFoodList(increaseIdincreased(), "Крылышки чили", "2", "500 tenge");
-		addFoodList(increaseIdincreased(), "Грудка куриная гриль на шпажках", "2", "500 tenge");
-		addFoodList(increaseIdincreased(), "Фрикадельки в сметанном соусе", "2", "500 tenge");
-		addFoodList(increaseIdincreased(), "Брокколи отварная", "2", "500 tenge");
-		addFoodList(increaseIdincreased(), "Индийские сладости", "3", "500 tenge");
-		addFoodList(increaseIdincreased(), "Рождественский пудинг", "3", "1500 tenge");
-		addFoodList(increaseIdincreased(), "Дульсе-де-лече", "3", "500 tenge");
-		addFoodList(increaseIdincreased(), "Болу рей (Португалия)", "3", "500 tenge");
-		addFoodList(increaseIdincreased(), "Болу рей (Португалия)", "4", "500 tenge");
-		addFoodList(increaseIdincreased(), "Айва Манго", "4", "500 tenge");
-		addFoodList(increaseIdincreased(), "Красный чай", "4", "500 tenge");
-		addFoodList(increaseIdincreased(), "Черный чай", "4", "500 tenge");
-		addFoodList(increaseIdincreased(), "Чай с молоком", "4", "500 tenge");
-		addFoodList(increaseIdincreased(), "Клюква мята", "4", "2000 tenge");
-		addFoodList(increaseIdincreased(), "Медовый чай", "4", "500 tenge");
-		addFoodList(increaseIdincreased(), "Облепиховый чай", "4", "500 tenge");
-		addFoodList(increaseIdincreased(), "Массиль или обычный кальянный табак", "5", "5500 tenge");
-		addFoodList(increaseIdincreased(), "Томбак", "5", "2000 tenge");
-		addFoodList(increaseIdincreased(), "Доха", "5", "4500 tenge");
-		addFoodList(increaseIdincreased(), "Layalina", "5", "2000 tenge");
-		addFoodList(increaseIdincreased(), "Al Fakher", "5", "3500 tenge");
-		addFoodList(increaseIdincreased(), "Nakhla", "5", "2500 tenge");
-		addFoodList(increaseIdincreased(), "Starbuzz", "5", "2600 tenge");
+		addFoodList(takeDefaultIdIncreased(), "Автобус МАЗ-232", "1", "время отправки:17:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус МАЗ-232", "1", "время отправки:18:00, стоимость:6000тг");
+		addFoodList(increaseIdincreased(), "Автобус КАЗ-233", "2", "время отправки:19:00, стоимость:7000тг");
+		addFoodList(increaseIdincreased(), "Автобус VAN-213", "2", "время отправки:18:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус SAD-121", "3", "время отправки:17:00, стоимость:6000тг");
+		addFoodList(increaseIdincreased(), "Автобус XOKO-210", "4", "время отправки:14:00, стоимость:7000тг");
+		addFoodList(increaseIdincreased(), "Автобус МАЗ-90", "4", "время отправки:16:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус VOLVO-23", "5", "время отправки:15:00, стоимость:6000тг");
+		addFoodList(increaseIdincreased(), "Автобус HALL-998", "5", "время отправки:19:00, стоимость:7000тг");
+		addFoodList(increaseIdincreased(), "Автобус JRT-323", "6", "время отправки:18:00, стоимость:8000тг");
+		addFoodList(increaseIdincreased(), "Автобус МNH-324", "7", "время отправки:20:00, стоимость:8000тг");
+		addFoodList(increaseIdincreased(), "Автобус KJK-334", "8", "время отправки:21:00, стоимость:9000тг");
+		addFoodList(increaseIdincreased(), "Автобус ASX-234", "8", "время отправки:21:00, стоимость:3000тг");
+		addFoodList(increaseIdincreased(), "Автобус ASA-566", "9", "время отправки:20:00, стоимость:4000тг");
+		addFoodList(increaseIdincreased(), "Автобус QWE-453", "9", "время отправки:18:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус JKL-098", "9", "время отправки:19:00, стоимость:6000тг");
+		addFoodList(increaseIdincreased(), "Автобус XZC-976", "10", "время отправки:19:00, стоимость:7000тг");
+		addFoodList(increaseIdincreased(), "Автобус ZXC-987", "10", "время отправки:14:00, стоимость:8000тг");
+		addFoodList(increaseIdincreased(), "Автобус WQF-342", "10", "время отправки:11:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус ETY-458", "10", "время отправки:18:00, стоимость:4000тг");
+		addFoodList(increaseIdincreased(), "Автобус XCD-768", "11", "время отправки:16:00, стоимость:6000тг");
+		addFoodList(increaseIdincreased(), "Автобус GHK-345", "11", "время отправки:19:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус ZXC-978", "11", "время отправки:19:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус DGG-656", "11", "время отправки:15:00, стоимость:7000тг");
+		addFoodList(increaseIdincreased(), "Автобус KOO-768", "12", "время отправки:16:00, стоимость:8000тг");
+		addFoodList(increaseIdincreased(), "Автобус ZXC-167", "13", "время отправки:13:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус LKL-879", "14", "время отправки:19:00, стоимость:7000тг");
+		addFoodList(increaseIdincreased(), "Автобус МАЗ-232", "14", "время отправки:10:00, стоимость:8000тг");
+		addFoodList(increaseIdincreased(), "Автобус МАЗ-234", "15", "время отправки:13:00, стоимость:9000тг");
+		addFoodList(increaseIdincreased(), "Автобус МАЗ-200", "15", "время отправки:15:00, стоимость:4000тг");
+		addFoodList(increaseIdincreased(), "Автобус ASA-230", "15", "время отправки:19:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус FGH-454", "4", "время отправки:18:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус GGG-555", "4", "время отправки:17:00, стоимость:6000тг");
+		addFoodList(increaseIdincreased(), "Автобус OOO-000", "3", "время отправки:17:00, стоимость:5000тг");
+		addFoodList(increaseIdincreased(), "Автобус МER-456", "5", "время отправки:22:00, стоимость:7000тг");
 	}
 
 	private void loadFoodSchedule() throws ParseException {
