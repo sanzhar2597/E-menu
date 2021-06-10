@@ -23,7 +23,8 @@ public interface BookingDao {
   @Select("select booking_id as bookingId, number_of_people as numberOfPeople, record_time as recordTime, " +
     "record_date_day as recordDateDay, record_date_from as recordDateFrom, record_date_to as recordDateTo, " +
     "table_type as tableType, phone_number as phoneNumber, person_id as personId from booking " +
-    "where table_type = #{booking.tableType} and record_date_day= #{booking.recordDateDay}")
+    "where table_type = #{booking.tableType} and record_date_day= #{booking.recordDateDay} and "
+    + "number_of_people = #{booking.numberOfPeople} and number_of_people2 = #{booking.numberOfPeople2} ")
   List<Booking> checkTime(@Param("booking") Booking booking);
 
 
@@ -31,7 +32,12 @@ public interface BookingDao {
     "record_date_day as recordDateDay, record_date_from as recordDateFrom, record_date_to as recordDateTo, " +
     "table_type as tableType, phone_number as phoneNumber, person_id as personId from booking " +
     "where  person_id= #{id}")
-  List<Booking> getBookinbById(@Param("id") String id);
+  List<Booking> getBookingById(@Param("id") String id);
+
+  @Select("select booking_id as bookingId, number_of_people as numberOfPeople, record_time as recordTime, " +
+    "record_date_day as recordDateDay, record_date_from as recordDateFrom, record_date_to as recordDateTo, " +
+    "table_type as tableType, phone_number as phoneNumber, person_id as personId from booking ")
+  List<Booking> getBookings();
 
 
   @Select("select name from restaurant_table where status = 1")

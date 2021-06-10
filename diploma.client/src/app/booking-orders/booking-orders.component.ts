@@ -69,7 +69,7 @@ export class BookingOrdersComponent implements OnInit {
   refreshList(id: string | number) {
 
     if (this.expectUser()) {
-      this.service.getOrderList().then(res => {
+      this.service.getOrderBookingList().then(res => {
         this.orderList = res.body;
 
         this.showDate();

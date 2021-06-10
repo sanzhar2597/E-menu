@@ -39,6 +39,10 @@ export class OrderService {
     return this.httpService.get('/restaurant/get-orders',).toPromise();
   }
 
+  getOrderBookingList() {
+    return this.httpService.get('/restaurant/get-order-bookings',).toPromise();
+  }
+
   getOrderByID(id: number): any {
     return this.httpService.get('/restaurant/get-order', {id}).toPromise();
   }

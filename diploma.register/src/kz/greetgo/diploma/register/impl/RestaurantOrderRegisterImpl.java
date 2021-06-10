@@ -153,9 +153,9 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 
     String id = restaurantOrderDao.get().getPersonId(personId);
     if (isNullOrEmpty(id)) {
-      return bookingDao.get().getBookinbById(personId);
+      return bookingDao.get().getBookingById(personId);
     } else {
-      return bookingDao.get().getBookinbById(id);
+      return bookingDao.get().getBookingById(id);
     }
   }
 
@@ -229,6 +229,14 @@ public class RestaurantOrderRegisterImpl implements RestaurantOrderRegister {
 
     return restaurantOrderDao.get().getListCategory();
 
+  }
+
+  @Override
+  public List<Booking> getOrderBookingList() {
+
+    List<OrderList> orderLists = new ArrayList<>();
+     restaurantOrderDao.get().selectOrderList();
+    return bookingDao.get().getBookings();
   }
 
 

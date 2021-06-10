@@ -1,12 +1,13 @@
 <div class="table-responsive">
   <table class="shadow-sm table table-hover p-3 mb-5 rounded ">
     <thead class=" thead-light-color ">
-    <th>{{languagesService.languages.orderno.toFirstTitleCase()}}</th>
-    <th>{{languagesService.languages.customer.toFirstTitleCase()}}</th>
-    <th>{{languagesService.languages.pmethod.toFirstTitleCase()}}</th>
-    <th>{{languagesService.languages.gtotal.toFirstTitleCase()}}</th>
-    <th>{{languagesService.languages.status.toFirstTitleCase()}}</th>
-    <th>{{languagesService.languages.recorddateday.toFirstTitleCase()}}</th>
+    <th>{{languagesService.languages.fromcity.toFirstTitleCase()}}</th>
+    <th>{{languagesService.languages.tocity.toFirstTitleCase()}}</th>
+    <th>{{languagesService.languages.datereserv.toFirstTitleCase()}}</th>
+    <th>{{languagesService.languages.firstename.toFirstTitleCase()}}</th>
+    <th>{{languagesService.languages.secondename.toFirstTitleCase()}}</th>
+    <th>{{languagesService.languages.phonexnumber.toFirstTitleCase()}}</th>
+    <th>{{languagesService.languages.placenumber.toFirstTitleCase()}}</th>
 
     <th *ngIf="loginService.canViewWaiter"
         class="text-center">{{languagesService.languages.acceptfood.toFirstTitleCase()}}
@@ -20,7 +21,7 @@
     <tr *ngFor="let item of orderList"
         [class.table-warning]="item.status==1"
         [class.table-info]="item.status==3">
-      <th (click)="openForEdit(item)">{{item.orderNo}}</th>
+      <th (click)="openForEdit(item)">{{item.numberOfPeople}}</th>
       <!--<td  (click)="openForEdit(item)">{{(item.phoneNumber ? item.phoneNumber : languagesService.languages.anonymous.toFirstTitleCase() )}}</td>-->
       <td *ngIf="loginService.personDisplay" (click)="openForEdit(item)">{{item.phoneNumber ? item.phoneNumber : item.name}}</td>
       <td  *ngIf="!loginService.personDisplay" (click)="openForEdit(item)">{{item.phoneNumber ? item.phoneNumber : languagesService.languages.anonymous.toFirstTitleCase()}}</td>

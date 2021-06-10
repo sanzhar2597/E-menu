@@ -40,4 +40,7 @@ public interface RestaurantOrderRegister {
 	List<Item> getItemListByCategory(String category);
 
 	List<String> getListCategory();
+
+  List<Booking> getOrderBookingList();
+
 }

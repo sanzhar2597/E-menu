@@ -29,8 +29,8 @@
         </li>
 
         <li class="nav-item" id="navItem9" (click)="showMainPage('booking-orders')">
-          <a class="nav-link" (click)="showMainPage('booking-orders')"
-             routerLink="/booking-orders">Booking orders</a>
+          <a class="nav-link" *ngIf="!login.canViewWaiter || !login.canViewUsers" (click)="showMainPage('booking-orders')"
+             routerLink="/booking-orders">{{languagesService.languages.bookingorders}}</a>
         </li>
         <li class="nav-item" id="navItem3" (click)="showMainPage('booking')"
             *ngIf="login.canViewAdmin">

@@ -74,6 +74,14 @@ public class RestaurantOrderController implements Controller {
 
   @ToJson
   @PublicAccess
+  @OnGet("/get-order-bookings")
+  public List<Booking> getOrderBookingList() {
+
+    return restaurantOrderRegister.get().getOrderBookingList();
+  }
+
+  @ToJson
+  @PublicAccess
   @OnGet("/get-orders-by-id")
   public List<OrderList> getOrderListById(@Par("id") String personId) {
 
