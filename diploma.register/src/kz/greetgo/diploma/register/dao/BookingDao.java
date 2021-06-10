@@ -46,6 +46,10 @@ public interface BookingDao {
   @Select("select *from restaurant_table where status = 1")
   List<Table> getRestaurantTableList();
 
+
+  @Select("select *from restaurant_table where status = 1 and name not in ${names}")
+  List<Table> getRestaurantTableListByNames(@Param("names") String names);
+
   @Insert("insert into Person (id, username, encoded_password, blocked) " +
     "values (#{id}, #{username}, #{encodedPassword}, 0)")
   void insertPerson(@Param("id") String id,
@@ -58,5 +62,9 @@ public interface BookingDao {
 
   @Select("select id from Person where username = #{username}")
   String getPersonId(@Param("username") String username);
+
+  @Select("select table_type from booking where record_date_day= #{booking.recordDateDay} and " +
+    "number_of_people = #{booking.numberOfPeople} and number_of_people2 = #{booking.numberOfPeople2} ")
+  List<String> getTableTypeByBooking(@Param("booking") Booking booking);
 
 }

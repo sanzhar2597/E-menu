@@ -1,7 +1,7 @@
-import { Component, ElementRef, Inject, OnInit, Renderer2 } from '@angular/core';
-import { LanguagesService } from '../shared/languages.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { BookingService } from '../shared/booking.service';
+import {Component, ElementRef, Inject, OnInit, Renderer2} from '@angular/core';
+import {LanguagesService} from '../shared/languages.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {BookingService} from '../shared/booking.service';
 
 @Component({
   selector: 'app-table-selection',
@@ -21,6 +21,8 @@ export class TableSelectionComponent implements OnInit {
               private renderer: Renderer2
   ) {
   }
+
+  public copyStaticTable;
 
   public staticTable = {
     'table-part-left': [
@@ -87,7 +89,6 @@ export class TableSelectionComponent implements OnInit {
       {
         name: 'place-2',
         enable: false,
-
       },
       {
         name: 'place-6',
@@ -106,81 +107,81 @@ export class TableSelectionComponent implements OnInit {
       },
       {
         name: 'place-18',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-22',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-24',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-26',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-30',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-34',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-38',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-42',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-46',
-        enable: true,
+        enable: false,
       },
     ],
     'table-part-center': [
       {
         name: 'place-3',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-7',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-11',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-15',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-19',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-27',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-31',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-35',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-39',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-43',
-        enable: true,
+        enable: false,
       }
 
 
@@ -216,29 +217,29 @@ export class TableSelectionComponent implements OnInit {
       },
       {
         name: 'place-36',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-40',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-44',
-        enable: true,
+        enable: false,
       }
     ],
     'table-part-right': [
       {
         name: 'place-47',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-48',
-        enable: true,
+        enable: false,
       },
       {
         name: 'place-49',
-        enable: true,
+        enable: false,
       }
 
     ],
@@ -251,27 +252,36 @@ export class TableSelectionComponent implements OnInit {
   }
 
   createstaticTable() {
-
+    this.copyStaticTable = JSON.parse(JSON.stringify(this.staticTable));
     let findTableItem = 0;
-    for (let key in this.staticTable) {
-      for (let item in this.staticTable[key]) {
+    for (let key in this.copyStaticTable) {
+      for (let item in this.copyStaticTable[key]) {
         for (let tab in this.data.tableArray) {
-          if (this.data.tableArray[tab].name == this.staticTable[key][item].name) {
-            this.staticTable[key][item].enable = true;
-            this.staticTable[key][item].personNumber = this.data.tableArray[tab].personNumber;
+          if (this.data.tableArray[tab].name === this.copyStaticTable[key][item].name) {
+            if (this.copyStaticTable[key][item].name === 'place-2') {
+              console.error(this.data.tableArray[tab].name, this.copyStaticTable[key][item].name);
+            }
+            this.copyStaticTable[key][item].enable = true;
+            this.copyStaticTable[key][item].personNumber = this.data.tableArray[tab].personNumber;
           }
         }
-        if (findTableItem == this.data.response) {
-          this.selectedItem = this.staticTable[key][item];
+        if (findTableItem === this.data.response) {
+          this.selectedItem = this.copyStaticTable[key][item];
         }
-        this.staticTable[key][item].id = findTableItem++;
+        this.copyStaticTable[key][item].id = findTableItem++;
 
       }
     }
+    console.error(this.copyStaticTable);
   }
 
   ngOnInit() {
-    this.createstaticTable();
+    // this.createstaticTable();
+    this.bookingService.getRestaurantTableByBookingList(this.data.booking).then(value => {
+        this.data.tableArray = value.body;
+        this.createstaticTable();
+      }
+    );
   }
 
 

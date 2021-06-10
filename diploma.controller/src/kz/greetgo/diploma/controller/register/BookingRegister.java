@@ -16,4 +16,7 @@ public interface BookingRegister {
 	String getPersonId(String username);
 
 	List<Table> getRestaurantTableList();
+
+  List<Table> getRestaurantBookingTableList(Booking booking);
+
 }

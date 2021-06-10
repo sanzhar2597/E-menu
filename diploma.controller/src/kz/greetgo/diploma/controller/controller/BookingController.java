@@ -20,48 +20,56 @@ import java.util.List;
 @ControllerPrefix("/booking")
 public class BookingController implements Controller {
 
-	public BeanGetter<BookingRegister> bookingRegister;
+  public BeanGetter<BookingRegister> bookingRegister;
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/check-time")
-	public String checkTime(@Par("booking") @Json Booking booking) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/check-time")
+  public String checkTime(@Par("booking") @Json Booking booking) {
 
-		return bookingRegister.get().checkTime(booking);
-	}
+    return bookingRegister.get().checkTime(booking);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/save")
-	public void insertBooking(@Par("booking") @Json Booking booking) throws Exception {
+  @ToJson
+  @PublicAccess
+  @OnGet("/save")
+  public void insertBooking(@Par("booking") @Json Booking booking) throws Exception {
 
-		bookingRegister.get().insertBooking(booking);
-	}
-
-
-	@ToJson
-	@PublicAccess
-	@OnGet("/person-id")
-	public String getPersonId(@Par("username") String username) throws Exception {
-
-		return bookingRegister.get().getPersonId(username);
-	}
+    bookingRegister.get().insertBooking(booking);
+  }
 
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/restaurant-table")
-	public List<String> getRestaurantTable() throws ParseException {
+  @ToJson
+  @PublicAccess
+  @OnGet("/person-id")
+  public String getPersonId(@Par("username") String username) throws Exception {
 
-		return bookingRegister.get().getRestaurantTable();
-	}
+    return bookingRegister.get().getPersonId(username);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/restaurant-table-list")
-	public List<Table> getRestaurantTableList() throws ParseException {
 
-		return bookingRegister.get().getRestaurantTableList();
-	}
+  @ToJson
+  @PublicAccess
+  @OnGet("/restaurant-table")
+  public List<String> getRestaurantTable() throws ParseException {
+
+    return bookingRegister.get().getRestaurantTable();
+  }
+
+  @ToJson
+  @PublicAccess
+  @OnGet("/restaurant-table-list")
+  public List<Table> getRestaurantTableList() throws ParseException {
+
+    return bookingRegister.get().getRestaurantTableList();
+  }
+
+  @ToJson
+  @PublicAccess
+  @OnGet("/restaurant-booking-table-list")
+  public List<Table> getRestaurantBookingtTableList(@Par("booking") @Json Booking booking) throws ParseException {
+
+    return bookingRegister.get().getRestaurantBookingTableList(booking);
+  }
 
 }

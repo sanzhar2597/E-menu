@@ -1,15 +1,11 @@
 <div class="table-place">
-  <div *ngFor="let key of keys();" [class]='key'>
-    <div *ngFor="let item of staticTable[key]" [class]="item.name" appBoldDirective [isClicked]="selectedItem == item && selectedItem.enable"
-         (click)="chooseTable(item)">
-      <i class="fa fa-times-circle" aria-hidden="true" *ngIf="!item.enable"></i>
+    <div *ngFor="let key of keys();" [class]='key'>
+      <div *ngFor="let item of copyStaticTable[key]" [class]="item.name" appBoldDirective
+           [isClicked]="selectedItem == item && selectedItem.enable"
+           (click)="chooseTable(item)">
+        <i class="fa fa-times-circle" aria-hidden="true" *ngIf="!item.enable"></i>
+      </div>
     </div>
-  </div>
-
-
-
-
-
 
 
   <!--

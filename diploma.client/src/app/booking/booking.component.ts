@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { BookingService } from '../shared/booking.service';
-import { MatDatepickerModule, MatDialog, MatDialogConfig } from '@angular/material';
-import { NextOperationComponent } from '../next-operation/next-operation.component';
-import { LoginService } from '../login/login.service';
-import { Router } from '@angular/router';
-import { AlertComponent } from '../alert/alert.component';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { LanguagesService } from '../shared/languages.service';
-import { TableSelectionComponent } from '../table-selection/table-selection.component';
-import { AmazingTimePickerService } from 'amazing-time-picker';
+import {Component, OnInit} from '@angular/core';
+import {BookingService} from '../shared/booking.service';
+import {MatDatepickerModule, MatDialog, MatDialogConfig} from '@angular/material';
+import {NextOperationComponent} from '../next-operation/next-operation.component';
+import {LoginService} from '../login/login.service';
+import {Router} from '@angular/router';
+import {AlertComponent} from '../alert/alert.component';
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {LanguagesService} from '../shared/languages.service';
+import {TableSelectionComponent} from '../table-selection/table-selection.component';
+import {AmazingTimePickerService} from 'amazing-time-picker';
 
 @Component({
   selector: 'app-booking',
@@ -80,10 +80,10 @@ export class BookingComponent implements OnInit {
         this.resetForm();
       }
     );
-    this.bookingService.getRestaurantTableList().then(value => {
-        this.bookingService.tableArray = value.body;
-      }
-    );
+    // this.bookingService.getRestaurantTableList().then(value => {
+    //     this.bookingService.tableArray = value.body;
+    //   }
+    // );
     this.resetForm();
     this.getPhoneNumber();
 
@@ -292,11 +292,14 @@ export class BookingComponent implements OnInit {
       response: scope.bookingService.table.findIndex(value => value == scope.bookingService.booking.tableType),
       table: this.bookingService.table,
       tableArray: this.bookingService.tableArray,
+      booking: this.bookingService.booking,
+
     };
     this.dialog.open(TableSelectionComponent, dialogConfig).afterClosed().subscribe(res => {
 
       if (res != undefined) {
-        this.bookingService.booking.tableType = this.bookingService.table[+res.id];
+        console.error(res);
+        this.bookingService.booking.tableType = res.name;
         // this.bookingService.booking.numberOfPeople = res.personNumber;
       } else {
         this.bookingService.booking.tableType = this.bookingService.table[0];
