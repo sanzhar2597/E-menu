@@ -20,133 +20,141 @@ import java.util.List;
 @ControllerPrefix("/restaurant")
 public class RestaurantOrderController implements Controller {
 
-	public BeanGetter<RestaurantOrderRegister> restaurantOrderRegister;
+  public BeanGetter<RestaurantOrderRegister> restaurantOrderRegister;
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/list-item")
-	public ArrayList<Item> getItemList() {
+  @ToJson
+  @PublicAccess
+  @OnGet("/list-item")
+  public ArrayList<Item> getItemList() {
 
-		return restaurantOrderRegister.get().getItemList();
-	}
+    return restaurantOrderRegister.get().getItemList();
+  }
 
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/list-item-by-category")
-	public List<Item> getItemListByCategory(@Par("category")  String category) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/list-item-by-category")
+  public List<Item> getItemListByCategory(@Par("category") String category) {
 
-		return restaurantOrderRegister.get().getItemListByCategory(category);
-	}
+    return restaurantOrderRegister.get().getItemListByCategory(category);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/get-list-category")
-	public List<String> getListCategory() {
+  @ToJson
+  @PublicAccess
+  @OnGet("/get-list-category")
+  public List<String> getListCategory() {
 
-		return restaurantOrderRegister.get().getListCategory();
-	}
+    return restaurantOrderRegister.get().getListCategory();
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/customer")
-	public ArrayList<Person> getCustomerList() {
+  @ToJson
+  @PublicAccess
+  @OnGet("/customer")
+  public ArrayList<Person> getCustomerList() {
 
-		return restaurantOrderRegister.get().getCustomerList();
-	}
+    return restaurantOrderRegister.get().getCustomerList();
+  }
 
-	@PublicAccess
-	@OnPost("/order-items")
-	public void postOrderItems(@Par("orderItems") @Json Orders orders) {
+  @PublicAccess
+  @OnPost("/order-items")
+  public void postOrderItems(@Par("orderItems") @Json Orders orders) {
 
-		System.out.println(orders);
+    System.out.println(orders);
 
-		restaurantOrderRegister.get().postOrderItems(orders);
-	}
+    restaurantOrderRegister.get().postOrderItems(orders);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/get-orders")
-	public List<OrderList> getOrderList() {
+  @ToJson
+  @PublicAccess
+  @OnGet("/get-orders")
+  public List<OrderList> getOrderList() {
 
-		return restaurantOrderRegister.get().getOrderList();
-	}
+    return restaurantOrderRegister.get().getOrderList();
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/get-orders-by-id")
-	public List<OrderList> getOrderListById(@Par("id") String personId) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/get-orders-by-id")
+  public List<OrderList> getOrderListById(@Par("id") String personId) {
 
-		return restaurantOrderRegister.get().getOrderListById(personId);
-	}
+    return restaurantOrderRegister.get().getOrderListById(personId);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/update-order-status")
-	public void updateOrderStatus(@Par("orderList") @Json OrderList orderList) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/get-order-bookings-by-id")
+  public List<Booking> getOrderBookingsById(@Par("id") String personId) {
 
-		restaurantOrderRegister.get().updateOrderStatus(orderList);
-	}
+    return restaurantOrderRegister.get().getOrderBookingListById(personId);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/get-order")
-	public Orders getOrdersbyId(@Par("id") @Json Integer id) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/update-order-status")
+  public void updateOrderStatus(@Par("orderList") @Json OrderList orderList) {
 
-		System.out.println(id);
-		return restaurantOrderRegister.get().getOrdersbyId(id);
-	}
+    restaurantOrderRegister.get().updateOrderStatus(orderList);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/delete-order")
-	public void deleteOrderbyId(@Par("id") @Json Integer id) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/get-order")
+  public Orders getOrdersbyId(@Par("id") @Json Integer id) {
 
-		System.out.println(id);
-		restaurantOrderRegister.get().deleteOrderbyId(id);
-	}
+    System.out.println(id);
+    return restaurantOrderRegister.get().getOrdersbyId(id);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/offer")
-	public List<Item> prepareOffer(@Par("orderItems") @Json List<OrderItem> orderItems) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/delete-order")
+  public void deleteOrderbyId(@Par("id") @Json Integer id) {
 
-		System.out.println(orderItems);
-		return restaurantOrderRegister.get().prepareOffer(orderItems);
-	}
+    System.out.println(id);
+    restaurantOrderRegister.get().deleteOrderbyId(id);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/get-comments-by-item-id")
-	public List<Comments> getCommentsByItemId(@Par("itemId") @Json Integer itemId) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/offer")
+  public List<Item> prepareOffer(@Par("orderItems") @Json List<OrderItem> orderItems) {
 
-		System.out.println(itemId);
-		return restaurantOrderRegister.get().getCommentsByItemId(itemId);
-	}
+    System.out.println(orderItems);
+    return restaurantOrderRegister.get().prepareOffer(orderItems);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/set-comments")
-	public String setComments(@Par("comments") @Json Comments comments) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/get-comments-by-item-id")
+  public List<Comments> getCommentsByItemId(@Par("itemId") @Json Integer itemId) {
 
-		return restaurantOrderRegister.get().setComments(comments);
-	}
+    System.out.println(itemId);
+    return restaurantOrderRegister.get().getCommentsByItemId(itemId);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/set-comments-like")
-	public String setCommentsLike(@Par("commentsLike") @Json CommentsLike commentsLike) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/set-comments")
+  public String setComments(@Par("comments") @Json Comments comments) {
 
-		return restaurantOrderRegister.get().setCommentsLike(commentsLike);
-	}
+    return restaurantOrderRegister.get().setComments(comments);
+  }
 
-	@ToJson
-	@PublicAccess
-	@OnGet("/set-comments-like-by-person-id")
-	public List<CommentsLike> setCommentsLikeByPersonId(@Par("personId") String personId) {
+  @ToJson
+  @PublicAccess
+  @OnGet("/set-comments-like")
+  public String setCommentsLike(@Par("commentsLike") @Json CommentsLike commentsLike) {
 
-		return restaurantOrderRegister.get().setCommentsLikeByPersonId(personId);
-	}
+    return restaurantOrderRegister.get().setCommentsLike(commentsLike);
+  }
+
+  @ToJson
+  @PublicAccess
+  @OnGet("/set-comments-like-by-person-id")
+  public List<CommentsLike> setCommentsLikeByPersonId(@Par("personId") String personId) {
+
+    return restaurantOrderRegister.get().setCommentsLikeByPersonId(personId);
+  }
 
 
 }

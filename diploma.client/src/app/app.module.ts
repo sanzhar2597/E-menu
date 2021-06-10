@@ -43,6 +43,7 @@ import {AmazingTimePickerModule} from "amazing-time-picker";
 import {SliderModule} from "angular-image-slider";
 import {SlideshowModule} from "ng-simple-slideshow";
  import { ScheduleComponent } from './schedule/schedule.component';
+import { BookingOrdersComponent } from './booking-orders/booking-orders.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import {SlideshowModule} from "ng-simple-slideshow";
     SimpleInstructionComponent,
     CommentsComponent,
      ScheduleComponent,
+     BookingOrdersComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,

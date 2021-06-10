@@ -27,7 +27,9 @@ public interface RestaurantOrderRegister {
 
 	List<OrderList> getOrderListById(String personId);
 
-	List<Comments> getCommentsByItemId(Integer itemId);
+  List<Booking> getOrderBookingListById(String personId);
+
+  List<Comments> getCommentsByItemId(Integer itemId);
 
 	String setComments(Comments comments);
 

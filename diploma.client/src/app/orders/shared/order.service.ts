@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Order} from "../../../model/order.model";
-import {OrderItem} from "../../../model/orderItem.model";
-import {HttpService} from "../../http.service";
-import {Item} from "../../../model/item.model";
-import {Comments} from "../../../model/comments.model";
-import {CommentsLike} from "../../../model/comments-like.model";
+import {Order} from '../../../model/order.model';
+import {OrderItem} from '../../../model/orderItem.model';
+import {HttpService} from '../../http.service';
+import {Item} from '../../../model/item.model';
+import {Comments} from '../../../model/comments.model';
+import {CommentsLike} from '../../../model/comments-like.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +24,15 @@ export class OrderService {
       orderItems: this.orderItems
     };
 
-    return this.httpService.post('/restaurant' + '/order-items', {orderItems: JSON.stringify(orderItems)})
+    return this.httpService.post('/restaurant' + '/order-items', {orderItems: JSON.stringify(orderItems)});
   }
 
   getOrderListById(id: string | number) {
     return this.httpService.get('/restaurant/get-orders-by-id', {id}).toPromise();
+  }
+
+  getOrderBookingListById(id: string | number) {
+    return this.httpService.get('/restaurant/get-order-bookings-by-id', {id}).toPromise();
   }
 
   getOrderList() {
@@ -47,19 +51,18 @@ export class OrderService {
 
     if (this.orderItems.length) {
       return this.httpService.get('/restaurant/offer', {orderItems: JSON.stringify(this.orderItems)}).toPromise();
-    }
-    else {
+    } else {
       return new Promise((resolve, reject) => {
         let obj = {
           body: []
-        }
+        };
         resolve(obj);
       });
     }
   }
 
   updateOrderStatus(item: any) {
-    item.recordDateDay = null
+    item.recordDateDay = null;
     return this.httpService.get('/restaurant/update-order-status', {orderList: JSON.stringify(item)}).toPromise();
   }
 
@@ -68,19 +71,20 @@ export class OrderService {
   }
 
   setComments(comments: Comments) {
-    return this.httpService.get('/restaurant/set-comments', {comments: JSON.stringify(comments)}).toPromise()
+    return this.httpService.get('/restaurant/set-comments', {comments: JSON.stringify(comments)}).toPromise();
   }
 
   setCommentsLike(commentsLike: CommentsLike) {
-    return this.httpService.get('/restaurant/set-comments-like', {commentsLike: JSON.stringify(commentsLike)}).toPromise()
+    return this.httpService.get('/restaurant/set-comments-like', {commentsLike: JSON.stringify(commentsLike)}).toPromise();
 
   }
 
   setCommentsLikeByPersonid(personId: string) {
-    return this.httpService.get('/restaurant/set-comments-like-by-person-id', {personId: personId}).toPromise()
+    return this.httpService.get('/restaurant/set-comments-like-by-person-id', {personId: personId}).toPromise();
   }
-  getListCategory(){
-    return this.httpService.get('/restaurant/get-list-category').toPromise()
+
+  getListCategory() {
+    return this.httpService.get('/restaurant/get-list-category').toPromise();
 
   }
 
