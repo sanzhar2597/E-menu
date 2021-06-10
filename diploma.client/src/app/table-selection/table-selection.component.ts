@@ -25,161 +25,161 @@ export class TableSelectionComponent implements OnInit {
   public staticTable = {
     'table-part-left': [
       {
-        name: 'table-one',
+        name: 'place-1',
         enable: false,
       },
       {
-        name: 'table-two',
-        enable: false,
-
-      },
-      {
-        name: 'table-three',
-        enable: false,
-      },
-      {
-        name: 'table-four',
-        enable: false,
-      },
-      {
-        name: 'table-five',
-        enable: false,
-      },
-      {
-        name: 'table-six',
+        name: 'place-5',
         enable: false,
 
       },
       {
-        name: 'table-seven',
+        name: 'place-9',
         enable: false,
       },
       {
-        name: 'table-eight',
+        name: 'place-13',
         enable: false,
       },
       {
-        name: 'table-nine',
+        name: 'place-17',
         enable: false,
       },
       {
-        name: 'table-ten',
-
-        enable: false,
-      },
-      {
-        name: 'table-eleven',
+        name: 'place-21',
         enable: false,
 
       },
       {
-        name: 'table-twelve',
+        name: 'place-23',
+        enable: false,
+      },
+      {
+        name: 'place-25',
+        enable: false,
+      },
+      {
+        name: 'place-29',
+        enable: false,
+      },
+      {
+        name: 'place-33',
+
+        enable: false,
+      },
+      {
+        name: 'place-37',
         enable: false,
 
       },
       {
-        name: 'table-thirteen',
+        name: 'place-41',
+        enable: false,
+
+      },
+      {
+        name: 'place-45',
         enable: false,
 
       },
     ],
     'table-part-center-left': [
       {
-        name: 'table-fourteen',
+        name: 'place-2',
         enable: false,
 
       },
       {
-        name: 'table-fifteen',
+        name: 'place-6',
         enable: false,
 
       },
       {
-        name: 'table-sixteen',
+        name: 'place-10',
         enable: false,
 
       },
       {
-        name: 'table-seventeen',
+        name: 'place-14',
         enable: false,
 
       },
       {
-        name: 'table-seventeen-1',
+        name: 'place-18',
         enable: true,
       },
       {
-        name: 'table-seventeen-2',
+        name: 'place-22',
         enable: true,
       },
       {
-        name: 'table-seventeen-3',
+        name: 'place-24',
         enable: true,
       },
       {
-        name: 'table-seventeen-4',
+        name: 'place-26',
         enable: true,
       },
       {
-        name: 'table-seventeen-5',
+        name: 'place-30',
         enable: true,
       },
       {
-        name: 'table-seventeen-6',
+        name: 'place-34',
         enable: true,
       },
       {
-        name: 'table-seventeen-7',
+        name: 'place-38',
         enable: true,
       },
       {
-        name: 'table-seventeen-8',
+        name: 'place-42',
         enable: true,
       },
       {
-        name: 'table-seventeen-9',
+        name: 'place-46',
         enable: true,
       },
     ],
     'table-part-center': [
       {
-        name: 'table-seventeen-20',
+        name: 'place-3',
         enable: true,
       },
       {
-        name: 'table-seventeen-21',
+        name: 'place-7',
         enable: true,
       },
       {
-        name: 'table-seventeen-22',
+        name: 'place-11',
         enable: true,
       },
       {
-        name: 'table-seventeen-23',
+        name: 'place-15',
         enable: true,
       },
       {
-        name: 'table-seventeen-24',
+        name: 'place-19',
         enable: true,
       },
       {
-        name: 'table-seventeen-25',
+        name: 'place-27',
         enable: true,
       },
       {
-        name: 'table-seventeen-26',
+        name: 'place-31',
         enable: true,
       },
       {
-        name: 'table-seventeen-27',
+        name: 'place-35',
         enable: true,
       },
       {
-        name: 'table-seventeen-28',
+        name: 'place-39',
         enable: true,
       },
       {
-        name: 'table-seventeen-29',
+        name: 'place-43',
         enable: true,
       }
 
@@ -187,57 +187,57 @@ export class TableSelectionComponent implements OnInit {
     ],
     'table-part-up': [
       {
-        name: 'table-seventeen-10',
+        name: 'place-4',
         enable: false,
       },
       {
-        name: 'table-seventeen-11',
+        name: 'place-8',
         enable: false,
       },
       {
-        name: 'table-seventeen-12',
+        name: 'place-12',
         enable: false,
       },
       {
-        name: 'table-seventeen-13',
+        name: 'place-16',
         enable: false,
       },
       {
-        name: 'table-seventeen-14',
+        name: 'place-20',
         enable: false,
       },
       {
-        name: 'table-seventeen-15',
+        name: 'place-28',
         enable: false,
       },
       {
-        name: 'table-seventeen-16',
+        name: 'place-32',
         enable: false,
       },
       {
-        name: 'table-seventeen-17',
+        name: 'place-36',
         enable: true,
       },
       {
-        name: 'table-seventeen-18',
+        name: 'place-40',
         enable: true,
       },
       {
-        name: 'table-seventeen-19',
+        name: 'place-44',
         enable: true,
       }
     ],
     'table-part-right': [
       {
-        name: 'table-seventeen-37',
+        name: 'place-47',
         enable: true,
       },
       {
-        name: 'table-seventeen-38',
+        name: 'place-48',
         enable: true,
       },
       {
-        name: 'table-seventeen-39',
+        name: 'place-49',
         enable: true,
       }
 

@@ -42,7 +42,7 @@ import {CommentsComponent} from './comments/comments.component';
 import {AmazingTimePickerModule} from "amazing-time-picker";
 import {SliderModule} from "angular-image-slider";
 import {SlideshowModule} from "ng-simple-slideshow";
-// import { ScheduleComponent } from './schedule/schedule.component';
+ import { ScheduleComponent } from './schedule/schedule.component';
 
 
 @NgModule({
@@ -65,7 +65,7 @@ import {SlideshowModule} from "ng-simple-slideshow";
     ContactUsComponent,
     SimpleInstructionComponent,
     CommentsComponent,
-    // ScheduleComponent,
+     ScheduleComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,

@@ -33,17 +33,17 @@
   </div>
 
 
-  <div [hidden]="!service.items.length">
-    <div *ngFor="let item of service.items, index as ind" class="alert alert-warning alert-dismissible fade show"
-         role="alert">
-      <strong>{{languagesService.languages.withthisproduct}}- '{{ (service.orderItems.length-ind >= ind ?
-        service.orderItems[service.orderItems.length-1-ind].itemName :
-        service.orderItems[service.orderItems.length-1].itemName)}}' {{ind}}
-        {{languagesService.languages.stillorder}} </strong> {{item.name}}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  </div>
+<!--  <div [hidden]="!service.items.length">-->
+<!--    <div *ngFor="let item of service.items, index as ind" class="alert alert-warning alert-dismissible fade show"-->
+<!--         role="alert">-->
+<!--      <strong>{{languagesService.languages.withthisproduct}}- '{{ (service.orderItems.length-ind >= ind ?-->
+<!--        service.orderItems[service.orderItems.length-1-ind].itemName :-->
+<!--        service.orderItems[service.orderItems.length-1].itemName)}}' {{ind}}-->
+<!--        {{languagesService.languages.stillorder}} </strong> {{item.name}}-->
+<!--      <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+<!--        <span aria-hidden="true">&times;</span>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
 </form>
 

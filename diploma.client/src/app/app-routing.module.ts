@@ -11,7 +11,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { OrderViewComponent } from './orders/order/order-view/order-view.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SimpleInstructionComponent } from './simple-instruction/simple-instruction.component';
-// import { ScheduleComponent } from './schedule/schedule.component';
+ import { ScheduleComponent } from './schedule/schedule.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'order', pathMatch: 'full'},
@@ -36,7 +36,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'booking', component: BookingComponent,},
-  // {path: 'schedule', component: ScheduleComponent,},
+   {path: 'schedule', component: ScheduleComponent,},
   {
     path: 'admin', loadChildren: './admin/admin.module#AdminModule',
     canActivate: [AuthGuard]

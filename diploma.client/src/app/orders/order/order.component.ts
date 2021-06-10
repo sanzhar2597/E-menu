@@ -37,7 +37,7 @@ export class OrderComponent implements OnInit {
   comments: Array<Comments> = [];
   public itemList: Item[];
   public itemListList: ItemList[];
-  category: string = 'Автобус';
+  category: string = 'Микроавтобус';
   arrayOfCategory: Array<string> = [];
   isValidOrderItem: boolean = false;
 

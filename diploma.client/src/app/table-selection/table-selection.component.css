@@ -19,7 +19,7 @@
   width: 28px;
 }
 
-.table-one {
+.place-1 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -33,7 +33,7 @@
   padding-left: 7px;
 }
 
-.table-two {
+.place-5 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -49,7 +49,7 @@
 
 }
 
-.table-three {
+.place-9 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -64,7 +64,7 @@
 
 }
 
-.table-four {
+.place-13 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -100,7 +100,7 @@
 
 }
 
-.table-five {
+.place-17 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -115,7 +115,7 @@
 
 }
 
-.table-six {
+.place-21 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -130,7 +130,7 @@
 
 }
 
-.table-seven {
+.place-23 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -166,7 +166,7 @@
 
 }
 
-.table-eight {
+.place-25 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -181,7 +181,7 @@
 
 }
 
-.table-nine {
+.place-29 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -195,7 +195,7 @@
   padding-left: 7px;
 }
 
-.table-ten {
+.place-33 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -209,7 +209,7 @@
   padding-left: 7px;
 }
 
-.table-eleven {
+.place-37 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -245,7 +245,7 @@
 
 }
 
-.table-twelve {
+.place-41 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -260,7 +260,7 @@
 
 }
 
-.table-thirteen {
+.place-45 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -295,7 +295,7 @@
 
 }
 
-.table-fourteen {
+.place-2 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -309,22 +309,7 @@
   padding-left: 7px;
 }
 
-.table-fifteen {
-  opacity: 0.5;
-  margin-bottom: 6.4px;
-  position: relative;
-  width: 28px;
-  height: 22px;
-
-  top: 114px;
-  left: 136px;
-  border-radius: 5px;
-  background-color: #93549e;
-  padding-left: 7px;
-
-}
-
-.table-sixteen {
+.place-6 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -339,7 +324,7 @@
 
 }
 
-.table-seventeen {
+.place-10 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -354,8 +339,7 @@
 
 }
 
-
-.table-seventeen-1 {
+.place-14 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -371,7 +355,7 @@
 }
 
 
-.table-seventeen-2 {
+.place-18 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -387,22 +371,7 @@
 }
 
 
-.table-seventeen-3 {
-  opacity: 0.5;
-  margin-bottom: 6.4px;
-  position: relative;
-  width: 28px;
-  height: 22px;
-
-  top: 114px;
-  left: 136px;
-  border-radius: 5px;
-  background-color: #93549e;
-  padding-left: 7px;
-
-}
-
-.table-seventeen-4 {
+.place-22 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -418,7 +387,22 @@
 }
 
 
-.table-seventeen-5 {
+.place-24 {
+  opacity: 0.5;
+  margin-bottom: 6.4px;
+  position: relative;
+  width: 28px;
+  height: 22px;
+
+  top: 114px;
+  left: 136px;
+  border-radius: 5px;
+  background-color: #93549e;
+  padding-left: 7px;
+
+}
+
+.place-26 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -434,7 +418,7 @@
 }
 
 
-.table-seventeen-6 {
+.place-30 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -450,7 +434,7 @@
 }
 
 
-.table-seventeen-7 {
+.place-34 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -466,7 +450,7 @@
 }
 
 
-.table-seventeen-8 {
+.place-38 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -481,7 +465,8 @@
 
 }
 
-.table-seventeen-9 {
+
+.place-42 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -496,7 +481,7 @@
 
 }
 
-.table-seventeen-10 {
+.place-46 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -511,7 +496,7 @@
 
 }
 
-.table-seventeen-11 {
+.place-4 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -526,7 +511,7 @@
 
 }
 
-.table-seventeen-12 {
+.place-8 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -541,7 +526,7 @@
 
 }
 
-.table-seventeen-13 {
+.place-12 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -556,7 +541,22 @@
 
 }
 
-.table-seventeen-14 {
+.place-16 {
+  opacity: 0.5;
+  margin-bottom: 6.4px;
+  position: relative;
+  width: 28px;
+  height: 22px;
+
+  top: 114px;
+  left: 136px;
+  border-radius: 5px;
+  background-color: #93549e;
+  padding-left: 7px;
+
+}
+
+.place-20 {
   opacity: 0.5;
   margin-bottom: 63px;
   position: relative;
@@ -571,7 +571,7 @@
 
 }
 
-.table-seventeen-15 {
+.place-28 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -586,7 +586,7 @@
 
 }
 
-.table-seventeen-16 {
+.place-32 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -601,7 +601,7 @@
 
 }
 
-.table-seventeen-17 {
+.place-36 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -616,7 +616,7 @@
 
 }
 
-.table-seventeen-18 {
+.place-40 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -631,7 +631,7 @@
 
 }
 
-.table-seventeen-19 {
+.place-44 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -646,7 +646,7 @@
 
 }
 
-.table-seventeen-20 {
+.place-3 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -661,7 +661,7 @@
 
 }
 
-.table-seventeen-21 {
+.place-7 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -676,7 +676,7 @@
 
 }
 
-.table-seventeen-22 {
+.place-11 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -691,7 +691,7 @@
 
 }
 
-.table-seventeen-23 {
+.place-15 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -706,7 +706,7 @@
 
 }
 
-.table-seventeen-24 {
+.place-19 {
   opacity: 0.5;
   margin-bottom: 63px;
   position: relative;
@@ -721,7 +721,7 @@
 
 }
 
-.table-seventeen-25 {
+.place-27 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -736,7 +736,7 @@
 
 }
 
-.table-seventeen-26 {
+.place-31 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -751,7 +751,7 @@
 
 }
 
-.table-seventeen-27 {
+.place-35 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -766,7 +766,7 @@
 
 }
 
-.table-seventeen-28 {
+.place-39 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -781,7 +781,7 @@
 
 }
 
-.table-seventeen-29 {
+.place-43 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -796,7 +796,7 @@
 
 }
 
-.table-seventeen-37 {
+.place-47 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -811,7 +811,7 @@
 
 }
 
-.table-seventeen-38 {
+.place-48 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
@@ -825,7 +825,7 @@
 
 }
 
-.table-seventeen-39 {
+.place-49 {
   opacity: 0.5;
   margin-bottom: 6.4px;
   position: relative;
